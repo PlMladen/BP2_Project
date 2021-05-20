@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectDb.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ProjectDbStoreContainer">
+    <EntitySet Name="Vlasnik_racunaraSet" EntityType="ProjectDb.Store.Vlasnik_racunaraSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RacunarSet" EntityType="ProjectDb.Store.RacunarSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PosjedujeSet" EntityType="ProjectDb.Store.PosjedujeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ServisSet" EntityType="ProjectDb.Store.ServisSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KomponentaSet" EntityType="ProjectDb.Store.KomponentaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sastoji_seSet" EntityType="ProjectDb.Store.Sastoji_seSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DonosiSet" EntityType="ProjectDb.Store.DonosiSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Serviser_racunaraSet" EntityType="ProjectDb.Store.Serviser_racunaraSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RadiSet" EntityType="ProjectDb.Store.RadiSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ServisiraSet" EntityType="ProjectDb.Store.ServisiraSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Garantni_listSet" EntityType="ProjectDb.Store.Garantni_listSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ServisSet_Racunarski_servis" EntityType="ProjectDb.Store.ServisSet_Racunarski_servis" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ServisSet_Servis_mob_tel" EntityType="ProjectDb.Store.ServisSet_Servis_mob_tel" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="Vlasnik_racunaraPosjeduje" Association="ProjectDb.Store.Vlasnik_racunaraPosjeduje">
+      <End Role="Vlasnik_racunara" EntitySet="Vlasnik_racunaraSet" />
+      <End Role="Posjeduje" EntitySet="PosjedujeSet" />
+    </AssociationSet>
+    <AssociationSet Name="KomponentaSastoji_se" Association="ProjectDb.Store.KomponentaSastoji_se">
+      <End Role="Komponenta" EntitySet="KomponentaSet" />
+      <End Role="Sastoji_se" EntitySet="Sastoji_seSet" />
+    </AssociationSet>
+    <AssociationSet Name="KomponentaSastoji_se1" Association="ProjectDb.Store.KomponentaSastoji_se1">
+      <End Role="Komponenta" EntitySet="KomponentaSet" />
+      <End Role="Sastoji_se" EntitySet="Sastoji_seSet" />
+    </AssociationSet>
+    <AssociationSet Name="RacunarKomponenta" Association="ProjectDb.Store.RacunarKomponenta">
+      <End Role="Racunar" EntitySet="RacunarSet" />
+      <End Role="Komponenta" EntitySet="KomponentaSet" />
+    </AssociationSet>
+    <AssociationSet Name="RacunarPosjeduje" Association="ProjectDb.Store.RacunarPosjeduje">
+      <End Role="Racunar" EntitySet="RacunarSet" />
+      <End Role="Posjeduje" EntitySet="PosjedujeSet" />
+    </AssociationSet>
+    <AssociationSet Name="Racunarski_servisRadi" Association="ProjectDb.Store.Racunarski_servisRadi">
+      <End Role="Racunarski_servis" EntitySet="ServisSet_Racunarski_servis" />
+      <End Role="Radi" EntitySet="RadiSet" />
+    </AssociationSet>
+    <AssociationSet Name="Serviser_racunaraRadi" Association="ProjectDb.Store.Serviser_racunaraRadi">
+      <End Role="Serviser_racunara" EntitySet="Serviser_racunaraSet" />
+      <End Role="Radi" EntitySet="RadiSet" />
+    </AssociationSet>
+    <AssociationSet Name="Racunarski_servisDonosi" Association="ProjectDb.Store.Racunarski_servisDonosi">
+      <End Role="Racunarski_servis" EntitySet="ServisSet_Racunarski_servis" />
+      <End Role="Donosi" EntitySet="DonosiSet" />
+    </AssociationSet>
+    <AssociationSet Name="PosjedujeDonosi" Association="ProjectDb.Store.PosjedujeDonosi">
+      <End Role="Posjeduje" EntitySet="PosjedujeSet" />
+      <End Role="Donosi" EntitySet="DonosiSet" />
+    </AssociationSet>
+    <AssociationSet Name="RadiServisira" Association="ProjectDb.Store.RadiServisira">
+      <End Role="Radi" EntitySet="RadiSet" />
+      <End Role="Servisira" EntitySet="ServisiraSet" />
+    </AssociationSet>
+    <AssociationSet Name="DonosiServisira" Association="ProjectDb.Store.DonosiServisira">
+      <End Role="Donosi" EntitySet="DonosiSet" />
+      <End Role="Servisira" EntitySet="ServisiraSet" />
+    </AssociationSet>
+    <AssociationSet Name="ServisiraGarantni_list" Association="ProjectDb.Store.ServisiraGarantni_list">
+      <End Role="Servisira" EntitySet="ServisiraSet" />
+      <End Role="Garantni_list" EntitySet="Garantni_listSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Racunarski_servis_inherits_Servis" Association="ProjectDb.Store.FK_Racunarski_servis_inherits_Servis">
+      <End Role="Servis" EntitySet="ServisSet" />
+      <End Role="Racunarski_servis" EntitySet="ServisSet_Racunarski_servis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Servis_mob_tel_inherits_Servis" Association="ProjectDb.Store.FK_Servis_mob_tel_inherits_Servis">
+      <End Role="Servis" EntitySet="ServisSet" />
+      <End Role="Servis_mob_tel" EntitySet="ServisSet_Servis_mob_tel" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Vlasnik_racunaraSet">
+    <Key>
+      <PropertyRef Name="JMBG_vl" />
+    </Key>
+    <Property Name="JMBG_vl" Type="bigint" Nullable="false" />
+    <Property Name="Ime_vl" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Prezime_vl" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Dat_rodjenja_vl" Type="datetime" Nullable="false" />
+    <Property Name="Adresa_vl_Ulica" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Adresa_vl_Grad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Adresa_vl_Broj" Type="int" Nullable="false" />
+    <Property Name="Adresa_vl_PostanskiBroj" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RacunarSet">
+    <Key>
+      <PropertyRef Name="ID_racunara" />
+    </Key>
+    <Property Name="ID_racunara" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Proizvodjac" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Brzina_procesora" Type="float" Nullable="false" />
+    <Property Name="Kapacitet_RAM" Type="int" Nullable="false" />
+    <Property Name="Kapacitet_memorije" Type="int" Nullable="false" />
+    <Property Name="Vrsta_racunara" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PosjedujeSet">
+    <Key>
+      <PropertyRef Name="Vlasnik_racunaraJMBG_vl" />
+      <PropertyRef Name="RacunarID_racunara" />
+    </Key>
+    <Property Name="Vlasnik_racunaraJMBG_vl" Type="bigint" Nullable="false" />
+    <Property Name="RacunarID_racunara" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServisSet">
+    <Key>
+      <PropertyRef Name="ID_servisa" />
+    </Key>
+    <Property Name="ID_servisa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv_serv" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tip_serv" Type="int" Nullable="false" />
+    <Property Name="Adresa_serv_Ulica" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Adresa_serv_Grad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Adresa_serv_Broj" Type="int" Nullable="false" />
+    <Property Name="Adresa_serv_PostanskiBroj" Type="int" Nullable="false" />
+    <Property Name="Br_tel_serv_Pozivni_broj" Type="int" Nullable="false" />
+    <Property Name="Br_tel_serv_Okrug" Type="int" Nullable="false" />
+    <Property Name="Br_tel_serv_Broj" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KomponentaSet">
+    <Key>
+      <PropertyRef Name="Id_komp" />
+    </Key>
+    <Property Name="Id_komp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naz_komp" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Cijena_komp" Type="float" Nullable="false" />
+    <Property Name="RacunarID_racunara" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Sastoji_seSet">
+    <Key>
+      <PropertyRef Name="KomponentaId_komp" />
+      <PropertyRef Name="KomponentaId_komp1" />
+    </Key>
+    <Property Name="KomponentaId_komp" Type="int" Nullable="false" />
+    <Property Name="KomponentaId_komp1" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DonosiSet">
+    <Key>
+      <PropertyRef Name="Racunarski_servisID_servisa" />
+      <PropertyRef Name="PosjedujeVlasnik_racunaraJMBG_vl" />
+      <PropertyRef Name="PosjedujeRacunarID_racunara" />
+    </Key>
+    <Property Name="Racunarski_servisID_servisa" Type="int" Nullable="false" />
+    <Property Name="PosjedujeVlasnik_racunaraJMBG_vl" Type="bigint" Nullable="false" />
+    <Property Name="PosjedujeRacunarID_racunara" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Serviser_racunaraSet">
+    <Key>
+      <PropertyRef Name="JMBG_s" />
+    </Key>
+    <Property Name="JMBG_s" Type="bigint" Nullable="false" />
+    <Property Name="Ime_s" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Prezime_s" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Dat_rodjenja_s" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RadiSet">
+    <Key>
+      <PropertyRef Name="Racunarski_servisID_servisa" />
+      <PropertyRef Name="Serviser_racunaraJMBG_s" />
+    </Key>
+    <Property Name="Racunarski_servisID_servisa" Type="int" Nullable="false" />
+    <Property Name="Serviser_racunaraJMBG_s" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServisiraSet">
+    <Key>
+      <PropertyRef Name="RadiRacunarski_servisID_servisa" />
+      <PropertyRef Name="RadiServiser_racunaraJMBG_s" />
+      <PropertyRef Name="DonosiRacunarski_servisID_servisa" />
+      <PropertyRef Name="DonosiPosjedujeVlasnik_racunaraJMBG_vl" />
+      <PropertyRef Name="DonosiPosjedujeRacunarID_racunara" />
+    </Key>
+    <Property Name="Cijena_serv" Type="float" Nullable="false" />
+    <Property Name="Dat_potp" Type="datetime" Nullable="false" />
+    <Property Name="RadiRacunarski_servisID_servisa" Type="int" Nullable="false" />
+    <Property Name="RadiServiser_racunaraJMBG_s" Type="bigint" Nullable="false" />
+    <Property Name="DonosiRacunarski_servisID_servisa" Type="int" Nullable="false" />
+    <Property Name="DonosiPosjedujeVlasnik_racunaraJMBG_vl" Type="bigint" Nullable="false" />
+    <Property Name="DonosiPosjedujeRacunarID_racunara" Type="int" Nullable="false" />
+    <Property Name="Garantni_listId_gar_list" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Garantni_listSet">
+    <Key>
+      <PropertyRef Name="Id_gar_list" />
+    </Key>
+    <Property Name="Id_gar_list" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Period_vazenja" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServisSet_Racunarski_servis">
+    <Key>
+      <PropertyRef Name="ID_servisa" />
+    </Key>
+    <Property Name="ID_servisa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServisSet_Servis_mob_tel">
+    <Key>
+      <PropertyRef Name="ID_servisa" />
+    </Key>
+    <Property Name="ID_servisa" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="Vlasnik_racunaraPosjeduje">
+    <End Role="Vlasnik_racunara" Type="ProjectDb.Store.Vlasnik_racunaraSet" Multiplicity="1" />
+    <End Role="Posjeduje" Type="ProjectDb.Store.PosjedujeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vlasnik_racunara">
+        <PropertyRef Name="JMBG_vl" />
+      </Principal>
+      <Dependent Role="Posjeduje">
+        <PropertyRef Name="Vlasnik_racunaraJMBG_vl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KomponentaSastoji_se">
+    <End Role="Komponenta" Type="ProjectDb.Store.KomponentaSet" Multiplicity="1" />
+    <End Role="Sastoji_se" Type="ProjectDb.Store.Sastoji_seSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Komponenta">
+        <PropertyRef Name="Id_komp" />
+      </Principal>
+      <Dependent Role="Sastoji_se">
+        <PropertyRef Name="KomponentaId_komp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KomponentaSastoji_se1">
+    <End Role="Komponenta" Type="ProjectDb.Store.KomponentaSet" Multiplicity="1" />
+    <End Role="Sastoji_se" Type="ProjectDb.Store.Sastoji_seSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Komponenta">
+        <PropertyRef Name="Id_komp" />
+      </Principal>
+      <Dependent Role="Sastoji_se">
+        <PropertyRef Name="KomponentaId_komp1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RacunarKomponenta">
+    <End Role="Racunar" Type="ProjectDb.Store.RacunarSet" Multiplicity="0..1" />
+    <End Role="Komponenta" Type="ProjectDb.Store.KomponentaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Racunar">
+        <PropertyRef Name="ID_racunara" />
+      </Principal>
+      <Dependent Role="Komponenta">
+        <PropertyRef Name="RacunarID_racunara" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RacunarPosjeduje">
+    <End Role="Racunar" Type="ProjectDb.Store.RacunarSet" Multiplicity="1" />
+    <End Role="Posjeduje" Type="ProjectDb.Store.PosjedujeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Racunar">
+        <PropertyRef Name="ID_racunara" />
+      </Principal>
+      <Dependent Role="Posjeduje">
+        <PropertyRef Name="RacunarID_racunara" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Racunarski_servisRadi">
+    <End Role="Racunarski_servis" Type="ProjectDb.Store.ServisSet_Racunarski_servis" Multiplicity="1" />
+    <End Role="Radi" Type="ProjectDb.Store.RadiSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Racunarski_servis">
+        <PropertyRef Name="ID_servisa" />
+      </Principal>
+      <Dependent Role="Radi">
+        <PropertyRef Name="Racunarski_servisID_servisa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Serviser_racunaraRadi">
+    <End Role="Serviser_racunara" Type="ProjectDb.Store.Serviser_racunaraSet" Multiplicity="1" />
+    <End Role="Radi" Type="ProjectDb.Store.RadiSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Serviser_racunara">
+        <PropertyRef Name="JMBG_s" />
+      </Principal>
+      <Dependent Role="Radi">
+        <PropertyRef Name="Serviser_racunaraJMBG_s" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Racunarski_servisDonosi">
+    <End Role="Racunarski_servis" Type="ProjectDb.Store.ServisSet_Racunarski_servis" Multiplicity="1" />
+    <End Role="Donosi" Type="ProjectDb.Store.DonosiSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Racunarski_servis">
+        <PropertyRef Name="ID_servisa" />
+      </Principal>
+      <Dependent Role="Donosi">
+        <PropertyRef Name="Racunarski_servisID_servisa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PosjedujeDonosi">
+    <End Role="Posjeduje" Type="ProjectDb.Store.PosjedujeSet" Multiplicity="1" />
+    <End Role="Donosi" Type="ProjectDb.Store.DonosiSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posjeduje">
+        <PropertyRef Name="Vlasnik_racunaraJMBG_vl" />
+        <PropertyRef Name="RacunarID_racunara" />
+      </Principal>
+      <Dependent Role="Donosi">
+        <PropertyRef Name="PosjedujeVlasnik_racunaraJMBG_vl" />
+        <PropertyRef Name="PosjedujeRacunarID_racunara" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RadiServisira">
+    <End Role="Radi" Type="ProjectDb.Store.RadiSet" Multiplicity="1" />
+    <End Role="Servisira" Type="ProjectDb.Store.ServisiraSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Radi">
+        <PropertyRef Name="Racunarski_servisID_servisa" />
+        <PropertyRef Name="Serviser_racunaraJMBG_s" />
+      </Principal>
+      <Dependent Role="Servisira">
+        <PropertyRef Name="RadiRacunarski_servisID_servisa" />
+        <PropertyRef Name="RadiServiser_racunaraJMBG_s" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DonosiServisira">
+    <End Role="Donosi" Type="ProjectDb.Store.DonosiSet" Multiplicity="1" />
+    <End Role="Servisira" Type="ProjectDb.Store.ServisiraSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Donosi">
+        <PropertyRef Name="Racunarski_servisID_servisa" />
+        <PropertyRef Name="PosjedujeVlasnik_racunaraJMBG_vl" />
+        <PropertyRef Name="PosjedujeRacunarID_racunara" />
+      </Principal>
+      <Dependent Role="Servisira">
+        <PropertyRef Name="DonosiRacunarski_servisID_servisa" />
+        <PropertyRef Name="DonosiPosjedujeVlasnik_racunaraJMBG_vl" />
+        <PropertyRef Name="DonosiPosjedujeRacunarID_racunara" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ServisiraGarantni_list">
+    <End Role="Servisira" Type="ProjectDb.Store.ServisiraSet" Multiplicity="*" />
+    <End Role="Garantni_list" Type="ProjectDb.Store.Garantni_listSet" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Garantni_list">
+        <PropertyRef Name="Id_gar_list" />
+      </Principal>
+      <Dependent Role="Servisira">
+        <PropertyRef Name="Garantni_listId_gar_list" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Racunarski_servis_inherits_Servis">
+    <End Role="Servis" Type="ProjectDb.Store.ServisSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Racunarski_servis" Type="ProjectDb.Store.ServisSet_Racunarski_servis" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Servis">
+        <PropertyRef Name="ID_servisa" />
+      </Principal>
+      <Dependent Role="Racunarski_servis">
+        <PropertyRef Name="ID_servisa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Servis_mob_tel_inherits_Servis">
+    <End Role="Servis" Type="ProjectDb.Store.ServisSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Servis_mob_tel" Type="ProjectDb.Store.ServisSet_Servis_mob_tel" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Servis">
+        <PropertyRef Name="ID_servisa" />
+      </Principal>
+      <Dependent Role="Servis_mob_tel">
+        <PropertyRef Name="ID_servisa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

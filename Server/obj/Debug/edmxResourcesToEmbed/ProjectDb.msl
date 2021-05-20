@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProjectDbStoreContainer" CdmEntityContainer="ProjectDbContext">
+    <EntitySetMapping Name="Vlasnik_racunaraSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjectDb.Vlasnik_racunara)">
+        <MappingFragment StoreEntitySet="Vlasnik_racunaraSet">
+          <ScalarProperty Name="JMBG_vl" ColumnName="JMBG_vl" />
+          <ScalarProperty Name="Ime_vl" ColumnName="Ime_vl" />
+          <ScalarProperty Name="Prezime_vl" ColumnName="Prezime_vl" />
+          <ScalarProperty Name="Dat_rodjenja_vl" ColumnName="Dat_rodjenja_vl" />
+          <ComplexProperty Name="Adresa_vl" TypeName="ProjectDb.Adresa">
+            <ScalarProperty Name="Ulica" ColumnName="Adresa_vl_Ulica" />
+            <ScalarProperty Name="Grad" ColumnName="Adresa_vl_Grad" />
+            <ScalarProperty Name="Broj" ColumnName="Adresa_vl_Broj" />
+            <ScalarProperty Name="PostanskiBroj" ColumnName="Adresa_vl_PostanskiBroj" />
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RacunarSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjectDb.Racunar)">
+        <MappingFragment StoreEntitySet="RacunarSet">
+          <ScalarProperty Name="ID_racunara" ColumnName="ID_racunara" />
+          <ScalarProperty Name="Proizvodjac" ColumnName="Proizvodjac" />
+          <ScalarProperty Name="Brzina_procesora" ColumnName="Brzina_procesora" />
+          <ScalarProperty Name="Kapacitet_RAM" ColumnName="Kapacitet_RAM" />
+          <ScalarProperty Name="Kapacitet_memorije" ColumnName="Kapacitet_memorije" />
+          <ScalarProperty Name="Vrsta_racunara" ColumnName="Vrsta_racunara" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PosjedujeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjectDb.Posjeduje)">
+        <MappingFragment StoreEntitySet="PosjedujeSet">
+          <ScalarProperty Name="Vlasnik_racunaraJMBG_vl" ColumnName="Vlasnik_racunaraJMBG_vl" />
+          <ScalarProperty Name="RacunarID_racunara" ColumnName="RacunarID_racunara" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServisSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjectDb.Servis)">
+        <MappingFragment StoreEntitySet="ServisSet">
+          <ScalarProperty Name="ID_servisa" ColumnName="ID_servisa" />
+          <ScalarProperty Name="Naziv_serv" ColumnName="Naziv_serv" />
+          <ScalarProperty Name="Tip_serv" ColumnName="Tip_serv" />
+          <ComplexProperty Name="Adresa_serv" TypeName="ProjectDb.Adresa">
+            <ScalarProperty Name="Ulica" ColumnName="Adresa_serv_Ulica" />
+            <ScalarProperty Name="Grad" ColumnName="Adresa_serv_Grad" />
+            <ScalarProperty Name="Broj" ColumnName="Adresa_serv_Broj" />
+            <ScalarProperty Name="PostanskiBroj" ColumnName="Adresa_serv_PostanskiBroj" />
+          </ComplexProperty>
+          <ComplexProperty Name="Br_tel_serv" TypeName="ProjectDb.Broj_telefona">
+            <ScalarProperty Name="Pozivni_broj" ColumnName="Br_tel_serv_Pozivni_broj" />
+            <ScalarProperty Name="Okrug" ColumnName="Br_tel_serv_Okrug" />
+            <ScalarProperty Name="Broj" ColumnName="Br_tel_serv_Broj" />
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ProjectDb.Racunarski_servis)">
+        <MappingFragment StoreEntitySet="ServisSet_Racunarski_servis">
+          <ScalarProperty Name="ID_servisa" ColumnName="ID_servisa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ProjectDb.Servis_mob_tel)">
+        <MappingFragment StoreEntitySet="ServisSet_Servis_mob_tel">
+          <ScalarProperty Name="ID_servisa" ColumnName="ID_servisa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KomponentaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjectDb.Komponenta)">
+        <MappingFragment StoreEntitySet="KomponentaSet">
+          <ScalarProperty Name="Id_komp" ColumnName="Id_komp" />
+          <ScalarProperty Name="Naz_komp" ColumnName="Naz_komp" />
+          <ScalarProperty Name="Cijena_komp" ColumnName="Cijena_komp" />
+          <ScalarProperty Name="RacunarID_racunara" ColumnName="RacunarID_racunara" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sastoji_seSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjectDb.Sastoji_se)">
+        <MappingFragment StoreEntitySet="Sastoji_seSet">
+          <ScalarProperty Name="KomponentaId_komp" ColumnName="KomponentaId_komp" />
+          <ScalarProperty Name="KomponentaId_komp1" ColumnName="KomponentaId_komp1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonosiSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjectDb.Donosi)">
+        <MappingFragment StoreEntitySet="DonosiSet">
+          <ScalarProperty Name="Racunarski_servisID_servisa" ColumnName="Racunarski_servisID_servisa" />
+          <ScalarProperty Name="PosjedujeVlasnik_racunaraJMBG_vl" ColumnName="PosjedujeVlasnik_racunaraJMBG_vl" />
+          <ScalarProperty Name="PosjedujeRacunarID_racunara" ColumnName="PosjedujeRacunarID_racunara" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Serviser_racunaraSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjectDb.Serviser_racunara)">
+        <MappingFragment StoreEntitySet="Serviser_racunaraSet">
+          <ScalarProperty Name="JMBG_s" ColumnName="JMBG_s" />
+          <ScalarProperty Name="Ime_s" ColumnName="Ime_s" />
+          <ScalarProperty Name="Prezime_s" ColumnName="Prezime_s" />
+          <ScalarProperty Name="Dat_rodjenja_s" ColumnName="Dat_rodjenja_s" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RadiSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjectDb.Radi)">
+        <MappingFragment StoreEntitySet="RadiSet">
+          <ScalarProperty Name="Racunarski_servisID_servisa" ColumnName="Racunarski_servisID_servisa" />
+          <ScalarProperty Name="Serviser_racunaraJMBG_s" ColumnName="Serviser_racunaraJMBG_s" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServisiraSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjectDb.Servisira)">
+        <MappingFragment StoreEntitySet="ServisiraSet">
+          <ScalarProperty Name="RadiRacunarski_servisID_servisa" ColumnName="RadiRacunarski_servisID_servisa" />
+          <ScalarProperty Name="RadiServiser_racunaraJMBG_s" ColumnName="RadiServiser_racunaraJMBG_s" />
+          <ScalarProperty Name="DonosiRacunarski_servisID_servisa" ColumnName="DonosiRacunarski_servisID_servisa" />
+          <ScalarProperty Name="DonosiPosjedujeVlasnik_racunaraJMBG_vl" ColumnName="DonosiPosjedujeVlasnik_racunaraJMBG_vl" />
+          <ScalarProperty Name="DonosiPosjedujeRacunarID_racunara" ColumnName="DonosiPosjedujeRacunarID_racunara" />
+          <ScalarProperty Name="Cijena_serv" ColumnName="Cijena_serv" />
+          <ScalarProperty Name="Dat_potp" ColumnName="Dat_potp" />
+          <ScalarProperty Name="Garantni_listId_gar_list" ColumnName="Garantni_listId_gar_list" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Garantni_listSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjectDb.Garantni_list)">
+        <MappingFragment StoreEntitySet="Garantni_listSet">
+          <ScalarProperty Name="Id_gar_list" ColumnName="Id_gar_list" />
+          <ScalarProperty Name="Period_vazenja" ColumnName="Period_vazenja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

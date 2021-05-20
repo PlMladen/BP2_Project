@@ -1,0 +1,14 @@
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\bin\Debug\Server.exe.config
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\bin\Debug\Server.exe
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\bin\Debug\Server.pdb
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\bin\Debug\EntityFramework.dll
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\bin\Debug\EntityFramework.SqlServer.dll
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\bin\Debug\EntityFramework.xml
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\bin\Debug\EntityFramework.SqlServer.xml
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\obj\Debug\Server.csprojAssemblyReference.cache
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\obj\Debug\Server.csproj.CopyComplete
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\obj\Debug\Server.exe
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\obj\Debug\Server.pdb
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\bin\Debug\Common.dll
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\bin\Debug\Common.pdb

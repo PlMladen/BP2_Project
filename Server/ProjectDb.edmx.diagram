@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0cd7f4a28a484059b317535335c33e6d" Name="Diagram1" >
+        <EntityTypeShape EntityType="ProjectDb.Vlasnik_racunara" Width="1.5" PointX="1" PointY="0.75" />
+        <EntityTypeShape EntityType="ProjectDb.Racunar" Width="1.5" PointX="1" PointY="6.25" />
+        <EntityTypeShape EntityType="ProjectDb.Posjeduje" Width="1.5" PointX="1" PointY="3.625" />
+        <EntityTypeShape EntityType="ProjectDb.Servis" Width="1.5" PointX="8.5" PointY="0.75" />
+        <EntityTypeShape EntityType="ProjectDb.Racunarski_servis" Width="1.5" PointX="7.125" PointY="3.625" />
+        <InheritanceConnector EntityType="ProjectDb.Racunarski_servis" />
+        <EntityTypeShape EntityType="ProjectDb.Servis_mob_tel" Width="1.5" PointX="9.875" PointY="3.625" />
+        <InheritanceConnector EntityType="ProjectDb.Servis_mob_tel" />
+        <EntityTypeShape EntityType="ProjectDb.Komponenta" Width="1.5" PointX="1" PointY="9.25" />
+        <EntityTypeShape EntityType="ProjectDb.Sastoji_se" Width="1.5" PointX="2.75" PointY="11.625" />
+        <EntityTypeShape EntityType="ProjectDb.Donosi" Width="2.375" PointX="3.75" PointY="3.625" />
+        <EntityTypeShape EntityType="ProjectDb.Serviser_racunara" Width="1.5" PointX="7.125" PointY="9" />
+        <EntityTypeShape EntityType="ProjectDb.Radi" Width="1.5" PointX="7.125" PointY="6.25" />
+        <EntityTypeShape EntityType="ProjectDb.Servisira" Width="1.5" PointX="4.125" PointY="6.25" />
+        <EntityTypeShape EntityType="ProjectDb.Garantni_list" Width="1.5" PointX="7.125" PointY="11.625" />
+        <AssociationConnector Association="ProjectDb.Vlasnik_racunaraPosjeduje" />
+        <AssociationConnector Association="ProjectDb.KomponentaSastoji_se" />
+        <AssociationConnector Association="ProjectDb.KomponentaSastoji_se1" />
+        <AssociationConnector Association="ProjectDb.RacunarKomponenta" />
+        <AssociationConnector Association="ProjectDb.RacunarPosjeduje" />
+        <AssociationConnector Association="ProjectDb.Racunarski_servisRadi" />
+        <AssociationConnector Association="ProjectDb.Serviser_racunaraRadi" />
+        <AssociationConnector Association="ProjectDb.Racunarski_servisDonosi" />
+        <AssociationConnector Association="ProjectDb.PosjedujeDonosi" />
+        <AssociationConnector Association="ProjectDb.RadiServisira" />
+        <AssociationConnector Association="ProjectDb.DonosiServisira" />
+        <AssociationConnector Association="ProjectDb.ServisiraGarantni_list" ></AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
