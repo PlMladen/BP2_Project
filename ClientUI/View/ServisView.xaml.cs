@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ClientUI
+namespace ClientUI.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ServisView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ServisView : UserControl
     {
-        public MainWindow()
+        public ServisView()
         {
             InitializeComponent();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            var i =  Task.Run(DatabaseServiceProvider.Instance.GetAllServiss);
         }
     }
 }
