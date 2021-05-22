@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ClientUI.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="550" d:DesignWidth="800">
     
     <Grid>
         <StackPanel Orientation="Vertical">
@@ -22,18 +22,53 @@
                     </DataGrid.Columns>
             </DataGrid>
             <Separator Height="2" Visibility="Hidden"/>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-                <TextBlock x:Name="lblDodat" Width="415" VerticalAlignment="Top" Padding="10"  Height="60" Foreground="#FF3AFF00" Text="{Binding Path=LBL, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Separator Width="10"/>
                 <StackPanel Orientation="Vertical">
-                    <TextBlock x:Name="textBlockType" Text="Tip servisa:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="90" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBlockNazivServisa" Text="Naziv servisa:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="100" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBox x:Name="txtBoxNazivServisa" Height="34" VerticalContentAlignment="Center" Width="160" Text="{Binding Path=TxTBoxNazivServ, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"></TextBox>
+                    </StackPanel>
+                    <Separator Width="2"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBlockType" Text="Tip servisa:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="100" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <ComboBox x:Name="cmbType" Height="34" Width="160" VerticalContentAlignment="Center" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding ServisTypes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTypeServis}"/>
+                    </StackPanel>
+                    <Separator Width="2"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBlockAdresaServisa" Text="Adresa servisa:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="100" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBox x:Name="txtBoxAdresaUlica" Height="34" VerticalContentAlignment="Center" Text="{Binding Path=TxTBoxAdresaUlica, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12" Width="120"></TextBox>
+                        <Separator Width="2"/>
+                        <TextBox x:Name="txtBoxAdresaBroj" Text="{Binding Path=TxTBoxAdresaBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="34" Width="40"></TextBox>
+                        <Separator Width="2"/>
+                        <TextBox x:Name="txtBoxAdresaGrad" Height="34" Width="120" VerticalContentAlignment="Center" Text="{Binding Path=TxTBoxAdresaGrad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"></TextBox>
+                        <Separator Width="2"/>
+                        <TextBox x:Name="txtBoxAdresaPPT" Height="34" Width="75" VerticalContentAlignment="Center" Text="{Binding Path=TxTBoxAdresaPPTBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"></TextBox>
+                    </StackPanel>
+                    <Separator Width="2"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBlockBrojServisa" Text="Br. tel. servisa:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="100" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBox x:Name="txtBoxPozivniBroj" Height="34" VerticalContentAlignment="Center"  Text="{Binding Path=TxTBoxBrTelPozBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12" Width="40"></TextBox>
+                        <Separator Width="2"/>
+                        <TextBox x:Name="txtBoxBrojOkruga"  Text="{Binding Path=TxTBoxBrTelBrojOkruga, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="34" Width="40"></TextBox>
+                        <Separator Width="2"/>
+                        <TextBox x:Name="txtBoxBroj" Height="34" Width="120" VerticalContentAlignment="Center"  Text="{Binding Path=TxTBoxBrTelBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"></TextBox>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <ComboBox x:Name="cmbType" Height="34" Width="160" VerticalContentAlignment="Center" BorderThickness="2" BorderBrush="#FF3AFF00" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding ReactorTypes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTypeServis}"/>
+                
+                
+                <Separator Width="5" Visibility="Hidden"/>
+                <StackPanel Width="195">
+                    <TextBlock x:Name="lblDodat" Width="205" VerticalAlignment="Top" Padding="10"  Height="150" Foreground="{Binding Path=Foreground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=LBL, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"/>
                 </StackPanel>
-                <Separator Width="2"/>
+                <Separator Width="5" Visibility="Hidden"/>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
                         <Button x:Name="btnAdd" Content="Dodaj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding AddCommand}"  />
+                    </Border>
+                    <Separator Height="0" Visibility="Hidden"/>
+                    <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
+                        <Button x:Name="btnUpdate" Content="Azuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/>
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">

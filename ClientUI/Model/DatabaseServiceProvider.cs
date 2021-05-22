@@ -16,7 +16,7 @@ namespace ClientUI
 
         private DatabaseServiceProvider()
         {
-            proxy = new ChannelFactory<IMscOperations>("Client").CreateChannel();
+            proxy = new ChannelFactory<IMscOperations>("ClientUI").CreateChannel();
         }
 
         public bool AddServis(Servis servis)

@@ -99,6 +99,7 @@
       <DependentUpon>ProjectDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Repos\RacunarRepository.cs" />
+    <Compile Include="Repos\ServiserRacunaraRepository.cs" />
     <Compile Include="Repos\ServisRepository.cs" />
     <Compile Include="Sastoji_se.cs">
       <DependentUpon>ProjectDb.tt</DependentUpon>

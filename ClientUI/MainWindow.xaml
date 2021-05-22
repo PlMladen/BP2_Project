@@ -7,7 +7,7 @@
         xmlns:viewmodel="clr-namespace:ClientUI.ViewModel"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="BP2_Project_ClientUI" Height="550" Width="800" Background="Black">
+        Title="BP2_Project_ClientUI" Height="580" Width="800" Background="Black">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>

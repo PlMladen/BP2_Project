@@ -24,5 +24,7 @@ namespace ClientUI.View
         {
             InitializeComponent();
         }
+
+        
     }
 }
