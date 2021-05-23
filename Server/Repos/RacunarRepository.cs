@@ -35,10 +35,72 @@ namespace Server.Repos
             return dbCtx.SaveChanges() > 0;
         }
 
-        /*public Common.Models.Racunar GetRacunar(int racunarId) 
+        public bool Delete(int idRacunara)
         {
-            var racunar = dbCtx.RacunarSet.Include()
+            try
+            {
+                dbCtx.RacunarSet.Remove(dbCtx.RacunarSet.FirstOrDefault((s) => s.ID_racunara == idRacunara));
+                dbCtx.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
 
-        }*/
+        public Common.Models.Racunar GetRacunar(int racunarId) 
+        {
+            var racunarFromDb = dbCtx.RacunarSet.Find(racunarId);
+            var racunarForVw = new Common.Models.Racunar()
+            {
+                Brzina_procesora = racunarFromDb.Brzina_procesora,
+                ID_racunara = racunarFromDb.ID_racunara,
+                Kapacitet_memorije = racunarFromDb.Kapacitet_memorije,
+                Kapacitet_RAM = racunarFromDb.Kapacitet_RAM,
+                Proizvodjac = racunarFromDb.Proizvodjac,
+                Vrsta_racunara = (Common.Models.Vrsta_racunara)racunarFromDb.Vrsta_racunara
+            };
+            
+            return racunarForVw;
+        }
+
+        public void Update(Common.Models.Racunar racunar)
+        {
+            var racunarForDb = new Racunar()
+            {
+                ID_racunara = racunar.ID_racunara,
+                Proizvodjac =racunar.Proizvodjac,
+                Kapacitet_RAM = racunar.Kapacitet_RAM,
+                Kapacitet_memorije = racunar.Kapacitet_memorije,
+                Brzina_procesora = racunar.Brzina_procesora,
+                Vrsta_racunara = (Vrsta_racunara)racunar.Vrsta_racunara
+            };
+
+            var racunarFromDb = dbCtx.RacunarSet.FirstOrDefault((s) => s.ID_racunara == racunarForDb.ID_racunara);
+            dbCtx.Entry(racunarFromDb).CurrentValues.SetValues(racunarForDb);
+            dbCtx.SaveChanges();
+        }
+
+        public IEnumerable<Common.Models.Racunar> GetAll()
+        {
+            var retVal = new List<Common.Models.Racunar>();
+            foreach (var racunarFromDb in dbCtx.RacunarSet.ToList())
+            {
+                var racunar = new Common.Models.Racunar()
+                {
+                    ID_racunara = racunarFromDb.ID_racunara,
+                    Proizvodjac = racunarFromDb.Proizvodjac,
+                    Kapacitet_RAM = racunarFromDb.Kapacitet_RAM,
+                    Kapacitet_memorije = racunarFromDb.Kapacitet_memorije,
+                    Brzina_procesora = racunarFromDb.Brzina_procesora,
+                    Vrsta_racunara = (Common.Models.Vrsta_racunara)racunarFromDb.Vrsta_racunara
+
+                };
+                retVal.Add(racunar);
+            }
+            return retVal;
+        }
     }
 }

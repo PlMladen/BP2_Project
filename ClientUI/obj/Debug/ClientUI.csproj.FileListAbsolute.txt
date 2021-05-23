@@ -19,3 +19,13 @@ F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP
 F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\obj\Debug\ClientUI.csproj.CopyComplete
 F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\obj\Debug\ClientUI.exe
 F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\obj\Debug\ClientUI.pdb
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\obj\Debug\View\ServiserRacunaraView.g.cs
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\obj\Debug\View\ServiserRacunaraView.baml
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\obj\Debug\View\RacunarView.g.cs
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\obj\Debug\View\RacunarView.baml
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\obj\Debug\View\VlasnikRacunaraView.g.cs
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\obj\Debug\View\VlasnikRacunaraView.baml
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\obj\Debug\View\KomponentaView.g.cs
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\obj\Debug\View\KomponentaView.baml
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\obj\Debug\View\GarantniListView.g.cs
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\obj\Debug\View\GarantniListView.baml

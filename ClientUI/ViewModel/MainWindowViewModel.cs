@@ -11,6 +11,11 @@ namespace ClientUI.ViewModel
     {
         public MyICommand<string> NavCommand { get; private set; }
         private ServisViewModel servisViewModel = new ServisViewModel();
+        private ServiserRacunaraViewModel serviserRacunaraViewModel = new ServiserRacunaraViewModel();
+        private RacunarViewModel racunarViewModel = new RacunarViewModel();
+        private VlasnikRacunaraViewModel vlasnikRacunaraViewModel = new VlasnikRacunaraViewModel();
+        private KomponentaViewModel komponentaViewModel = new KomponentaViewModel();
+        private GarantniListViewModel garantniListViewModel = new GarantniListViewModel();
 
         private BindableBase currentViewModel;
 
@@ -35,21 +40,21 @@ namespace ClientUI.ViewModel
                 case "MServis view":
                     CurrentViewModel = servisViewModel;
                     break;
-                case "Racunari view":
-                    CurrentViewModel = servisViewModel;
+                */case "Racunari view":
+                    CurrentViewModel = racunarViewModel;
                     break;
-                case "VLRacunara view":
-                    CurrentViewModel = servisViewModel;
+                 case "VLRacunara view":
+                    CurrentViewModel = vlasnikRacunaraViewModel;
                     break;
                 case "SerRacunara view":
-                    CurrentViewModel = servisViewModel;
+                    CurrentViewModel = serviserRacunaraViewModel;
                     break;
                 case "Komponente view":
-                    CurrentViewModel = servisViewModel;
+                    CurrentViewModel = komponentaViewModel;
                     break;
                 case "Gar list view":
-                    CurrentViewModel = servisViewModel;
-                    break;*/
+                    CurrentViewModel = garantniListViewModel;
+                    break;
             }
         }
         

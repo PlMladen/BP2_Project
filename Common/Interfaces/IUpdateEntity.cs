@@ -13,5 +13,18 @@ namespace Common.Interfaces
     {
         [OperationContract]
         void UpdateServis(Servis servis);
+
+        [OperationContract]
+        void UpdateServiserRacunara(Serviser_racunara serviser);
+
+        [OperationContract]
+        void UpdateRacunar(Racunar racunar);
+
+        [OperationContract]
+        void UpdateVlasnikRacunara(Vlasnik_racunara vlasnik);
+        [OperationContract]
+        void UpdateKomponentu(Komponenta komponenta);
+        [OperationContract]
+        void UpdateGarantni_list(Garantni_list garantni_List);
     }
 }

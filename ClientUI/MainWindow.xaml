@@ -7,13 +7,28 @@
         xmlns:viewmodel="clr-namespace:ClientUI.ViewModel"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="BP2_Project_ClientUI" Height="580" Width="800" Background="Black">
+        Title="BP2_Project_ClientUI" Height="630" Width="900" Background="Black">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewmodel:ServisViewModel}">
             <views:ServisView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:ServiserRacunaraViewModel}">
+            <views:ServiserRacunaraView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:RacunarViewModel}">
+            <views:RacunarView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:VlasnikRacunaraViewModel}">
+            <views:VlasnikRacunaraView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:KomponentaViewModel}">
+            <views:KomponentaView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:GarantniListViewModel}">
+            <views:GarantniListView/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -27,8 +42,8 @@
         <DockPanel Grid.Row="0" Margin="5">
             <Menu DockPanel.Dock="Top" Background="Transparent" BorderBrush="#FF3AFF00" BorderThickness="2">
                 <MenuItem Header="Servisi" BorderThickness="1" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" Command="{Binding NavCommand}" CommandParameter="Servis view"/>
-                <MenuItem Header="Racunarski servisi" Foreground="#FF3AFF00" Command="{Binding NavCommand}" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="RServis view"/>
-                <MenuItem Header="Servisi mob telefona" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="MServis view"/>
+                <!--MenuItem Header="Racunarski servisi" Foreground="#FF3AFF00" Command="{Binding NavCommand}" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="RServis view"/>
+                <MenuItem Header="Servisi mob telefona" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="MServis view"/-->
                 <MenuItem Header="Racunari" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Racunari view"/>
                 <MenuItem Header="Vlasnici racunara" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="VLRacunara view"/>
                 <MenuItem Header="Serviseri racunara" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="SerRacunara view"/>

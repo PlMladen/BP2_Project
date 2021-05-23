@@ -56,10 +56,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\GarantniListViewModel.cs" />
+    <Compile Include="ViewModel\KomponentaViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\RacunarViewModel.cs" />
+    <Compile Include="ViewModel\ServiserRacunaraViewModel.cs" />
     <Compile Include="ViewModel\ServisViewModel.cs" />
+    <Compile Include="ViewModel\VlasnikRacunaraViewModel.cs" />
+    <Compile Include="View\GarantniListView.xaml.cs">
+      <DependentUpon>GarantniListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\KomponentaView.xaml.cs">
+      <DependentUpon>KomponentaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RacunarView.xaml.cs">
+      <DependentUpon>RacunarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ServiserRacunaraView.xaml.cs">
+      <DependentUpon>ServiserRacunaraView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ServisView.xaml.cs">
       <DependentUpon>ServisView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\VlasnikRacunaraView.xaml.cs">
+      <DependentUpon>VlasnikRacunaraView.xaml</DependentUpon>
     </Compile>
     <Compile Include="VML\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
@@ -76,7 +96,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\GarantniListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\KomponentaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RacunarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ServiserRacunaraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ServisView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\VlasnikRacunaraView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

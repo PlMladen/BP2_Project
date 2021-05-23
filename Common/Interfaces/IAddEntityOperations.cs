@@ -13,5 +13,15 @@ namespace Common.Interfaces
     {
         [OperationContract]
         bool AddServis(Servis servis);
+        [OperationContract]
+        bool AddServiserRacunara(Serviser_racunara serviser);
+        [OperationContract]
+        bool AddRacunar(Racunar racunar);
+        [OperationContract]
+        bool AddVlasnikRacunara(Vlasnik_racunara vlasnik);
+        [OperationContract]
+        bool AddKomponentu(Komponenta komponenta);
+        [OperationContract]
+        bool AddGarantni_list(Garantni_list garantni_List);
     }
 }

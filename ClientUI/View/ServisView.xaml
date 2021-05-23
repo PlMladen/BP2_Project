@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ClientUI.View"
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="800">
+             d:DesignHeight="610" d:DesignWidth="900">
     
     <Grid>
         <StackPanel Orientation="Vertical">
             <Label x:Name="lblNetData" HorizontalAlignment="Center" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Content="Servisi "/>
             <Separator Height="4" />
-            <DataGrid x:Name="dataGridNetData" Background="Black" BorderThickness="2" BorderBrush="#FF3AFF00" AutoGenerateColumns="False" ItemsSource="{Binding Path=Servisi, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedServis}" Height="300" Width="760" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
+            <DataGrid x:Name="dataGridNetData" Background="Black" BorderThickness="2" BorderBrush="#FF3AFF00" AutoGenerateColumns="False" ItemsSource="{Binding Path=Servisi, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedServis}" Height="300" Width="860" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" FontWeight="Bold" Foreground="Black" Binding="{Binding ID_servisa}" Width="*"/>
@@ -21,7 +21,7 @@
                     <DataGridTextColumn Header="Kontakt" FontWeight="Bold" Foreground="Black" Binding="{Binding Br_tel_serv}" Width="*"/>
                     </DataGrid.Columns>
             </DataGrid>
-            <Separator Height="2" Visibility="Hidden"/>
+            <Separator Height="10" Visibility="Hidden"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
                 <Separator Width="10"/>
                 <StackPanel Orientation="Vertical">
@@ -58,8 +58,8 @@
                 
                 
                 <Separator Width="5" Visibility="Hidden"/>
-                <StackPanel Width="195">
-                    <TextBlock x:Name="lblDodat" Width="205" VerticalAlignment="Top" Padding="10"  Height="150" Foreground="{Binding Path=Foreground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=LBL, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"/>
+                <StackPanel Width="295">
+                    <TextBlock x:Name="lblDodat" Width="285" VerticalAlignment="Top" Padding="10"  Height="150" Foreground="{Binding Path=Foreground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=LBL, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"/>
                 </StackPanel>
                 <Separator Width="5" Visibility="Hidden"/>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">

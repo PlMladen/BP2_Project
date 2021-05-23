@@ -13,5 +13,15 @@ namespace Common.Interfaces
     {
         [OperationContract]
         Servis GetServis(int idServisa);
+        [OperationContract]
+        Serviser_racunara GetServiserRacunara(long idServisera);
+        [OperationContract]
+        Racunar GetRacunar(int idRacunara);
+        [OperationContract]
+        Vlasnik_racunara GetVlasnikRacunara(long idVlasnika);
+        [OperationContract]
+        Komponenta GetKomponentu(int idKomponente);
+        [OperationContract]
+        Garantni_list GetGarantni_list(int idGarantnog_lista);
     }
 }

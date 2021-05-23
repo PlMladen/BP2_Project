@@ -98,9 +98,12 @@
     <Compile Include="Radi.cs">
       <DependentUpon>ProjectDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repos\GarantniListRepository.cs" />
+    <Compile Include="Repos\KomponentaRepository.cs" />
     <Compile Include="Repos\RacunarRepository.cs" />
     <Compile Include="Repos\ServiserRacunaraRepository.cs" />
     <Compile Include="Repos\ServisRepository.cs" />
+    <Compile Include="Repos\VlasnikRacunaraRepository.cs" />
     <Compile Include="Sastoji_se.cs">
       <DependentUpon>ProjectDb.tt</DependentUpon>
     </Compile>
