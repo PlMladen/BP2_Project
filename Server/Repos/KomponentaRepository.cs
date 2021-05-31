@@ -90,9 +90,15 @@ namespace Server.Repos
                 RacunarID_racunara = komponenta.RacunarID_racunara == null ? -1 : komponenta.RacunarID_racunara
             };
 
-            var komponentaFromDb = dbCtx.KomponentaSet.FirstOrDefault((s) => s.Id_komp == komponentaForDb.Id_komp);
-            dbCtx.Entry(komponentaFromDb).CurrentValues.SetValues(komponentaForDb);
-            dbCtx.SaveChanges();
+            try
+            {
+                var komponentaFromDb = dbCtx.KomponentaSet.FirstOrDefault((s) => s.Id_komp == komponentaForDb.Id_komp);
+                dbCtx.Entry(komponentaFromDb).CurrentValues.SetValues(komponentaForDb);
+                dbCtx.SaveChanges();
+            }catch(Exception e)
+            {
+
+            }
         }
     }
 }

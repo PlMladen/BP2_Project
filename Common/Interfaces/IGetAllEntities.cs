@@ -23,5 +23,15 @@ namespace Common.Interfaces
         IEnumerable<Komponenta> GetAllKomponente();
         [OperationContract]
         IEnumerable<Garantni_list> GetAllGarantni_listove();
+        [OperationContract]
+        IEnumerable<Posjeduje> GetAllPosjeduje();
+        [OperationContract]
+        IEnumerable<SastojiSe> GetAllSastojiSe();
+        [OperationContract]
+        IEnumerable<Radi> GetAllRadi();
+        [OperationContract]
+        IEnumerable<Donosi> GetAllDonosi();
+        [OperationContract]
+        IEnumerable<Servisira> GetAllServisira();
     }
 }

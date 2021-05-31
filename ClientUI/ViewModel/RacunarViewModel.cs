@@ -22,7 +22,7 @@ namespace ClientUI.ViewModel
         private string txtBoxMemorija;
         private string txtBoxBrzinaCPU;
         private string cmbBoxVrsta_racunara;
-        private string lbl;
+        private string lbl = string.Empty;
 
         public MyICommand DeleteCommand { get; set; }
         public MyICommand AddCommand { get; set; }

@@ -82,9 +82,14 @@ namespace Server.Repos
                 Period_vazenja = garantni_List.Period_vazenja
             };
 
-            var garantni_ListFromDb = dbCtx.Garantni_listSet.FirstOrDefault((s) => s.Id_gar_list == garantni_ListForDb.Id_gar_list);
-            dbCtx.Entry(garantni_ListFromDb).CurrentValues.SetValues(garantni_ListForDb);
-            dbCtx.SaveChanges();
+            try {
+                var garantni_ListFromDb = dbCtx.Garantni_listSet.FirstOrDefault((s) => s.Id_gar_list == garantni_ListForDb.Id_gar_list);
+                dbCtx.Entry(garantni_ListFromDb).CurrentValues.SetValues(garantni_ListForDb);
+                dbCtx.SaveChanges();
+            }catch(Exception e)
+            {
+
+            }
         }
     }
 }

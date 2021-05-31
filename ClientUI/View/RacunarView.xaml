@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ClientUI.View"
              mc:Ignorable="d" 
-             d:DesignHeight="610" d:DesignWidth="900">
+             d:DesignHeight="650" d:DesignWidth="900">
     <Grid>
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center">
             <Label x:Name="lblNetData" HorizontalAlignment="Center" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Content="Racunari "/>
             <Separator Height="4" />
             <DataGrid x:Name="dataGridSerRacunaraData" Background="Black" BorderThickness="2" BorderBrush="#FF3AFF00" AutoGenerateColumns="False" ItemsSource="{Binding Path=Racunari, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedRacunar}" Height="300" Width="860" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
@@ -23,28 +23,28 @@
             </DataGrid>
             <Separator Height="10" Visibility="Hidden"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                <Separator Width="10"/>
+                <Separator Width="5" Visibility="Hidden"/>
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockProizvodjac" Text="Proizvodjac:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <TextBox x:Name="txTBoxProizvodjac" Height="34" VerticalContentAlignment="Center" Width="160" Text="{Binding Path=TxTBoxProizvodjac, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"></TextBox>
                     </StackPanel>
-                    <Separator Width="2"/>
+                    <Separator Width="2" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockCPU" Text="Brzina procesora[GHz]:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <TextBox x:Name="txtBoxBrzinaCPU" Height="34" VerticalContentAlignment="Center" Width="160" Text="{Binding Path=TxtBoxBrzinaCPU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"></TextBox>
                     </StackPanel>
-                    <Separator Width="2"/>
+                    <Separator Width="2" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockRAM" Text="Kapacitet RAM[GB]:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <TextBox x:Name="txtBoxRAM" Height="34" VerticalContentAlignment="Center" Text="{Binding Path=TxtBoxRAM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12" Width="160"></TextBox>
                     </StackPanel>
-                    <Separator Width="2"/>
+                    <Separator Width="2" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockMemorija" Text="Kapacitet diska[GB]:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <TextBox x:Name="txtBoxMemorija" Height="34" VerticalContentAlignment="Center" Text="{Binding Path=TxtBoxMemorija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12" Width="160"></TextBox>
                     </StackPanel>
-                    <Separator Width="2"/>
+                    <Separator Width="2" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockVrsta" Text="Vrsta racunara:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <ComboBox x:Name="cmbBoxVrsta_racunara" Height="34" Width="160" VerticalContentAlignment="Center" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding RacunarTypes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CmbBoxVrsta_racunara}"/>

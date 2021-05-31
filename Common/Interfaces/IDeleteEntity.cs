@@ -22,6 +22,16 @@ namespace Common.Interfaces
         bool DeleteKomponentu(int idKomponente);
         [OperationContract]
         bool DeleteGarantni_list(int idGarantnog_lista);
+        [OperationContract]
+        bool DeletePosjeduje(int idRacunara, long jmbgVl);
+        [OperationContract]
+        bool DeleteSastojiSe(int idk1, int idk2);
+        [OperationContract]
+        bool DeleteRadi(long jmbgServisera, int idServisa);
+        [OperationContract]
+        bool DeleteDonosi(long jmbgVl, int idRacunara, int idServisa);
+        [OperationContract]
+        bool DeleteServisira(long jmbgVl, int idRacunara, int idServisa, long jmbgS);
 
     }
 }

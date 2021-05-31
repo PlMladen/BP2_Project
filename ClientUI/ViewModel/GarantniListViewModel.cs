@@ -18,7 +18,23 @@ namespace ClientUI.ViewModel
         private string txTBoxIDGL;
         private string lbl;
         private DateTime dpVaziDo = DateTime.Now;
+        private bool canEdit;
 
+        public bool CanEdit
+        {
+            get
+            {
+                return canEdit;
+            }
+            set
+            {
+                if (canEdit != value)
+                {
+                    canEdit = value;
+                    OnPropertyChanged("CanEdit");
+                }
+            }
+        }
         public MyICommand DeleteCommand { get; set; }
         public MyICommand AddCommand { get; set; }
         public MyICommand UpdateCommand { get; set; }
@@ -119,6 +135,7 @@ namespace ClientUI.ViewModel
         }
         private bool CanDelete()
         {
+            CanEdit = SelectedGList != null;
             return SelectedGList != null;
         }
 
@@ -152,28 +169,37 @@ namespace ClientUI.ViewModel
         }
 
         private void OnAdd()
-        {
-            if (DatabaseServiceProvider.Instance.AddGarantni_list(new Garantni_list()
+        {   if (DpVaziDo.Date >= DateTime.Now.Date)
             {
-                Id_gar_list = int.Parse(TxTBoxIDGL, CultureInfo.InvariantCulture),
-                Period_vazenja = DateTime.Parse(DpVaziDo.ToString())
-            }))
-            {
-                LBL = "Novi garantni list uspjesno dodat \nu bazu!";
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                GarantniListovi = new ObservableCollection<Garantni_list>(DatabaseServiceProvider.Instance.GetAllGarantni_listove());
+                if (DatabaseServiceProvider.Instance.AddGarantni_list(new Garantni_list()
+                {
+                    Id_gar_list = int.Parse(TxTBoxIDGL, CultureInfo.InvariantCulture),
+                    Period_vazenja = DateTime.Parse(DpVaziDo.ToString())
+                }))
+                {
+                    LBL = "Novi garantni list uspjesno dodat \nu bazu!";
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    GarantniListovi = new ObservableCollection<Garantni_list>(DatabaseServiceProvider.Instance.GetAllGarantni_listove());
 
+                }
+                else
+                {
+                    LBL = "Greska pri dodavanju garantnog lista!\nIsti id vec postoji u bazi!";
+                    Foreground = Brushes.Red;
+                }
             }
             else
             {
-                LBL = "Greska pri dodavanju garantnog lista!";
+                LBL = "Greska pri dodavanju garantnog lista!\nDatum isteka garancije mora biti u buducnosti!";
                 Foreground = Brushes.Red;
             }
         }
         private void OnUpdate()
         {
-            try
+            if (DpVaziDo.Date >= DateTime.Now)
             {
+                try
+                {
                 DatabaseServiceProvider.Instance.UpdateGarantni_list(new Garantni_list()
                 {
                     Id_gar_list = int.Parse(SelectedGList.Id_gar_list.ToString(), CultureInfo.InvariantCulture),
@@ -184,10 +210,16 @@ namespace ClientUI.ViewModel
                 Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
                 GarantniListovi = new ObservableCollection<Garantni_list>(DatabaseServiceProvider.Instance.GetAllGarantni_listove());
 
-            }
-            catch (Exception e)
-            {
+                }
+                catch (Exception e)
+                {
                 LBL = "Greska pri azuriranju garantnog lista!";
+                Foreground = Brushes.Red;
+                }
+            }
+            else
+            {
+                LBL = "Greska pri dodavanju garantnog lista!\nDatum isteka garancije mora biti u buducnosti!";
                 Foreground = Brushes.Red;
             }
         }

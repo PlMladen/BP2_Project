@@ -174,5 +174,140 @@ namespace ClientUI
             proxy.UpdateGarantni_list(garantni_List);
         }
         #endregion
+        #region Vlasnik_Racunar_Ops
+        public bool AddPosjeduje(Posjeduje posjeduje)
+        {
+            return proxy.AddPosjeduje(posjeduje);
+        }
+
+        public IEnumerable<Posjeduje> GetAllPosjeduje()
+        {
+            return proxy.GetAllPosjeduje();
+        }
+
+        public Posjeduje GetPosjeduje(int idRacunara, long jmbgVl)
+        {
+            return proxy.GetPosjeduje(idRacunara, jmbgVl);
+        }
+
+        public bool DeletePosjeduje(int idRacunara, long jmbgVl)
+        {
+            return proxy.DeletePosjeduje(idRacunara, jmbgVl);
+        }
+
+        public void UpdatePosjeduje(Posjeduje posjeduje)
+        {
+            proxy.UpdatePosjeduje(posjeduje);
+        }
+        #endregion
+        #region SastojiSe_Ops
+        public bool AddSastojiSe(SastojiSe sastojiSe)
+        {
+            return proxy.AddSastojiSe(sastojiSe);
+        }
+
+        public IEnumerable<SastojiSe> GetAllSastojiSe()
+        {
+            return proxy.GetAllSastojiSe();
+        }
+
+        public SastojiSe GetSastojiSe(int idk1, int idk2)
+        {
+            return proxy.GetSastojiSe(idk1, idk2);
+        }
+
+        public bool DeleteSastojiSe(int idk1, int idk2)
+        {
+            return proxy.DeleteSastojiSe(idk1, idk2);
+        }
+
+        public void UpdateSastojiSe(SastojiSe sastojiSe)
+        {
+            proxy.UpdateSastojiSe(sastojiSe);
+        }
+        #endregion
+        #region Radi_Ops
+        public bool AddRadi(Radi radi)
+        {
+            return proxy.AddRadi(radi);
+        }
+
+        public IEnumerable<Radi> GetAllRadi()
+        {
+            return proxy.GetAllRadi();
+        }
+
+        public Radi GetRadi(long jmbgServisera, int idServisa)
+        {
+            return proxy.GetRadi(jmbgServisera, idServisa);
+        }
+
+        public bool DeleteRadi(long jmbgServisera, int idServisa)
+        {
+            return proxy.DeleteRadi(jmbgServisera, idServisa);
+        }
+
+        public void UpdateRadi(Radi radi)
+        {
+            proxy.UpdateRadi(radi);
+        }
+        #endregion
+        #region Donosi_Ops
+        public bool AddDonosi(Donosi donosi)
+        {
+            return proxy.AddDonosi(donosi);
+        }
+
+        public IEnumerable<Donosi> GetAllDonosi()
+        {
+            return proxy.GetAllDonosi();
+        }
+
+        public Donosi GetDonosi(long jmbgVl, int idRacunara, int idServisa)
+        {
+            return proxy.GetDonosi(jmbgVl, idRacunara, idServisa);
+        }
+
+        public bool DeleteDonosi(long jmbgVl, int idRacunara, int idServisa)
+        {
+            return proxy.DeleteDonosi(jmbgVl, idRacunara, idServisa);
+        }
+
+        public void UpdateDonosi(Donosi donosi)
+        {
+            proxy.UpdateDonosi(donosi);
+        }
+        #endregion
+        #region Servisira_Ops
+        public bool AddServisira(Servisira servisira)
+        {
+            return proxy.AddServisira(servisira);
+        }
+
+        public IEnumerable<Servisira> GetAllServisira()
+        {
+            return proxy.GetAllServisira();
+        }
+
+        public Servisira GetServisira(long jmbgVl, int idRacunara, int idServisa, long jmbgS)
+        {
+            return proxy.GetServisira(jmbgVl, idRacunara, idServisa, jmbgS);
+        }
+
+        public bool DeleteServisira(long jmbgVl, int idRacunara, int idServisa, long jmbgS)
+        {
+            return proxy.DeleteServisira(jmbgVl, idRacunara, idServisa, jmbgS);
+        }
+
+        public void UpdateServisira(Servisira servisira)
+        {
+            proxy.UpdateServisira(servisira);
+        }
+        #endregion
+
+        public Racunarski_servis GetRacunarskiServis(int idServisa)
+        {
+            return proxy.GetRacunarskiServis(idServisa);
+        }
     }
 }

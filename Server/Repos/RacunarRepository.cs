@@ -40,6 +40,7 @@ namespace Server.Repos
             try
             {
                 dbCtx.RacunarSet.Remove(dbCtx.RacunarSet.FirstOrDefault((s) => s.ID_racunara == idRacunara));
+                dbCtx.PosjedujeSet.RemoveRange(dbCtx.PosjedujeSet.Where(s => s.RacunarID_racunara == idRacunara).ToList());
                 dbCtx.SaveChanges();
                 return true;
             }
@@ -78,9 +79,15 @@ namespace Server.Repos
                 Vrsta_racunara = (Vrsta_racunara)racunar.Vrsta_racunara
             };
 
-            var racunarFromDb = dbCtx.RacunarSet.FirstOrDefault((s) => s.ID_racunara == racunarForDb.ID_racunara);
-            dbCtx.Entry(racunarFromDb).CurrentValues.SetValues(racunarForDb);
-            dbCtx.SaveChanges();
+            try
+            {
+                var racunarFromDb = dbCtx.RacunarSet.FirstOrDefault((s) => s.ID_racunara == racunarForDb.ID_racunara);
+                dbCtx.Entry(racunarFromDb).CurrentValues.SetValues(racunarForDb);
+                dbCtx.SaveChanges();
+            }catch(Exception e)
+            {
+
+            }
         }
 
         public IEnumerable<Common.Models.Racunar> GetAll()

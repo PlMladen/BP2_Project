@@ -56,24 +56,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\DonosiViewModel.cs" />
     <Compile Include="ViewModel\GarantniListViewModel.cs" />
     <Compile Include="ViewModel\KomponentaViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\PosjedujeViewModel.cs" />
     <Compile Include="ViewModel\RacunarViewModel.cs" />
+    <Compile Include="ViewModel\RadiViewModel.cs" />
+    <Compile Include="ViewModel\SastojiSeViewModel.cs" />
     <Compile Include="ViewModel\ServiserRacunaraViewModel.cs" />
+    <Compile Include="ViewModel\ServisiraViewModel.cs" />
     <Compile Include="ViewModel\ServisViewModel.cs" />
     <Compile Include="ViewModel\VlasnikRacunaraViewModel.cs" />
+    <Compile Include="View\DonosiView.xaml.cs">
+      <DependentUpon>DonosiView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GarantniListView.xaml.cs">
       <DependentUpon>GarantniListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\KomponentaView.xaml.cs">
       <DependentUpon>KomponentaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PosjedujeView.xaml.cs">
+      <DependentUpon>PosjedujeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RacunarView.xaml.cs">
       <DependentUpon>RacunarView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\RadiView.xaml.cs">
+      <DependentUpon>RadiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SastojiSeView.xaml.cs">
+      <DependentUpon>SastojiSeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ServiserRacunaraView.xaml.cs">
       <DependentUpon>ServiserRacunaraView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ServisiraView.xaml.cs">
+      <DependentUpon>ServisiraView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ServisView.xaml.cs">
       <DependentUpon>ServisView.xaml</DependentUpon>
@@ -96,6 +116,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\DonosiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GarantniListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,11 +128,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PosjedujeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\RacunarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\RadiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SastojiSeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ServiserRacunaraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ServisiraView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

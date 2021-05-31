@@ -17,7 +17,7 @@ namespace Common.Models
 
         public Serviser_racunara()
         {
-            //this.Radi = new HashSet<Radi>();
+            this.Radi = new HashSet<Radi>();
         }
 
         public long JMBG_s
@@ -81,7 +81,7 @@ namespace Common.Models
             }
         }
 
-        //public virtual ICollection<Radi> Radi { get; set; }
+        public  ICollection<Radi> Radi { get; set; }
 
         private void RaisePropertyChanged(string property)
         {

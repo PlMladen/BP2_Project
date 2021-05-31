@@ -23,9 +23,25 @@ namespace ClientUI.ViewModel
         private string txtBoxAdresaVl_Grad;
         private string txtBoxAdresaVl_PTTBroj;
 
-        private string lbl;
+        private string lbl = string.Empty;
         private DateTime dpDat_rodj_vl = DateTime.Now;
+        private bool canEdit;
 
+        public bool CanEdit
+        {
+            get
+            {
+                return canEdit;
+            }
+            set
+            {
+                if (canEdit != value)
+                {
+                    canEdit = value;
+                    OnPropertyChanged("CanEdit");
+                }
+            }
+        }
         public MyICommand DeleteCommand { get; set; }
         public MyICommand AddCommand { get; set; }
         public MyICommand UpdateCommand { get; set; }
@@ -202,6 +218,7 @@ namespace ClientUI.ViewModel
         }
         private bool CanDelete()
         {
+            CanEdit = SelectedVlasnik != null;
             return SelectedVlasnik != null;
         }
 

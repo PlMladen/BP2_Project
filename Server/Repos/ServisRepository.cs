@@ -21,25 +21,55 @@ namespace Server.Repos
             {
                 return false;
             }
-
-            dbCtx.ServisSet.Add(new Servis()
+            if(servis.Tip_serv == Common.Models.Tip_servisa.Servis_racunara)
             {
-                Adresa_serv = new Adresa() { 
-                    Ulica = servis.Adresa_serv.Ulica,
-                    Broj = servis.Adresa_serv.Broj,
-                    Grad = servis.Adresa_serv.Grad,
-                    PostanskiBroj = servis.Adresa_serv.PostanskiBroj
-                },
-                Naziv_serv = servis.Naziv_serv,
-                Tip_serv = (Tip_servisa)servis.Tip_serv,
-                Br_tel_serv = new Broj_telefona()
+                Racunarski_servis servis1 = new Racunarski_servis()
                 {
-                    Broj = servis.Br_tel_serv.Broj,
-                    Okrug = servis.Br_tel_serv.Okrug,
-                    Pozivni_broj = servis.Br_tel_serv.Pozivni_broj
-                }
-            });
 
+                    Adresa_serv = new Adresa()
+                    {
+                        Ulica = servis.Adresa_serv.Ulica,
+                        Broj = servis.Adresa_serv.Broj,
+                        Grad = servis.Adresa_serv.Grad,
+                        PostanskiBroj = servis.Adresa_serv.PostanskiBroj
+                    },
+                    Naziv_serv = servis.Naziv_serv,
+                    Tip_serv = (Tip_servisa)servis.Tip_serv,
+                    Br_tel_serv = new Broj_telefona()
+                    {
+                        Broj = servis.Br_tel_serv.Broj,
+                        Okrug = servis.Br_tel_serv.Okrug,
+                        Pozivni_broj = servis.Br_tel_serv.Pozivni_broj
+                    }
+                }; dbCtx.ServisSet.Add(servis1);
+            }
+            else
+            {
+                Servis_mob_tel servis2 = new Servis_mob_tel()
+                {
+
+                    Adresa_serv = new Adresa()
+                    {
+                        Ulica = servis.Adresa_serv.Ulica,
+                        Broj = servis.Adresa_serv.Broj,
+                        Grad = servis.Adresa_serv.Grad,
+                        PostanskiBroj = servis.Adresa_serv.PostanskiBroj
+                    },
+                    Naziv_serv = servis.Naziv_serv,
+                    Tip_serv = (Tip_servisa)servis.Tip_serv,
+                    Br_tel_serv = new Broj_telefona()
+                    {
+                        Broj = servis.Br_tel_serv.Broj,
+                        Okrug = servis.Br_tel_serv.Okrug,
+                        Pozivni_broj = servis.Br_tel_serv.Pozivni_broj
+                    }
+                }; 
+                dbCtx.ServisSet.Add(servis2);
+            }
+                
+            
+            
+            
             return dbCtx.SaveChanges() > 0;
         }
 
@@ -100,9 +130,15 @@ namespace Server.Repos
                 Tip_serv = (Tip_servisa)servis.Tip_serv
             };
 
-            var servisFromDb = dbCtx.ServisSet.FirstOrDefault((s) => s.ID_servisa == servisForDb.ID_servisa);
-            dbCtx.Entry(servisFromDb).CurrentValues.SetValues(servisForDb);
-            dbCtx.SaveChanges();
+            try
+            {
+                var servisFromDb = dbCtx.ServisSet.FirstOrDefault((s) => s.ID_servisa == servisForDb.ID_servisa);
+                dbCtx.Entry(servisFromDb).CurrentValues.SetValues(servisForDb);
+                dbCtx.SaveChanges();
+            }catch(Exception e)
+            {
+
+            }
         }
 
         public bool Delete(int idServisa)

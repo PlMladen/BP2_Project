@@ -275,9 +275,9 @@ namespace ClientUI.ViewModel
                 },
                 Br_tel_serv = new Broj_telefona()
                 {
-                    Broj = Int32.Parse(TxTBoxBrTelPozBroj),
+                    Broj = Int32.Parse(TxTBoxBrTelBroj),
                     Okrug = Int32.Parse(TxTBoxBrTelBrojOkruga),
-                    Pozivni_broj = Int32.Parse(TxTBoxBrTelBroj)
+                    Pozivni_broj = Int32.Parse(TxTBoxBrTelPozBroj)
                 }
             }))
             {
@@ -310,9 +310,9 @@ namespace ClientUI.ViewModel
                     },
                     Br_tel_serv = new Broj_telefona()
                     {
-                        Broj = Int32.Parse(TxTBoxBrTelPozBroj),
+                        Broj = Int32.Parse(TxTBoxBrTelBroj),
                         Okrug = Int32.Parse(TxTBoxBrTelBrojOkruga),
-                        Pozivni_broj = Int32.Parse(TxTBoxBrTelBroj)
+                        Pozivni_broj = Int32.Parse(TxTBoxBrTelPozBroj)
                     }
                 });
 

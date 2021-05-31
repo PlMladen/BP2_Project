@@ -21,7 +21,7 @@ namespace ClientUI.ViewModel
         private string txtCijenaKomp;
         
         private string cmbBoxID_racunara;
-        private string lbl;
+        private string lbl = string.Empty;
 
         private bool canEdit;
 
@@ -135,6 +135,7 @@ namespace ClientUI.ViewModel
                 if (txtCijenaKomp != value)
                 {
                     txtCijenaKomp = value;
+                    
                     OnPropertyChanged("TxtCijenaKomp");
                     AddCommand.RaiseCanExecuteChanged();
                     UpdateCommand.RaiseCanExecuteChanged();
@@ -202,24 +203,35 @@ namespace ClientUI.ViewModel
 
         private void OnAdd()
         {
-            if (DatabaseServiceProvider.Instance.AddKomponentu(new Komponenta()
-            {
-                Id_komp = int.Parse(TxTBoxID_Komponente, CultureInfo.InvariantCulture),
-                Cijena_komp = double.Parse(TxtCijenaKomp, CultureInfo.InvariantCulture),
-                Naz_komp = TxTBoxNazKomp,
-                RacunarID_racunara = string.IsNullOrEmpty(CmbBoxID_racunara) ? -1 : int.Parse(CmbBoxID_racunara, CultureInfo.InvariantCulture)
-            }))
-            {
-                LBL = "Nova komponenta uspjesno dodata \nu bazu!";
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                Komponente = new ObservableCollection<Komponenta>(DatabaseServiceProvider.Instance.GetAllKomponente());
+            try {
+                
+               var cijena =  double.Parse(TxtCijenaKomp.Replace(',','.'), CultureInfo.InvariantCulture);
+            
+                if (DatabaseServiceProvider.Instance.AddKomponentu(new Komponenta()
+                {
+                    Id_komp = int.Parse(TxTBoxID_Komponente, CultureInfo.InvariantCulture),
+                    Cijena_komp = cijena,
+                    Naz_komp = TxTBoxNazKomp,
+                    RacunarID_racunara = string.IsNullOrEmpty(CmbBoxID_racunara) ? -1 : int.Parse(CmbBoxID_racunara, CultureInfo.InvariantCulture)
+                }))
+                {
+                    LBL = "Nova komponenta uspjesno dodata \nu bazu!";
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    Komponente = new ObservableCollection<Komponenta>(DatabaseServiceProvider.Instance.GetAllKomponente());
 
+                }
+                else
+                {
+                    LBL = "Greska pri dodavanju komponente!";
+                    Foreground = Brushes.Red;
+                }
             }
-            else
+            catch (Exception e)
             {
-                LBL = "Greska pri dodavanju komponente!";
+                LBL = "Greska pri dodavanju komponente!\nCijena mora biti u formatu '0000.00'";
                 Foreground = Brushes.Red;
             }
+
         }
         private void OnUpdate()
         {

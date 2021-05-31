@@ -7,7 +7,7 @@
         xmlns:viewmodel="clr-namespace:ClientUI.ViewModel"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="BP2_Project_ClientUI" Height="630" Width="900" Background="Black">
+        Title="BP2_Project_ClientUI" Height="670" ResizeMode="CanMinimize" Width="900" Background="Black">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
@@ -30,6 +30,21 @@
         <DataTemplate DataType="{x:Type viewmodel:GarantniListViewModel}">
             <views:GarantniListView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:PosjedujeViewModel}">
+            <views:PosjedujeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:SastojiSeViewModel}">
+            <views:SastojiSeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:RadiViewModel}">
+            <views:RadiView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:DonosiViewModel}">
+            <views:DonosiView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:ServisiraViewModel}">
+            <views:ServisiraView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -39,7 +54,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <DockPanel Grid.Row="0" Margin="5">
+        <DockPanel Grid.Row="0" Margin="5" HorizontalAlignment="Center">
             <Menu DockPanel.Dock="Top" Background="Transparent" BorderBrush="#FF3AFF00" BorderThickness="2">
                 <MenuItem Header="Servisi" BorderThickness="1" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" Command="{Binding NavCommand}" CommandParameter="Servis view"/>
                 <!--MenuItem Header="Racunarski servisi" Foreground="#FF3AFF00" Command="{Binding NavCommand}" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="RServis view"/>
@@ -49,6 +64,11 @@
                 <MenuItem Header="Serviseri racunara" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="SerRacunara view"/>
                 <MenuItem Header="Komponente" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Komponente view"/>
                 <MenuItem Header="Garantni listovi" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Gar list view"/>
+                <MenuItem Header="PosjedujeSet" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Posjeduje view"/>
+                <MenuItem Header="SastojiSeSet" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="SastojiSe view"/>
+                <MenuItem Header="RadiSet" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Radi view"/>
+                <MenuItem Header="DonosiSet" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Donosi view"/>
+                <MenuItem Header="ServisiraSet" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Servisira view"/>
             </Menu>
         </DockPanel>
         <Grid Grid.Row="1" >

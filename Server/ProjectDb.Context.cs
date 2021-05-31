@@ -36,5 +36,6 @@ namespace Server
         public virtual DbSet<Radi> RadiSet { get; set; }
         public virtual DbSet<Servisira> ServisiraSet { get; set; }
         public virtual DbSet<Garantni_list> Garantni_listSet { get; set; }
+        public virtual DbSet<Racunarski_servis> Racunarski_ServisSet { get; set; }
     }
 }

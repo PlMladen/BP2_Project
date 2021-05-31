@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ClientUI.View"
              mc:Ignorable="d" 
-             d:DesignHeight="610" d:DesignWidth="900">
+             d:DesignHeight="650" d:DesignWidth="900">
     
     <Grid>
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center">
             <Label x:Name="lblNetData" HorizontalAlignment="Center" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Content="Servisi "/>
             <Separator Height="4" />
             <DataGrid x:Name="dataGridNetData" Background="Black" BorderThickness="2" BorderBrush="#FF3AFF00" AutoGenerateColumns="False" ItemsSource="{Binding Path=Servisi, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedServis}" Height="300" Width="860" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
@@ -23,35 +23,35 @@
             </DataGrid>
             <Separator Height="10" Visibility="Hidden"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                <Separator Width="10"/>
+                <Separator Width="5" Visibility="Hidden"/>
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockNazivServisa" Text="Naziv servisa:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="100" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <TextBox x:Name="txtBoxNazivServisa" Height="34" VerticalContentAlignment="Center" Width="160" Text="{Binding Path=TxTBoxNazivServ, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"></TextBox>
                     </StackPanel>
-                    <Separator Width="2"/>
+                    <Separator Width="2" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockType" Text="Tip servisa:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="100" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <ComboBox x:Name="cmbType" Height="34" Width="160" VerticalContentAlignment="Center" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding ServisTypes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTypeServis}"/>
                     </StackPanel>
-                    <Separator Width="2"/>
+                    <Separator Width="2" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockAdresaServisa" Text="Adresa servisa:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="100" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <TextBox x:Name="txtBoxAdresaUlica" Height="34" VerticalContentAlignment="Center" Text="{Binding Path=TxTBoxAdresaUlica, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12" Width="120"></TextBox>
-                        <Separator Width="2"/>
+                        <Separator Width="2" Visibility="Hidden"/>
                         <TextBox x:Name="txtBoxAdresaBroj" Text="{Binding Path=TxTBoxAdresaBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="34" Width="40"></TextBox>
-                        <Separator Width="2"/>
+                        <Separator Width="2" Visibility="Hidden"/>
                         <TextBox x:Name="txtBoxAdresaGrad" Height="34" Width="120" VerticalContentAlignment="Center" Text="{Binding Path=TxTBoxAdresaGrad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"></TextBox>
-                        <Separator Width="2"/>
+                        <Separator Width="2" Visibility="Hidden"/>
                         <TextBox x:Name="txtBoxAdresaPPT" Height="34" Width="75" VerticalContentAlignment="Center" Text="{Binding Path=TxTBoxAdresaPPTBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"></TextBox>
                     </StackPanel>
-                    <Separator Width="2"/>
+                    <Separator Width="2" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockBrojServisa" Text="Br. tel. servisa:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="100" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <TextBox x:Name="txtBoxPozivniBroj" Height="34" VerticalContentAlignment="Center"  Text="{Binding Path=TxTBoxBrTelPozBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12" Width="40"></TextBox>
-                        <Separator Width="2"/>
+                        <Separator Width="2" Visibility="Hidden"/>
                         <TextBox x:Name="txtBoxBrojOkruga"  Text="{Binding Path=TxTBoxBrTelBrojOkruga, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="34" Width="40"></TextBox>
-                        <Separator Width="2"/>
+                        <Separator Width="2" Visibility="Hidden"/>
                         <TextBox x:Name="txtBoxBroj" Height="34" Width="120" VerticalContentAlignment="Center"  Text="{Binding Path=TxTBoxBrTelBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"></TextBox>
                     </StackPanel>
                 </StackPanel>

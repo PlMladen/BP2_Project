@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="ClientUI.View.DonosiView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClientUI.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="900">
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+            <Label x:Name="lblNetData" HorizontalAlignment="Center" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Content="Istorija posjeta servisu/ima"/>
+            <Separator Height="4" />
+            <DataGrid x:Name="dataGridSerRacunaraData" Background="Black" BorderThickness="2" BorderBrush="#FF3AFF00" AutoGenerateColumns="False" ItemsSource="{Binding Path=DonosiSet, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedDonosi}" Height="300" Width="860" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="JMBG vlasnika" FontWeight="Bold" Foreground="Black" Binding="{Binding PosjedujeVlasnik_racunaraJMBG_vl}" Width="*"/>
+                    <DataGridTextColumn Header="Ime" FontWeight="Bold" Foreground="Black"  Binding="{Binding Pposjeduje.Ime_vl}" Width="*"/>
+                    <DataGridTextColumn Header="Prezime" FontWeight="Bold" Foreground="Black" Binding="{Binding Pposjeduje.Prezime_vl}" Width="*"/>
+                    <DataGridTextColumn Header="ID racunara" FontWeight="Bold" Foreground="Black" Binding="{Binding PosjedujeRacunarID_racunara}" Width="*"/>
+                    <DataGridTextColumn Header="Tip Racunara" FontWeight="Bold" Foreground="Black" Binding="{Binding Pposjeduje.Vrsta_racunara}" Width="*"/>
+                    <DataGridTextColumn Header="ID servisa" FontWeight="Bold" Foreground="Black" Binding="{Binding Racunarski_servisID_servisa}" Width="*"/>
+                    <DataGridTextColumn Header="Naziv servisa" FontWeight="Bold" Foreground="Black" Binding="{Binding Racunarski_servis.Naziv_serv}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Separator Height="10" Visibility="Hidden"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" >
+                <Separator Width="10" Visibility="Hidden"/>
+                <StackPanel Orientation="Vertical">
+                    
+                    <Separator Visibility="Hidden" Height="15"></Separator>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBlockVl" Text="Vlasnikov racunar:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <ComboBox x:Name="cmbBoxVlasnik" Height="34" Width="160" VerticalContentAlignment="Center" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding Posjeduje, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CmbBoxPosjeduje}"/>
+                    </StackPanel>
+                    <Separator Width="2" Visibility="Hidden"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBlockRac" Text="Servis racunara:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <ComboBox x:Name="cmbBoxRacunar" Height="34" Width="160" VerticalContentAlignment="Center" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding Servisi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CmbBoxID_Servisa}"/>
+                    </StackPanel>
+                </StackPanel>
+
+
+                <Separator Width="5" Visibility="Hidden"/>
+                <StackPanel Width="475">
+                    <TextBlock x:Name="lblDodat" Width="465" VerticalAlignment="Top" Padding="10"  Height="150" Foreground="{Binding Path=Foreground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=LBL, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"/>
+                </StackPanel>
+                <Separator Width="5" Visibility="Hidden"/>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
+                        <Button x:Name="btnAdd" Content="Dodaj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding AddCommand}"  />
+                    </Border>
+                    <Separator Height="0" Visibility="Hidden"/>
+                    <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
+                        <Button x:Name="btnUpdate" Content="Azuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
+                    </Border>
+                    <Separator Height="0" Visibility="Hidden"/>
+                    <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
+                        <Button x:Name="btnDelete" Content="Obrisi" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="100" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="" Width="13"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

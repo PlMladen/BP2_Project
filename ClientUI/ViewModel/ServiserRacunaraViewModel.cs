@@ -18,13 +18,29 @@ namespace ClientUI.ViewModel
         private string txTBoxJMBGsServ;
         private string txTBoxIme_s;
         private string txtBoxPrezime_s;
-        private string lbl;
+        private string lbl = string.Empty;
         private DateTime dpDat_rodj_s = DateTime.Now;
 
         public MyICommand DeleteCommand { get; set; }
         public MyICommand AddCommand { get; set; }
         public MyICommand UpdateCommand { get; set; }
+        private bool canEdit;
 
+        public bool CanEdit
+        {
+            get
+            {
+                return canEdit;
+            }
+            set
+            {
+                if (canEdit != value)
+                {
+                    canEdit = value;
+                    OnPropertyChanged("CanEdit");
+                }
+            }
+        }
         public ServiserRacunaraViewModel()
         {
             DeleteCommand = new MyICommand(OnDelete, CanDelete);
@@ -149,6 +165,7 @@ namespace ClientUI.ViewModel
         }
         private bool CanDelete()
         {
+            CanEdit = SelectedServiser != null;
             return SelectedServiser != null;
         }
 

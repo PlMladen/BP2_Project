@@ -89,9 +89,15 @@ namespace Server.Repos
                 Prezime_s = serviser.Prezime_s
             };
 
-            var serviserFromDb = dbCtx.Serviser_racunaraSet.FirstOrDefault((s) => s.JMBG_s == serviserForDb.JMBG_s);
-            dbCtx.Entry(serviserFromDb).CurrentValues.SetValues(serviserForDb);
-            dbCtx.SaveChanges();
+            try
+            {
+                var serviserFromDb = dbCtx.Serviser_racunaraSet.FirstOrDefault((s) => s.JMBG_s == serviserForDb.JMBG_s);
+                dbCtx.Entry(serviserFromDb).CurrentValues.SetValues(serviserForDb);
+                dbCtx.SaveChanges();
+            }catch(Exception e)
+            {
+
+            }
         }
     }
 }

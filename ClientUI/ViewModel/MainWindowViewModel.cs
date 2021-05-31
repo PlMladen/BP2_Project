@@ -16,6 +16,11 @@ namespace ClientUI.ViewModel
         private VlasnikRacunaraViewModel vlasnikRacunaraViewModel = new VlasnikRacunaraViewModel();
         private KomponentaViewModel komponentaViewModel = new KomponentaViewModel();
         private GarantniListViewModel garantniListViewModel = new GarantniListViewModel();
+        private PosjedujeViewModel posjedujeViewModel = new PosjedujeViewModel();
+        private SastojiSeViewModel sastojiSeViewModel = new SastojiSeViewModel();
+        private RadiViewModel radiViewModel = new RadiViewModel();
+        private DonosiViewModel donosiViewModel = new DonosiViewModel();
+        private ServisiraViewModel servisiraViewModel = new ServisiraViewModel();
 
         private BindableBase currentViewModel;
 
@@ -54,6 +59,21 @@ namespace ClientUI.ViewModel
                     break;
                 case "Gar list view":
                     CurrentViewModel = garantniListViewModel;
+                    break;
+                case "Posjeduje view":
+                    CurrentViewModel = posjedujeViewModel;
+                    break;
+                case "SastojiSe view":
+                    CurrentViewModel = sastojiSeViewModel;
+                    break;
+                case "Radi view":
+                    CurrentViewModel = radiViewModel;
+                    break;
+                case "Donosi view":
+                    CurrentViewModel = donosiViewModel;
+                    break;
+                case "Servisira view":
+                    CurrentViewModel = servisiraViewModel;
                     break;
             }
         }

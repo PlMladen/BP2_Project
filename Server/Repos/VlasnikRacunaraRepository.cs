@@ -45,6 +45,7 @@ namespace Server.Repos
             try
             {
                 dbCtx.Vlasnik_racunaraSet.Remove(dbCtx.Vlasnik_racunaraSet.FirstOrDefault((s) => s.JMBG_vl == idVlasnika));
+                dbCtx.PosjedujeSet.RemoveRange(dbCtx.PosjedujeSet.Where(s => s.Vlasnik_racunaraJMBG_vl == idVlasnika));
                 dbCtx.SaveChanges();
                 return true;
             }
@@ -119,9 +120,15 @@ namespace Server.Repos
                 }
             };
 
-            var vlasnikFromDb = dbCtx.Vlasnik_racunaraSet.FirstOrDefault((s) => s.JMBG_vl == vlasnikForDb.JMBG_vl);
-            dbCtx.Entry(vlasnikFromDb).CurrentValues.SetValues(vlasnikForDb);
-            dbCtx.SaveChanges();
+            try
+            {
+                var vlasnikFromDb = dbCtx.Vlasnik_racunaraSet.FirstOrDefault((s) => s.JMBG_vl == vlasnikForDb.JMBG_vl);
+                dbCtx.Entry(vlasnikFromDb).CurrentValues.SetValues(vlasnikForDb);
+                dbCtx.SaveChanges();
+            }catch(Exception e)
+            {
+
+            }
         }
     }
 }

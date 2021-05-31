@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\App.xaml
-7-305184500
+12-1300199998
 
-23-1946625830
+33-1537303026
 15974870553
-MainWindow.xaml;View\GarantniListView.xaml;View\KomponentaView.xaml;View\RacunarView.xaml;View\ServiserRacunaraView.xaml;View\ServisView.xaml;View\VlasnikRacunaraView.xaml;
+MainWindow.xaml;View\DonosiView.xaml;View\GarantniListView.xaml;View\KomponentaView.xaml;View\PosjedujeView.xaml;View\RacunarView.xaml;View\RadiView.xaml;View\SastojiSeView.xaml;View\ServiserRacunaraView.xaml;View\ServisiraView.xaml;View\ServisView.xaml;View\VlasnikRacunaraView.xaml;
 
-True
+False
 

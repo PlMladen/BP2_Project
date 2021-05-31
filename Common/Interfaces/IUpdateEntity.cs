@@ -26,5 +26,16 @@ namespace Common.Interfaces
         void UpdateKomponentu(Komponenta komponenta);
         [OperationContract]
         void UpdateGarantni_list(Garantni_list garantni_List);
+
+        [OperationContract]
+        void UpdatePosjeduje(Posjeduje posjeduje);
+        [OperationContract]
+        void UpdateSastojiSe(SastojiSe sastojiSe);
+        [OperationContract]
+        void UpdateRadi(Radi radi);
+        [OperationContract]
+        void UpdateDonosi(Donosi donosi);
+        [OperationContract]
+        void UpdateServisira(Servisira servisira);
     }
 }
