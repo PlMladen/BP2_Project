@@ -1,0 +1,45 @@
+USE [BP2_Projekat_Db]
+GO
+/****** Object:  UserDefinedFunction [dbo].[izlistaj_za_vlasnika_broj_racunara_po_tipu]    Script Date: 1.6.2021. 22:14:01 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER function [dbo].[izlistaj_za_vlasnika_broj_racunara_po_tipu]
+(
+	@ID_vlasnika as bigint,
+	@Vrsta_racunara as int
+)
+returns int 
+as
+begin
+	declare @retVal as int;
+		select @retVal = count(vlS.JMBG_vl) from Vlasnik_racunaraSet vlS left outer join PosjedujeSet ps 
+		on ps.Vlasnik_racunaraJMBG_vl = vlS.JMBG_vl left outer join RacunarSet rs on rs.ID_racunara = ps.RacunarID_racunara
+		where rs.Vrsta_racunara = @Vrsta_racunara and vlS.JMBG_vl = @ID_vlasnika
+		group by vlS.JMBG_vl
+	return @retVal;
+end
+
+----------------------------------------------------------------------------------------------------------------
+
+USE [BP2_Projekat_Db]
+GO
+/****** Object:  UserDefinedFunction [dbo].[vrati_vlasnika_sa_najskupljom_popravkom]    Script Date: 1.6.2021. 22:13:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER function [dbo].[vrati_vlasnika_sa_najskupljom_popravkom]
+()
+returns table 
+as
+return
+	select ss.DonosiPosjedujeVlasnik_racunaraJMBG_vl as 'JMBG_vlasnika' , vlS.Ime_vl as 'Ime', vlS.Prezime_vl as 'Prezime', max(ss.Cijena_serv) as 'Cijena',  sset.Naziv_serv as 'Naziv_servisa' 
+from ServisiraSet ss, ServisSet sset, Vlasnik_racunaraSet vlS
+where ss.DonosiRacunarski_servisID_servisa = sset.ID_servisa and vlS.JMBG_vl = ss.DonosiPosjedujeVlasnik_racunaraJMBG_vl
+group by ss.DonosiRacunarski_servisID_servisa, ss.DonosiPosjedujeRacunarID_racunara, ss.DonosiPosjedujeVlasnik_racunaraJMBG_vl, ss.RadiRacunarski_servisID_servisa, sset.Naziv_serv,
+vlS.Ime_vl, vlS.Prezime_vl
+having max(ss.Cijena_serv) >= all
+(select max(Cijena_serv) from ServisiraSet group by DonosiPosjedujeRacunarID_racunara, DonosiPosjedujeVlasnik_racunaraJMBG_vl, DonosiRacunarski_servisID_servisa,
+RadiRacunarski_servisID_servisa);
