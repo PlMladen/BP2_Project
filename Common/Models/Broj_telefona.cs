@@ -25,5 +25,10 @@ namespace Common.Models
         public int Pozivni_broj { get; set; }
         public int Okrug { get; set; }
         public int Broj { get; set; }
+
+        public override string ToString()
+        {
+            return Pozivni_broj+" "+Okrug+Broj;
+        }
     }
 }

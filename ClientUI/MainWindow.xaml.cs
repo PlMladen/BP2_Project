@@ -25,9 +25,9 @@ namespace ClientUI
             InitializeComponent();
         }
 
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //_ = await Task.Run(DatabaseServiceProvider.Instance.GetAllServiss);
+            var i =  Task.Run(DatabaseServiceProvider.Instance.GetAllServiss);
         }
     }
 }

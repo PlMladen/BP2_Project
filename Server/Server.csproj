@@ -98,8 +98,19 @@
     <Compile Include="Radi.cs">
       <DependentUpon>ProjectDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repos\DonosiRepository.cs" />
+    <Compile Include="Repos\GarantniListRepository.cs" />
+    <Compile Include="Repos\KomponentaRepository.cs" />
+    <Compile Include="Repos\MiscRepository.cs" />
+    <Compile Include="Repos\PosjedujeRepository.cs" />
     <Compile Include="Repos\RacunarRepository.cs" />
+    <Compile Include="Repos\RacunarskiServisRepository.cs" />
+    <Compile Include="Repos\RadiRepository.cs" />
+    <Compile Include="Repos\SastojiSeRepository.cs" />
+    <Compile Include="Repos\ServiserRacunaraRepository.cs" />
+    <Compile Include="Repos\ServisiraRepository.cs" />
     <Compile Include="Repos\ServisRepository.cs" />
+    <Compile Include="Repos\VlasnikRacunaraRepository.cs" />
     <Compile Include="Sastoji_se.cs">
       <DependentUpon>ProjectDb.tt</DependentUpon>
     </Compile>
@@ -114,6 +125,9 @@
       <DependentUpon>ProjectDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Servis_mob_tel.cs">
+      <DependentUpon>ProjectDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlUpitVlasnikServisCijena.cs">
       <DependentUpon>ProjectDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Tip_servisa.cs">

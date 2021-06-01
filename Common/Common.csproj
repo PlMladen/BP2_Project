@@ -50,10 +50,20 @@
     <Compile Include="Interfaces\IUpdateEntity.cs" />
     <Compile Include="Models\Adresa.cs" />
     <Compile Include="Models\Broj_telefona.cs" />
+    <Compile Include="Models\Donosi.cs" />
     <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\Garantni_list.cs" />
+    <Compile Include="Models\Komponenta.cs" />
+    <Compile Include="Models\Posjeduje.cs" />
     <Compile Include="Models\Racunar.cs" />
     <Compile Include="Models\Racunarski_servis.cs" />
+    <Compile Include="Models\Radi.cs" />
+    <Compile Include="Models\SastojiSe.cs" />
     <Compile Include="Models\Servis.cs" />
+    <Compile Include="Models\Serviser_racunara.cs" />
+    <Compile Include="Models\Servisira.cs" />
+    <Compile Include="Models\SqlUpitVlasnikServisCijena.cs" />
+    <Compile Include="Models\Vlasnik_racunara.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -27,5 +27,10 @@ namespace Common.Models
         public string Grad { get; set; }
         public int Broj { get; set; }
         public int PostanskiBroj { get; set; }
+
+        public override string ToString()
+        {
+            return Ulica+" "+Broj+" " +Grad + " "+PostanskiBroj;
+        }
     }
 }

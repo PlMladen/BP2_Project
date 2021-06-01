@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="ClientUI.View.RacunarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClientUI.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="900">
+    <Grid>
+        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center">
+            <Label x:Name="lblNetData" HorizontalAlignment="Center" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Content="Racunari "/>
+            <Separator Height="4" />
+            <DataGrid x:Name="dataGridSerRacunaraData" Background="Black" BorderThickness="2" BorderBrush="#FF3AFF00" AutoGenerateColumns="False" ItemsSource="{Binding Path=Racunari, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedRacunar}" Height="300" Width="860" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID Racunara" FontWeight="Bold" Foreground="Black" Binding="{Binding ID_racunara}" Width="*"/>
+                    <DataGridTextColumn Header="Proizvodjac" FontWeight="Bold" Foreground="Black"  Binding="{Binding Proizvodjac}" Width="*"/>
+                    <DataGridTextColumn Header="Brzina CPU[GHz]" FontWeight="Bold" Foreground="Black" Binding="{Binding Brzina_procesora}" Width="*"/>
+                    <DataGridTextColumn Header="RAM[GB]" FontWeight="Bold" Foreground="Black" Binding="{Binding Kapacitet_RAM}" Width="*"/>
+                    <DataGridTextColumn Header="Disk[GB]" FontWeight="Bold" Foreground="Black" Binding="{Binding Kapacitet_memorije}" Width="*"/>
+                    <DataGridTextColumn Header="Vrsta racunara" FontWeight="Bold" Foreground="Black" Binding="{Binding Vrsta_racunara}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Separator Height="10" Visibility="Hidden"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Separator Width="5" Visibility="Hidden"/>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBlockProizvodjac" Text="Proizvodjac:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBox x:Name="txTBoxProizvodjac" Height="34" VerticalContentAlignment="Center" Width="160" Text="{Binding Path=TxTBoxProizvodjac, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"></TextBox>
+                    </StackPanel>
+                    <Separator Width="2" Visibility="Hidden"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBlockCPU" Text="Brzina procesora[GHz]:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBox x:Name="txtBoxBrzinaCPU" Height="34" VerticalContentAlignment="Center" Width="160" Text="{Binding Path=TxtBoxBrzinaCPU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"></TextBox>
+                    </StackPanel>
+                    <Separator Width="2" Visibility="Hidden"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBlockRAM" Text="Kapacitet RAM[GB]:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBox x:Name="txtBoxRAM" Height="34" VerticalContentAlignment="Center" Text="{Binding Path=TxtBoxRAM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12" Width="160"></TextBox>
+                    </StackPanel>
+                    <Separator Width="2" Visibility="Hidden"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBlockMemorija" Text="Kapacitet diska[GB]:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBox x:Name="txtBoxMemorija" Height="34" VerticalContentAlignment="Center" Text="{Binding Path=TxtBoxMemorija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12" Width="160"></TextBox>
+                    </StackPanel>
+                    <Separator Width="2" Visibility="Hidden"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBlockVrsta" Text="Vrsta racunara:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <ComboBox x:Name="cmbBoxVrsta_racunara" Height="34" Width="160" VerticalContentAlignment="Center" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding RacunarTypes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CmbBoxVrsta_racunara}"/>
+                    </StackPanel>
+                </StackPanel>
+                
+
+                <Separator Width="5" Visibility="Hidden"/>
+                <StackPanel Width="455">
+                    <TextBlock x:Name="lblDodat" Width="455" VerticalAlignment="Top" Padding="10"  Height="150" Foreground="{Binding Path=Foreground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=LBL, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"/>
+                </StackPanel>
+                <Separator Width="5" Visibility="Hidden"/>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
+                        <Button x:Name="btnAdd" Content="Dodaj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding AddCommand}"  />
+                    </Border>
+                    <Separator Height="0" Visibility="Hidden"/>
+                    <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
+                        <Button x:Name="btnUpdate" Content="Azuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
+                    </Border>
+                    <Separator Height="0" Visibility="Hidden"/>
+                    <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
+                        <Button x:Name="btnDelete" Content="Obrisi" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="100" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="" Width="13"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

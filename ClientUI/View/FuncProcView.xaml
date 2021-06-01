@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="ClientUI.View.FuncProcView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClientUI.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="900">
+    <Grid>
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+            <Label x:Name="lblNetData" HorizontalAlignment="Center" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Content="Funkcije i procedure test"/>
+            <Separator Height="4" />
+            
+            <Separator Height="10" Visibility="Hidden"/>
+            <StackPanel Orientation="Horizontal">
+                <Separator Width="10" Visibility="Hidden"></Separator>
+            <Label x:Name="lblFje" HorizontalAlignment="Left" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="14" FontWeight="Bold" FontStyle="Italic" Content="***Funkcije: "/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" >
+                <Separator Width="10" Visibility="Hidden"/>
+                <StackPanel Orientation="Vertical">
+                    <Separator Visibility="Hidden" Width="5"></Separator>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBlockVl" Text="Vlasnik:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <ComboBox x:Name="cmbBoxVlasnik" Height="44" Width="160" VerticalContentAlignment="Center" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding Vlasnici, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CmbBoxVlasnici}"/>
+                    </StackPanel>
+                    <Separator Width="2" Visibility="Hidden"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBlockRac" Text="Tip racunara:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <ComboBox x:Name="cmbBoxRacunar" Height="44" Width="160" VerticalContentAlignment="Center" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding VrsteRacunara, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CmbBoxVrsteRacunara}"/>
+                    </StackPanel>
+                </StackPanel>
+                <Separator Width="50" Visibility="Hidden"></Separator>
+                <StackPanel Orientation="Vertical">
+                    <Separator Visibility="Hidden" Height="25"></Separator>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBrRac" Text="Broj racunara:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBlock x:Name="txtBoxRacunar" Height="34" Width="160"  Foreground="#FF3AFF00"  FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="8" Text="{Binding BrojRacunara, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </StackPanel>
+                <Separator Visibility="Hidden" Width="50"></Separator>
+                <StackPanel Orientation="Vertical">
+                    <Separator Height="18" Visibility="Hidden"/>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <Border Height="44" Width="130" BorderBrush="#FF3AFF00" BorderThickness="2">
+                            <Button x:Name="btnBrRac" Content="Vrati broj racunara" Width="130" Foreground="White" Height="44" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding RetNumPCCommand}" Margin="0,0,-4,-4" VerticalAlignment="Top"  />
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" >
+                <Separator Width="5" Visibility="Hidden"/>
+                <StackPanel Orientation="Vertical">
+                    <Separator Visibility="Hidden" Width="5"></Separator>
+                    
+                </StackPanel>
+                <Separator Width="5" Visibility="Hidden"></Separator>
+                <StackPanel Orientation="Vertical">
+                    <Separator Visibility="Hidden" Height="25"></Separator>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBrRac1" Text="Podaci o najskupljoj popravci:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Left"  FontWeight="Bold" FontSize="12" Width="275" VerticalAlignment="Center"  Height="34" TextAlignment="Left" />
+                        <TextBlock x:Name="txtBoxRac" Height="54" Width="330"  Foreground="#FF3AFF00"  FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="8" Text="{Binding NajskPop, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </StackPanel>
+                <Separator Visibility="Hidden" Width="50"></Separator>
+                <StackPanel Orientation="Vertical">
+                    <Separator Height="25" Visibility="Hidden"/>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <Border Height="44" Width="130" BorderBrush="#FF3AFF00" BorderThickness="2">
+                            <Button x:Name="btnBrServisera" Content="Vrati najskuplji servis" Width="130" Foreground="White" Height="44" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding RetMaxPriceCommand}"  />
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+                
+            </StackPanel>
+        
+            <Separator Height="10" Visibility="Hidden"/>
+            <StackPanel Orientation="Horizontal">
+                <Separator Width="10" Visibility="Hidden"></Separator>
+                <Label x:Name="lblProc" HorizontalAlignment="Left" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="14" FontWeight="Bold" FontStyle="Italic" Content="***Procedure: "/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" >
+                <Separator Width="0" Visibility="Hidden"/>
+                <StackPanel Orientation="Vertical">
+                    <Separator Visibility="Hidden" Height="5"></Separator>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBlockSer" Text="Naziv servisa:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <ComboBox x:Name="cmbBoxServisi" Height="44" Width="160" VerticalContentAlignment="Center" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding Servisi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CmbBoxServisi}"/>
+                    </StackPanel>
+
+                </StackPanel>
+                <Separator Width="10" Visibility="Hidden"></Separator>
+                <StackPanel Orientation="Vertical">
+                    <Separator Visibility="Hidden" Height="0"></Separator>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="textBrRac3" Text="Serviser:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBlock x:Name="txtBoxRacunar3" Height="54" Width="250"  Foreground="#FF3AFF00"  FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="8" Text="{Binding NajstarijiRadnik, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </StackPanel>
+                <Separator Visibility="Hidden" Width="10"></Separator>
+                <StackPanel Orientation="Vertical">
+                    <Separator Height="5" Visibility="Hidden"/>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Border Height="44" Width="130" BorderBrush="#FF3AFF00" BorderThickness="2">
+                            <Button x:Name="btnBrRac3" Content="Vrati najstarijeg serv" Width="130" Foreground="White" Height="44" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding ReturnTheOldestWorkerCommand}" Margin="0,0,-4,-4" VerticalAlignment="Top"  />
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+            <Separator Width="5" Visibility="Hidden"></Separator>
+            <StackPanel Orientation="Vertical">
+                <Separator Visibility="Hidden" Height="26"></Separator>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="textBrRac12" Text="Broj punoljetnih vlasnika racunara:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Left"  FontWeight="Bold" FontSize="12" Width="275" VerticalAlignment="Center"  Height="34" TextAlignment="Left" />
+                    <TextBlock x:Name="txtBoxRac2" Height="54" Width="350"  Foreground="#FF3AFF00"  FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="18" Text="{Binding BrPunVl, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Separator Visibility="Hidden" Width="50"></Separator>
+                    <StackPanel Orientation="Vertical">
+                        <Separator Height="5" Visibility="Hidden"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            
+                            <Border Height="44" Width="130" BorderBrush="#FF3AFF00" BorderThickness="2">
+                                <Button x:Name="btnBrVl" Content="Broj punoljetnih vl" Width="130" Foreground="White" Height="44" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding RetAdultsCommand}"  />
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

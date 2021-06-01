@@ -56,6 +56,56 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\DonosiViewModel.cs" />
+    <Compile Include="ViewModel\FuncProcViewModel.cs" />
+    <Compile Include="ViewModel\GarantniListViewModel.cs" />
+    <Compile Include="ViewModel\KomponentaViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\PosjedujeViewModel.cs" />
+    <Compile Include="ViewModel\RacunarViewModel.cs" />
+    <Compile Include="ViewModel\RadiViewModel.cs" />
+    <Compile Include="ViewModel\SastojiSeViewModel.cs" />
+    <Compile Include="ViewModel\ServiserRacunaraViewModel.cs" />
+    <Compile Include="ViewModel\ServisiraViewModel.cs" />
+    <Compile Include="ViewModel\ServisViewModel.cs" />
+    <Compile Include="ViewModel\VlasnikRacunaraViewModel.cs" />
+    <Compile Include="View\DonosiView.xaml.cs">
+      <DependentUpon>DonosiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FuncProcView.xaml.cs">
+      <DependentUpon>FuncProcView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GarantniListView.xaml.cs">
+      <DependentUpon>GarantniListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\KomponentaView.xaml.cs">
+      <DependentUpon>KomponentaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PosjedujeView.xaml.cs">
+      <DependentUpon>PosjedujeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RacunarView.xaml.cs">
+      <DependentUpon>RacunarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RadiView.xaml.cs">
+      <DependentUpon>RadiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SastojiSeView.xaml.cs">
+      <DependentUpon>SastojiSeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ServiserRacunaraView.xaml.cs">
+      <DependentUpon>ServiserRacunaraView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ServisiraView.xaml.cs">
+      <DependentUpon>ServisiraView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ServisView.xaml.cs">
+      <DependentUpon>ServisView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\VlasnikRacunaraView.xaml.cs">
+      <DependentUpon>VlasnikRacunaraView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VML\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -64,13 +114,63 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BindableBase.cs" />
     <Compile Include="Model\DatabaseServiceProvider.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\DonosiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FuncProcView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GarantniListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\KomponentaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PosjedujeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RacunarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RadiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SastojiSeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ServiserRacunaraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ServisiraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ServisView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\VlasnikRacunaraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyICommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -102,9 +202,6 @@
       <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
