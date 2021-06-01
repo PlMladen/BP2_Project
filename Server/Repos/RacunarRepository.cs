@@ -41,6 +41,13 @@ namespace Server.Repos
             {
                 dbCtx.RacunarSet.Remove(dbCtx.RacunarSet.FirstOrDefault((s) => s.ID_racunara == idRacunara));
                 dbCtx.PosjedujeSet.RemoveRange(dbCtx.PosjedujeSet.Where(s => s.RacunarID_racunara == idRacunara).ToList());
+                foreach(var x in dbCtx.KomponentaSet)
+                {
+                    if (x.RacunarID_racunara == idRacunara)
+                    {
+                        x.RacunarID_racunara = 0;
+                    }
+                }
                 dbCtx.SaveChanges();
                 return true;
             }
@@ -51,20 +58,24 @@ namespace Server.Repos
             }
         }
 
-        public Common.Models.Racunar GetRacunar(int racunarId) 
+        public Common.Models.Racunar GetRacunar(int racunarId)
         {
             var racunarFromDb = dbCtx.RacunarSet.Find(racunarId);
-            var racunarForVw = new Common.Models.Racunar()
+            if (racunarFromDb != null)
             {
-                Brzina_procesora = racunarFromDb.Brzina_procesora,
-                ID_racunara = racunarFromDb.ID_racunara,
-                Kapacitet_memorije = racunarFromDb.Kapacitet_memorije,
-                Kapacitet_RAM = racunarFromDb.Kapacitet_RAM,
-                Proizvodjac = racunarFromDb.Proizvodjac,
-                Vrsta_racunara = (Common.Models.Vrsta_racunara)racunarFromDb.Vrsta_racunara
-            };
-            
-            return racunarForVw;
+                var racunarForVw = new Common.Models.Racunar()
+                {
+                    Brzina_procesora = racunarFromDb.Brzina_procesora,
+                    ID_racunara = racunarFromDb.ID_racunara,
+                    Kapacitet_memorije = racunarFromDb.Kapacitet_memorije,
+                    Kapacitet_RAM = racunarFromDb.Kapacitet_RAM,
+                    Proizvodjac = racunarFromDb.Proizvodjac,
+                    Vrsta_racunara = (Common.Models.Vrsta_racunara)racunarFromDb.Vrsta_racunara
+                };
+
+                return racunarForVw;
+            }
+            return null;
         }
 
         public void Update(Common.Models.Racunar racunar)

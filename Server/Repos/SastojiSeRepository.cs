@@ -87,44 +87,134 @@ namespace Server.Repos
             var retVal = new List<Common.Models.SastojiSe>();
             foreach (var sastojiSeFromDb in dbCtx.Sastoji_seSet.ToList())
             {
-                var sastojiSe = new Common.Models.SastojiSe()
+                if (sastojiSeFromDb.Komponenta.Racunar != null && sastojiSeFromDb.Komponenta1.Racunar != null)
                 {
-                    KomponentaId_komp = sastojiSeFromDb.KomponentaId_komp,
-                    KomponentaId_komp1 = sastojiSeFromDb.KomponentaId_komp1,
-                    Komponenta = new Common.Models.Komponenta()
+                    var sastojiSe = new Common.Models.SastojiSe()
                     {
-                        Cijena_komp = sastojiSeFromDb.Komponenta.Cijena_komp,
-                        Id_komp = sastojiSeFromDb.Komponenta.Id_komp,
-                        Naz_komp = sastojiSeFromDb.Komponenta.Naz_komp,
-                        Racunar = new Common.Models.Racunar()
+                        KomponentaId_komp = sastojiSeFromDb.KomponentaId_komp,
+                        KomponentaId_komp1 = sastojiSeFromDb.KomponentaId_komp1,
+                        Komponenta = new Common.Models.Komponenta()
                         {
-                            Brzina_procesora = sastojiSeFromDb.Komponenta.Racunar.Brzina_procesora,
-                            ID_racunara = sastojiSeFromDb.Komponenta.Racunar.ID_racunara,
-                            Kapacitet_memorije = sastojiSeFromDb.Komponenta.Racunar.Kapacitet_memorije,
-                            Kapacitet_RAM = sastojiSeFromDb.Komponenta.Racunar.Kapacitet_RAM,
-                            Proizvodjac = sastojiSeFromDb.Komponenta.Racunar.Proizvodjac,
-                            Vrsta_racunara = (Common.Models.Vrsta_racunara)sastojiSeFromDb.Komponenta.Racunar.Vrsta_racunara
+                            Cijena_komp = sastojiSeFromDb.Komponenta.Cijena_komp,
+                            Id_komp = sastojiSeFromDb.Komponenta.Id_komp,
+                            Naz_komp = sastojiSeFromDb.Komponenta.Naz_komp,
+                            Racunar = new Common.Models.Racunar()
+                            {
+                                Brzina_procesora = sastojiSeFromDb.Komponenta.Racunar.Brzina_procesora,
+                                ID_racunara = sastojiSeFromDb.Komponenta.Racunar.ID_racunara,
+                                Kapacitet_memorije = sastojiSeFromDb.Komponenta.Racunar.Kapacitet_memorije,
+                                Kapacitet_RAM = sastojiSeFromDb.Komponenta.Racunar.Kapacitet_RAM,
+                                Proizvodjac = sastojiSeFromDb.Komponenta.Racunar.Proizvodjac,
+                                Vrsta_racunara = (Common.Models.Vrsta_racunara)sastojiSeFromDb.Komponenta.Racunar.Vrsta_racunara
+                            },
+                            RacunarID_racunara = sastojiSeFromDb.Komponenta.Racunar.ID_racunara
                         },
-                        RacunarID_racunara = sastojiSeFromDb.Komponenta.Racunar.ID_racunara
-                    },
-                    Komponenta1 = new Common.Models.Komponenta()
+                        Komponenta1 = new Common.Models.Komponenta()
+                        {
+                            Cijena_komp = sastojiSeFromDb.Komponenta1.Cijena_komp,
+                            Id_komp = sastojiSeFromDb.Komponenta1.Id_komp,
+                            Naz_komp = sastojiSeFromDb.Komponenta1.Naz_komp,
+                            Racunar = new Common.Models.Racunar()
+                            {
+                                Brzina_procesora = sastojiSeFromDb.Komponenta1.Racunar.Brzina_procesora,
+                                ID_racunara = sastojiSeFromDb.Komponenta1.Racunar.ID_racunara,
+                                Kapacitet_memorije = sastojiSeFromDb.Komponenta1.Racunar.Kapacitet_memorije,
+                                Kapacitet_RAM = sastojiSeFromDb.Komponenta1.Racunar.Kapacitet_RAM,
+                                Proizvodjac = sastojiSeFromDb.Komponenta1.Racunar.Proizvodjac,
+                                Vrsta_racunara = (Common.Models.Vrsta_racunara)sastojiSeFromDb.Komponenta1.Racunar.Vrsta_racunara
+                            },
+                            RacunarID_racunara = sastojiSeFromDb.Komponenta1.Racunar.ID_racunara
+                        }
+                    };
+                    retVal.Add(sastojiSe);
+                }
+                else if(sastojiSeFromDb.Komponenta.Racunar != null && sastojiSeFromDb.Komponenta1.Racunar == null)
+                {
+                    var sastojiSe = new Common.Models.SastojiSe()
                     {
-                        Cijena_komp = sastojiSeFromDb.Komponenta1.Cijena_komp,
-                        Id_komp = sastojiSeFromDb.Komponenta1.Id_komp,
-                        Naz_komp = sastojiSeFromDb.Komponenta1.Naz_komp,
-                        Racunar = new Common.Models.Racunar()
+                        KomponentaId_komp = sastojiSeFromDb.KomponentaId_komp,
+                        KomponentaId_komp1 = sastojiSeFromDb.KomponentaId_komp1,
+                        Komponenta = new Common.Models.Komponenta()
                         {
-                            Brzina_procesora = sastojiSeFromDb.Komponenta1.Racunar.Brzina_procesora,
-                            ID_racunara = sastojiSeFromDb.Komponenta1.Racunar.ID_racunara,
-                            Kapacitet_memorije = sastojiSeFromDb.Komponenta1.Racunar.Kapacitet_memorije,
-                            Kapacitet_RAM = sastojiSeFromDb.Komponenta1.Racunar.Kapacitet_RAM,
-                            Proizvodjac = sastojiSeFromDb.Komponenta1.Racunar.Proizvodjac,
-                            Vrsta_racunara = (Common.Models.Vrsta_racunara)sastojiSeFromDb.Komponenta1.Racunar.Vrsta_racunara
+                            Cijena_komp = sastojiSeFromDb.Komponenta.Cijena_komp,
+                            Id_komp = sastojiSeFromDb.Komponenta.Id_komp,
+                            Naz_komp = sastojiSeFromDb.Komponenta.Naz_komp,
+                            Racunar = new Common.Models.Racunar()
+                            {
+                                Brzina_procesora = sastojiSeFromDb.Komponenta.Racunar.Brzina_procesora,
+                                ID_racunara = sastojiSeFromDb.Komponenta.Racunar.ID_racunara,
+                                Kapacitet_memorije = sastojiSeFromDb.Komponenta.Racunar.Kapacitet_memorije,
+                                Kapacitet_RAM = sastojiSeFromDb.Komponenta.Racunar.Kapacitet_RAM,
+                                Proizvodjac = sastojiSeFromDb.Komponenta.Racunar.Proizvodjac,
+                                Vrsta_racunara = (Common.Models.Vrsta_racunara)sastojiSeFromDb.Komponenta.Racunar.Vrsta_racunara
+                            },
+                            RacunarID_racunara = sastojiSeFromDb.Komponenta.Racunar.ID_racunara
                         },
-                        RacunarID_racunara = sastojiSeFromDb.Komponenta1.Racunar.ID_racunara
-                    }
-                };
-                retVal.Add(sastojiSe);
+                        Komponenta1 = new Common.Models.Komponenta()
+                        {
+                            Cijena_komp = sastojiSeFromDb.Komponenta1.Cijena_komp,
+                            Id_komp = sastojiSeFromDb.Komponenta1.Id_komp,
+                            Naz_komp = sastojiSeFromDb.Komponenta1.Naz_komp,
+                            
+                        }
+                    };
+                    retVal.Add(sastojiSe);
+                }
+                else if(sastojiSeFromDb.Komponenta.Racunar == null && sastojiSeFromDb.Komponenta1.Racunar != null)
+                {
+                    var sastojiSe = new Common.Models.SastojiSe()
+                    {
+                        KomponentaId_komp = sastojiSeFromDb.KomponentaId_komp,
+                        KomponentaId_komp1 = sastojiSeFromDb.KomponentaId_komp1,
+                        Komponenta = new Common.Models.Komponenta()
+                        {
+                            Cijena_komp = sastojiSeFromDb.Komponenta.Cijena_komp,
+                            Id_komp = sastojiSeFromDb.Komponenta.Id_komp,
+                            Naz_komp = sastojiSeFromDb.Komponenta.Naz_komp,
+                            
+                        },
+                        Komponenta1 = new Common.Models.Komponenta()
+                        {
+                            Cijena_komp = sastojiSeFromDb.Komponenta1.Cijena_komp,
+                            Id_komp = sastojiSeFromDb.Komponenta1.Id_komp,
+                            Naz_komp = sastojiSeFromDb.Komponenta1.Naz_komp,
+                            Racunar = new Common.Models.Racunar()
+                            {
+                                Brzina_procesora = sastojiSeFromDb.Komponenta1.Racunar.Brzina_procesora,
+                                ID_racunara = sastojiSeFromDb.Komponenta1.Racunar.ID_racunara,
+                                Kapacitet_memorije = sastojiSeFromDb.Komponenta1.Racunar.Kapacitet_memorije,
+                                Kapacitet_RAM = sastojiSeFromDb.Komponenta1.Racunar.Kapacitet_RAM,
+                                Proizvodjac = sastojiSeFromDb.Komponenta1.Racunar.Proizvodjac,
+                                Vrsta_racunara = (Common.Models.Vrsta_racunara)sastojiSeFromDb.Komponenta1.Racunar.Vrsta_racunara
+                            },
+                            RacunarID_racunara = sastojiSeFromDb.Komponenta1.Racunar.ID_racunara
+                        }
+                    };
+                    retVal.Add(sastojiSe);
+                }
+                else
+                {
+                    var sastojiSe = new Common.Models.SastojiSe()
+                    {
+                        KomponentaId_komp = sastojiSeFromDb.KomponentaId_komp,
+                        KomponentaId_komp1 = sastojiSeFromDb.KomponentaId_komp1,
+                        Komponenta = new Common.Models.Komponenta()
+                        {
+                            Cijena_komp = sastojiSeFromDb.Komponenta.Cijena_komp,
+                            Id_komp = sastojiSeFromDb.Komponenta.Id_komp,
+                            Naz_komp = sastojiSeFromDb.Komponenta.Naz_komp,
+                            
+                        },
+                        Komponenta1 = new Common.Models.Komponenta()
+                        {
+                            Cijena_komp = sastojiSeFromDb.Komponenta1.Cijena_komp,
+                            Id_komp = sastojiSeFromDb.Komponenta1.Id_komp,
+                            Naz_komp = sastojiSeFromDb.Komponenta1.Naz_komp,
+                            
+                        }
+                    };
+                    retVal.Add(sastojiSe);
+                }
             }
             return retVal;
         }

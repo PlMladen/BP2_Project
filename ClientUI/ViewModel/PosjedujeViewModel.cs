@@ -14,8 +14,8 @@ namespace ClientUI.ViewModel
     {
         private ObservableCollection<Posjeduje> posjedujeSet = new ObservableCollection<Posjeduje>(DatabaseServiceProvider.Instance.GetAllPosjeduje());
         private Posjeduje selectedPosjeduje;
-        private static List<string> vlasnici = new List<string>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara().Select(x =>  x.JMBG_vl.ToString() ));
-        public static List<string> racunari = new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => x.ID_racunara.ToString()));
+        private static List<string> vlasnici = new List<string>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara().Select(x => String.Format(x.JMBG_vl+"\n" + x.Ime_vl + " " + x.Prezime_vl)));
+        public static List<string> racunari = new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => String.Format( x.ID_racunara+"\n"+x.Proizvodjac)));
 
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
         
@@ -64,8 +64,8 @@ namespace ClientUI.ViewModel
                 {
                     selectedPosjeduje = value;
                     OnPropertyChanged(nameof(SelectedPosjeduje));
-                    CmbBoxID_racunara = SelectedPosjeduje == null ? "" : SelectedPosjeduje.Id_racunara.ToString();
-                    CmbBoxJMBG_Vl = SelectedPosjeduje == null ? "" : SelectedPosjeduje.JMBG_vl.ToString();
+                    CmbBoxID_racunara = SelectedPosjeduje == null ? "" : String.Format(SelectedPosjeduje.Id_racunara +"\n"+SelectedPosjeduje.Proizvodjac_racunara);
+                    CmbBoxJMBG_Vl = SelectedPosjeduje == null ? "" : String.Format(SelectedPosjeduje.JMBG_vl+"\n"+SelectedPosjeduje.Ime_vl+" "+SelectedPosjeduje.Prezime_vl);
                     
 
 
@@ -89,7 +89,7 @@ namespace ClientUI.ViewModel
 
         public List<string> Vlasnici
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara().Select(x => x.JMBG_vl.ToString()));
+            get => new List<string>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara().Select(x => String.Format(x.JMBG_vl + "\n" + x.Ime_vl + " " + x.Prezime_vl)));
             set
             {
                 if (vlasnici != value)
@@ -104,7 +104,7 @@ namespace ClientUI.ViewModel
 
         public List<string> Racunari
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => x.ID_racunara.ToString()));
+            get => new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => String.Format(x.ID_racunara + "\n" + x.Proizvodjac)));
             set
             {
                 if (racunari != value)
@@ -186,23 +186,30 @@ namespace ClientUI.ViewModel
 
         private void OnAdd()
         {
-            if (DatabaseServiceProvider.Instance.AddPosjeduje(new Posjeduje()
+            try
             {
-                Id_racunara = int.Parse(CmbBoxID_racunara, CultureInfo.InvariantCulture),
-                JMBG_vl = long.Parse(CmbBoxJMBG_Vl, CultureInfo.InvariantCulture),
-                Racunar = DatabaseServiceProvider.Instance.GetRacunar(int.Parse(CmbBoxID_racunara, CultureInfo.InvariantCulture)),
-                Vlasnik_racunara = DatabaseServiceProvider.Instance.GetVlasnikRacunara(long.Parse(CmbBoxJMBG_Vl, CultureInfo.InvariantCulture))
-            }))
-            {
-                LBL = "Racunar "+ CmbBoxID_racunara +" uspjesno dodat vlasniku "+CmbBoxJMBG_Vl;
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                PosjedujeSet = new ObservableCollection<Posjeduje>(DatabaseServiceProvider.Instance.GetAllPosjeduje());
+                if (DatabaseServiceProvider.Instance.AddPosjeduje(new Posjeduje()
+                {
+                    Id_racunara = int.Parse(CmbBoxID_racunara.Split('\n')[0], CultureInfo.InvariantCulture),
+                    JMBG_vl = long.Parse(CmbBoxJMBG_Vl.Split('\n')[0], CultureInfo.InvariantCulture),
+                    Racunar = DatabaseServiceProvider.Instance.GetRacunar(int.Parse(CmbBoxID_racunara.Split('\n')[0], CultureInfo.InvariantCulture)),
+                    Vlasnik_racunara = DatabaseServiceProvider.Instance.GetVlasnikRacunara(long.Parse(CmbBoxJMBG_Vl.Split('\n')[0], CultureInfo.InvariantCulture))
+                }))
+                {
+                    LBL = "Racunar " + CmbBoxID_racunara + " uspjesno dodat vlasniku " + CmbBoxJMBG_Vl;
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    PosjedujeSet = new ObservableCollection<Posjeduje>(DatabaseServiceProvider.Instance.GetAllPosjeduje());
 
+                }
+                else
+                {
+                    LBL = "Greska pri dodavanju racunara vlasniku!";
+                    Foreground = Brushes.Red;
+                }
             }
-            else
+            catch(Exception e)
             {
-                LBL = "Greska pri dodavanju racunara vlasniku!";
-                Foreground = Brushes.Red;
+
             }
         }
         private void OnUpdate()
@@ -213,8 +220,8 @@ namespace ClientUI.ViewModel
                 {
                     Id_racunara = SelectedPosjeduje.Id_racunara,
                     JMBG_vl = SelectedPosjeduje.JMBG_vl,
-                    Racunar = DatabaseServiceProvider.Instance.GetRacunar(int.Parse(CmbBoxID_racunara, CultureInfo.InvariantCulture)),
-                    Vlasnik_racunara = DatabaseServiceProvider.Instance.GetVlasnikRacunara(long.Parse(CmbBoxJMBG_Vl, CultureInfo.InvariantCulture))
+                    Racunar = DatabaseServiceProvider.Instance.GetRacunar(int.Parse(CmbBoxID_racunara.Split('\n')[0], CultureInfo.InvariantCulture)),
+                    Vlasnik_racunara = DatabaseServiceProvider.Instance.GetVlasnikRacunara(long.Parse(CmbBoxJMBG_Vl.Split('\n')[0], CultureInfo.InvariantCulture))
                 });
                 
                 LBL = "Racunar " + CmbBoxID_racunara + " uspjesno azuriran za vlasnika " + CmbBoxJMBG_Vl;

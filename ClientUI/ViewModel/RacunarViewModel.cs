@@ -214,23 +214,63 @@ namespace ClientUI.ViewModel
 
         private void OnAdd()
         {
-            if (DatabaseServiceProvider.Instance.AddRacunar(new Racunar()
+            try
             {
-                Brzina_procesora = double.Parse(TxtBoxBrzinaCPU),
-                Kapacitet_memorije = int.Parse(TxtBoxMemorija),
-                Kapacitet_RAM = int.Parse(TxtBoxRAM),
-                Proizvodjac = TxTBoxProizvodjac,
-                Vrsta_racunara = (Vrsta_racunara)Enum.Parse(typeof(Vrsta_racunara), CmbBoxVrsta_racunara)
-            }))
-            {
-                LBL = "Novi racunar uspjesno dodat \nu bazu!";
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                Racunari = new ObservableCollection<Racunar>(DatabaseServiceProvider.Instance.GetAllRacunari());
+                var brzina = double.Parse(TxtBoxBrzinaCPU.Replace(',', '.'), CultureInfo.InvariantCulture);
+                if (!TxtBoxMemorija.All(c => Char.IsDigit(c)))
+                {
+                    LBL = "Greska pri dodavanju racunara!\nKapacitet masovne memorije mora biti cio broj!";
+                    Foreground = Brushes.Red;
+                }
+                else if (!TxtBoxRAM.All(c => Char.IsDigit(c)))
+                {
+                    LBL = "Greska pri dodavanju racunara!\nKapacitet radne memorije mora biti cio broj!";
+                    Foreground = Brushes.Red;
+                }
+                else
+                {
+                    if (brzina <= 0)
+                    {
+                        LBL = "Greska pri dodavanju racunara!\nBrzina procesora mora biti pozitivan cio broj ili decimalni broj\n u formatu '0000.00'";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
+                    if (int.Parse(TxtBoxMemorija) <= 0)
+                    {
+                        LBL = "Greska pri dodavanju racunara!\nKapacitet masovne memorije mora biti pozitivan cio broj!";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
+                    if (int.Parse(TxtBoxRAM) <= 0)
+                    {
+                        LBL = "Greska pri dodavanju racunara!\nKapacitet radne memorije mora biti pozitivan cio broj!";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
 
-            }
-            else
+                    if (DatabaseServiceProvider.Instance.AddRacunar(new Racunar()
+                    {
+                        Brzina_procesora = brzina,
+                        Kapacitet_memorije = int.Parse(TxtBoxMemorija),
+                        Kapacitet_RAM = int.Parse(TxtBoxRAM),
+                        Proizvodjac = TxTBoxProizvodjac,
+                        Vrsta_racunara = (Vrsta_racunara)Enum.Parse(typeof(Vrsta_racunara), CmbBoxVrsta_racunara)
+                    }))
+                    {
+                        LBL = "Novi racunar uspjesno dodat \nu bazu!";
+                        Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                        Racunari = new ObservableCollection<Racunar>(DatabaseServiceProvider.Instance.GetAllRacunari());
+
+                    }
+                    else
+                    {
+                        LBL = "Greska pri dodavanju racunara!";
+                        Foreground = Brushes.Red;
+                    }
+                }
+            }catch(Exception e)
             {
-                LBL = "Greska pri dodavanju racunara!";
+                LBL = "Greska pri dodavanju racunara!\nBrzina procesora mora biti cio broj ili decimalni broj\n u formatu '0000.00'";
                 Foreground = Brushes.Red;
             }
         }
@@ -238,24 +278,66 @@ namespace ClientUI.ViewModel
         {
             try
             {
-                DatabaseServiceProvider.Instance.UpdateRacunar(new Racunar()
+                double brzina = 0;
+                try
                 {
-                    ID_racunara = SelectedRacunar.ID_racunara,
-                    Brzina_procesora = double.Parse(TxtBoxBrzinaCPU, CultureInfo.InvariantCulture),
-                    Kapacitet_memorije = int.Parse(TxtBoxMemorija),
-                    Kapacitet_RAM = int.Parse(TxtBoxRAM),
-                    Proizvodjac = TxTBoxProizvodjac,
-                    Vrsta_racunara = (Vrsta_racunara)Enum.Parse(typeof(Vrsta_racunara), CmbBoxVrsta_racunara)
-                });
+                    brzina = double.Parse(TxtBoxBrzinaCPU.Replace(',', '.'), CultureInfo.InvariantCulture);
 
-                LBL = "Racunar [" + SelectedRacunar.ID_racunara + "] uspjesno azuriran!";
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                Racunari = new ObservableCollection<Racunar>(DatabaseServiceProvider.Instance.GetAllRacunari());
+                }catch(Exception e)
+                {
+                    LBL = "Greska pri dodavanju racunara!\nBrzina procesora mora biti cio broj ili decimalni broj\n u formatu '0000.00'";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                if (!TxtBoxMemorija.All(c => Char.IsDigit(c)))
+                {
+                    LBL = "Greska pri dodavanju racunara!\nKapacitet masovne memorije mora biti pozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                }
+                else if (!TxtBoxRAM.All(c => Char.IsDigit(c)))
+                {
+                    LBL = "Greska pri dodavanju racunara!\nKapacitet radne memorije mora biti pozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                }
+                else
+                {
+                    if(brzina <= 0)
+                    {
+                        LBL = "Greska pri dodavanju racunara!\nBrzina procesora mora biti pozitivan cio broj ili decimalni broj\n u formatu '0000.00'";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
+                    if(int.Parse(TxtBoxMemorija) <= 0)
+                    {
+                        LBL = "Greska pri dodavanju racunara!\nKapacitet masovne memorije mora biti pozitivan cio broj!";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
+                    if(int.Parse(TxtBoxRAM) <= 0)
+                    {
+                        LBL = "Greska pri dodavanju racunara!\nKapacitet radne memorije mora biti pozitivan cio broj!";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
 
+                    DatabaseServiceProvider.Instance.UpdateRacunar(new Racunar()
+                    {
+                        ID_racunara = SelectedRacunar.ID_racunara,
+                        Brzina_procesora = brzina,
+                        Kapacitet_memorije = int.Parse(TxtBoxMemorija),
+                        Kapacitet_RAM = int.Parse(TxtBoxRAM),
+                        Proizvodjac = TxTBoxProizvodjac,
+                        Vrsta_racunara = (Vrsta_racunara)Enum.Parse(typeof(Vrsta_racunara), CmbBoxVrsta_racunara)
+                    });
+
+                    LBL = "Racunar [" + SelectedRacunar.ID_racunara + "] uspjesno azuriran!";
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    Racunari = new ObservableCollection<Racunar>(DatabaseServiceProvider.Instance.GetAllRacunari());
+                }
             }
             catch (Exception e)
             {
-                LBL = "Greska pri azuriranju racunara!";
+                LBL = "Greska pri dodavanju racunara!Racunar sa istim ID postoji vec!";
                 Foreground = Brushes.Red;
             }
         }

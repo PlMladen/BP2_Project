@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
@@ -265,37 +266,76 @@ namespace ClientUI.ViewModel
 
         private void OnAdd()
         {
-            if (DatabaseServiceProvider.Instance.AddVlasnikRacunara(new Vlasnik_racunara()
+            if (!TxTBoxJMBG_Vl.All(c => char.IsDigit(c)) || TxTBoxJMBG_Vl.Length != 13)
             {
-                JMBG_vl = long.Parse(TxTBoxJMBG_Vl, CultureInfo.InvariantCulture),
-                Dat_rodjenja_vl = DpDat_rodj_vl,
-                Ime_vl = TxTBoxIme_vl,
-                Prezime_vl = TxtBoxPrezime_vl,
-                Adresa_vl = new Adresa()
-                {
-                    Ulica = TxtBoxAdresaVl_Ulica,
-                    Broj = Int32.Parse(TxtBoxAdresaVl_Broj, CultureInfo.InvariantCulture),
-                    PostanskiBroj = Int32.Parse(TxtBoxAdresaVl_PTTBroj, CultureInfo.InvariantCulture),
-                    Grad = TxtBoxAdresaVl_Grad
-                }
-            }))
+                LBL = "Greska pri dodavanju vlasnika!\nJMBG vlasnika mora biti pozitivan \ncio brojkoji se sastoji od \n13 cifara!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if (!TxTBoxIme_vl.All(x => char.IsLetter(x)))
             {
-                LBL = "Novi vlasnik uspjesno dodat \nu bazu!";
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                Vlasnici = new ObservableCollection<Vlasnik_racunara>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara());
-
+                LBL = "Greska pri dodavanju vlasnika!\nIme vlasnika treba da sadrzi samo slova!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if (!TxtBoxPrezime_vl.All(x => char.IsLetter(x)))
+            {
+                LBL = "Greska pri dodavanju vlasnika!\nPrezime vlasnika treba da sadrzi samo slova!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if (DpDat_rodj_vl.Date >= DateTime.Now.Date)
+            {
+                LBL = "Greska pri dodavanju vlasnika!\nDatum rodjenja vlasnika treba da \nbude u proslosti!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if(!Regex.IsMatch(TxtBoxAdresaVl_Ulica, @"^[\w \s]+$"))
+            {
+                LBL = "Greska pri dodavanju vlasnika!\nUlica u adresi vlasnika treba \nda sadrzi samo slova!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if (!Regex.IsMatch(TxtBoxAdresaVl_Grad, @"^[\w \s]+$"))
+            {
+                LBL = "Greska pri dodavanju vlasnika!\nGrad u adresi vlasnika treba \nda sadrzi samo slova!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if (!Regex.IsMatch(TxtBoxAdresaVl_Broj, @"^[\w \s]+$"))
+            {
+                LBL = "Greska pri dodavanju vlasnika!\nBroj u adresi vlasnika mora \nbiti pozitivan cio broj!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if (!TxtBoxAdresaVl_PTTBroj.All(c => char.IsDigit(c)))
+            {
+                LBL = "Greska pri dodavanju vlasnika!\nPTT broj u adresi vlasnika mora biti \npozitivan cio broj!";
+                Foreground = Brushes.Red;
+                return;
             }
             else
             {
-                LBL = "Greska pri dodavanju vlasnika!";
-                Foreground = Brushes.Red;
-            }
-        }
-        private void OnUpdate()
-        {
-            try
-            {
-                DatabaseServiceProvider.Instance.UpdateVlasnikRacunara(new Vlasnik_racunara()
+                if (long.Parse(TxTBoxJMBG_Vl, CultureInfo.CurrentCulture) <= 0)
+                {
+                    LBL = "Greska pri dodavanju vlasnika!\nJMBG vlasnika mora biti pozitivan \ncio brojkoji se sastoji od 13 \ncifara!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                if (int.Parse(TxtBoxAdresaVl_Broj, CultureInfo.CurrentCulture) <= 0)
+                {
+                    LBL = "Greska pri dodavanju vlasnika!\nBroj u adresi vlasnika mora biti \npozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                if (int.Parse(TxtBoxAdresaVl_PTTBroj, CultureInfo.CurrentCulture) <= 0)
+                {
+                    LBL = "Greska pri dodavanju vlasnika!\nPTT broj u adresi vlasnika mora \nbiti pozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+
+                if (DatabaseServiceProvider.Instance.AddVlasnikRacunara(new Vlasnik_racunara()
                 {
                     JMBG_vl = long.Parse(TxTBoxJMBG_Vl, CultureInfo.InvariantCulture),
                     Dat_rodjenja_vl = DpDat_rodj_vl,
@@ -308,12 +348,112 @@ namespace ClientUI.ViewModel
                         PostanskiBroj = Int32.Parse(TxtBoxAdresaVl_PTTBroj, CultureInfo.InvariantCulture),
                         Grad = TxtBoxAdresaVl_Grad
                     }
-                });
+                }))
+                {
+                    LBL = "Novi vlasnik uspjesno dodat \nu bazu!";
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    Vlasnici = new ObservableCollection<Vlasnik_racunara>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara());
 
-                LBL = "Vlasnik [" + SelectedVlasnik.JMBG_vl + "] uspjesno azuriran!";
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                Vlasnici = new ObservableCollection<Vlasnik_racunara>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara());
+                }
+                else
+                {
+                    LBL = "Greska pri dodavanju vlasnika!";
+                    Foreground = Brushes.Red;
+                }
+            }
+        }
+        private void OnUpdate()
+        {
+            try
+            {
+                if (!TxTBoxJMBG_Vl.All(c => char.IsDigit(c)) || TxTBoxJMBG_Vl.Length != 13)
+                {
+                    LBL = "Greska pri dodavanju vlasnika!\nJMBG vlasnika mora biti pozitivan cio \nbrojkoji se sastoji od 13 \ncifara!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!TxTBoxIme_vl.All(x => char.IsLetter(x)))
+                {
+                    LBL = "Greska pri dodavanju vlasnika!\nIme vlasnika treba da sadrzi samo slova!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!TxtBoxPrezime_vl.All(x => char.IsLetter(x)))
+                {
+                    LBL = "Greska pri dodavanju vlasnika!\nPrezime vlasnika treba da sadrzi samo slova!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (DpDat_rodj_vl.Date >= DateTime.Now.Date)
+                {
+                    LBL = "Greska pri dodavanju vlasnika!\nDatum rodjenja vlasnika treba da \nbude u proslosti!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!Regex.IsMatch(TxtBoxAdresaVl_Ulica, @"^[\w \s]+$"))
+                {
+                    LBL = "Greska pri dodavanju vlasnika!\nUlica u adresi vlasnika treba \nda sadrzi samo slova!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!Regex.IsMatch(TxtBoxAdresaVl_Grad, @"^[\w \s]+$"))
+                {
+                    LBL = "Greska pri dodavanju vlasnika!\nGrad u adresi vlasnika treba \nda sadrzi samo slova!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!Regex.IsMatch(TxtBoxAdresaVl_Broj, @"^[\w \s]+$"))
+                {
+                    LBL = "Greska pri dodavanju vlasnika!\nBroj u adresi vlasnika mora \nbiti pozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!TxtBoxAdresaVl_PTTBroj.All(c => char.IsDigit(c)))
+                {
+                    LBL = "Greska pri dodavanju vlasnika!\nPTT broj u adresi vlasnika mora biti \npozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else
+                {
+                    if (long.Parse(TxTBoxJMBG_Vl, CultureInfo.CurrentCulture) <= 0)
+                    {
+                        LBL = "Greska pri dodavanju vlasnika!\nJMBG vlasnika mora biti pozitivan cio \nbroj\nkoji se sastoji od 13 cifara!";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
+                    if (int.Parse(TxtBoxAdresaVl_Broj, CultureInfo.CurrentCulture) <= 0)
+                    {
+                        LBL = "Greska pri dodavanju vlasnika!\nBroj u adresi vlasnika mora biti \npozitivan cio broj!";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
+                    if (int.Parse(TxtBoxAdresaVl_PTTBroj, CultureInfo.CurrentCulture) <= 0)
+                    {
+                        LBL = "Greska pri dodavanju vlasnika!\nPTT broj u adresi vlasnika mora biti \npozitivan cio broj!";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
+                    DatabaseServiceProvider.Instance.UpdateVlasnikRacunara(new Vlasnik_racunara()
+                    {
+                        JMBG_vl = long.Parse(TxTBoxJMBG_Vl, CultureInfo.InvariantCulture),
+                        Dat_rodjenja_vl = DpDat_rodj_vl,
+                        Ime_vl = TxTBoxIme_vl,
+                        Prezime_vl = TxtBoxPrezime_vl,
+                        Adresa_vl = new Adresa()
+                        {
+                            Ulica = TxtBoxAdresaVl_Ulica,
+                            Broj = Int32.Parse(TxtBoxAdresaVl_Broj, CultureInfo.InvariantCulture),
+                            PostanskiBroj = Int32.Parse(TxtBoxAdresaVl_PTTBroj, CultureInfo.InvariantCulture),
+                            Grad = TxtBoxAdresaVl_Grad
+                        }
+                    });
 
+                    LBL = "Vlasnik [" + SelectedVlasnik.JMBG_vl + "] uspjesno azuriran!";
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    Vlasnici = new ObservableCollection<Vlasnik_racunara>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara());
+
+                }
             }
             catch (Exception e)
             {

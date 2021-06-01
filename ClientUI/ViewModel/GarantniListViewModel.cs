@@ -15,7 +15,7 @@ namespace ClientUI.ViewModel
         private ObservableCollection<Garantni_list> gListovi = new ObservableCollection<Garantni_list>(DatabaseServiceProvider.Instance.GetAllGarantni_listove());
         private Garantni_list selectedGList;
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-        private string txTBoxIDGL;
+        //private string txTBoxIDGL;
         private string lbl;
         private DateTime dpVaziDo = DateTime.Now;
         private bool canEdit;
@@ -73,7 +73,7 @@ namespace ClientUI.ViewModel
                 {
                     selectedGList = value;
                     OnPropertyChanged(nameof(SelectedGList));
-                    TxTBoxIDGL = SelectedGList == null ? "12345" : SelectedGList.Id_gar_list.ToString();
+                    //TxTBoxIDGL = SelectedGList == null ? "12345" : SelectedGList.Id_gar_list.ToString();
                     
                     DpVaziDo = SelectedGList == null ? DateTime.Now : SelectedGList.Period_vazenja;
 
@@ -95,7 +95,7 @@ namespace ClientUI.ViewModel
                 }
             }
         }
-        public string TxTBoxIDGL
+        /*public string TxTBoxIDGL
         {
             get => txTBoxIDGL;
             set
@@ -108,7 +108,7 @@ namespace ClientUI.ViewModel
                     UpdateCommand.RaiseCanExecuteChanged();
                 }
             }
-        }
+        }*/
         
         public DateTime DpVaziDo
         {
@@ -157,14 +157,14 @@ namespace ClientUI.ViewModel
 
         private bool CanAdd()
         {
-            return !String.IsNullOrEmpty(TxTBoxIDGL) &&
+            return //!String.IsNullOrEmpty(TxTBoxIDGL) &&
                    !String.IsNullOrEmpty(DpVaziDo.ToString()) &&
                     SelectedGList == null;
         }
 
         private bool CanUpdate()
         {
-            return !String.IsNullOrEmpty(TxTBoxIDGL) &&
+            return //!String.IsNullOrEmpty(TxTBoxIDGL) &&
                    !String.IsNullOrEmpty(DpVaziDo.ToString());
         }
 
@@ -173,7 +173,7 @@ namespace ClientUI.ViewModel
             {
                 if (DatabaseServiceProvider.Instance.AddGarantni_list(new Garantni_list()
                 {
-                    Id_gar_list = int.Parse(TxTBoxIDGL, CultureInfo.InvariantCulture),
+                    //Id_gar_list = int.Parse(TxTBoxIDGL, CultureInfo.InvariantCulture),
                     Period_vazenja = DateTime.Parse(DpVaziDo.ToString())
                 }))
                 {

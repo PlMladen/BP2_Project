@@ -23,6 +23,7 @@ namespace Server
         public DonosiRepository DonosiRepository { get; }
         public ServisiraRepository ServisiraRepository { get; }
         public RacunarskiServisRepository RacunarskiServisRepository { get; }
+        public MiscRepository MiscRepository { get; }
         public MasterRepository(ProjectDbContext context)
         {
             dbContext = context;
@@ -38,6 +39,7 @@ namespace Server
             DonosiRepository = new DonosiRepository(context);
             ServisiraRepository = new ServisiraRepository(context);
             RacunarskiServisRepository = new RacunarskiServisRepository(context);
+            MiscRepository = new MiscRepository(context);
         }
     }
 }

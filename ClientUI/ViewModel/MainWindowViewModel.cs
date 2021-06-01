@@ -21,6 +21,7 @@ namespace ClientUI.ViewModel
         private RadiViewModel radiViewModel = new RadiViewModel();
         private DonosiViewModel donosiViewModel = new DonosiViewModel();
         private ServisiraViewModel servisiraViewModel = new ServisiraViewModel();
+        private FuncProcViewModel funcProcViewModel = new FuncProcViewModel();
 
         private BindableBase currentViewModel;
 
@@ -74,6 +75,9 @@ namespace ClientUI.ViewModel
                     break;
                 case "Servisira view":
                     CurrentViewModel = servisiraViewModel;
+                    break;
+                case "FuncProc view":
+                    CurrentViewModel = funcProcViewModel;
                     break;
             }
         }

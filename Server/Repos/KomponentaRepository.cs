@@ -22,12 +22,24 @@ namespace Server.Repos
                 return false;
             }
 
-            dbCtx.KomponentaSet.Add(new Komponenta()
+            if (komponenta.RacunarID_racunara != 0)
             {
-                Naz_komp = komponenta.Naz_komp,
-                Cijena_komp = komponenta.Cijena_komp,
-                RacunarID_racunara = komponenta.RacunarID_racunara == null ? -1 : komponenta.RacunarID_racunara
-            });
+                dbCtx.KomponentaSet.Add(new Komponenta()
+                {
+                    Naz_komp = komponenta.Naz_komp,
+                    Cijena_komp = komponenta.Cijena_komp,
+                    RacunarID_racunara = komponenta.RacunarID_racunara
+                });
+            }
+            else
+            {
+                dbCtx.KomponentaSet.Add(new Komponenta()
+                {
+                    Naz_komp = komponenta.Naz_komp,
+                    Cijena_komp = komponenta.Cijena_komp,
+                    
+                });
+            }
 
             return dbCtx.SaveChanges() > 0;
         }
@@ -82,13 +94,27 @@ namespace Server.Repos
         }
         public void Update(Common.Models.Komponenta komponenta)
         {
-            var komponentaForDb = new Komponenta()
+            Komponenta komponentaForDb;
+            if (komponenta.RacunarID_racunara != 0)
             {
-                Id_komp = komponenta.Id_komp,
-                Naz_komp = komponenta.Naz_komp,
-                Cijena_komp = komponenta.Cijena_komp,
-                RacunarID_racunara = komponenta.RacunarID_racunara == null ? -1 : komponenta.RacunarID_racunara
-            };
+                 komponentaForDb = new Komponenta()
+                {
+                    Id_komp = komponenta.Id_komp,
+                    Naz_komp = komponenta.Naz_komp,
+                    Cijena_komp = komponenta.Cijena_komp,
+                    RacunarID_racunara = komponenta.RacunarID_racunara
+                };
+            }
+            else
+            {
+                 komponentaForDb = new Komponenta()
+                {
+                    Id_komp = komponenta.Id_komp,
+                    Naz_komp = komponenta.Naz_komp,
+                    Cijena_komp = komponenta.Cijena_komp,
+                };
+            }
+            
 
             try
             {

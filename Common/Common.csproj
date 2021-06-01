@@ -62,6 +62,7 @@
     <Compile Include="Models\Servis.cs" />
     <Compile Include="Models\Serviser_racunara.cs" />
     <Compile Include="Models\Servisira.cs" />
+    <Compile Include="Models\SqlUpitVlasnikServisCijena.cs" />
     <Compile Include="Models\Vlasnik_racunara.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

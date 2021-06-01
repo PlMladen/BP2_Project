@@ -68,10 +68,11 @@ namespace ClientUI.ViewModel
                 {
                     selectedServisira = value;
                     OnPropertyChanged(nameof(SelectedServisira));
-                    //CmbBoxPosjeduje = SelectedServisira == null ? "" : String.Format(SelectedServisira.PosjedujeVlasnik_racunaraJMBG_vl + "-" + SelectedDonosi.PosjedujeRacunarID_racunara);
-                    //CmbBoxID_Servisa = SelectedServisira == null ? "" : SelectedDonosi.Racunarski_servisID_servisa.ToString();
-
-
+                    CmbBoxRadi = SelectedServisira == null ? "" : String.Format("Servis:" + SelectedServisira.DonosiRacunarski_servisID_servisa + " Serviser:" + SelectedServisira.RadiServiser_racunaraJMBG_s);
+                    CmbBoxDonosi = SelectedServisira == null ? "" : String.Format("Servis:" + SelectedServisira.RadiRacunarski_servisID_servisa + " Vlasnik:" + SelectedServisira.DonosiPosjedujeVlasnik_racunaraJMBG_vl + " Racunar:" + SelectedServisira.DonosiPosjedujeRacunarID_racunara);
+                    CmbBoxGar_listovi = SelectedServisira == null ? "" : String.Format("ID:" + SelectedServisira.Garantni_listId_gar_list);
+                    DpDat_s = SelectedServisira == null ? DateTime.MinValue.Date : SelectedServisira.Dat_potp.Date;
+                    TxTBoxCijena = SelectedServisira == null ? "" : SelectedServisira.Cijena_serv.ToString();
 
                     DeleteCommand.RaiseCanExecuteChanged();
                     UpdateCommand.RaiseCanExecuteChanged();
@@ -253,78 +254,136 @@ namespace ClientUI.ViewModel
 
         private void OnAdd()
         {
-            //"Servis:"+x.Racunarski_servisID_servisa + " Vlasnik:" + x.PosjedujeVlasnik_racunaraJMBG_vl + " Racunar:" + x.PosjedujeRacunarID_racunara
-            string[] keyPartsDonosi = CmbBoxDonosi.Split(' ');
-            //"Servis:"+x.Racunarski_servisID_servisa1 + " Serviser:" + x.Serviser_racunaraJMBG_s
-            string[] keyPartsRadi = CmbBoxRadi.Split(' ');
-            if (DatabaseServiceProvider.Instance.AddServisira(new Servisira()
-            {
-                DonosiPosjedujeVlasnik_racunaraJMBG_vl = long.Parse(keyPartsDonosi[1].Split(':')[1], CultureInfo.InvariantCulture),
-                DonosiPosjedujeRacunarID_racunara = int.Parse(keyPartsDonosi[2].Split(':')[1], CultureInfo.InvariantCulture),
-                DonosiRacunarski_servisID_servisa = int.Parse(keyPartsDonosi[0].Split(':')[1], CultureInfo.InvariantCulture),
-                RadiServiser_racunaraJMBG_s = long.Parse(keyPartsRadi[1].Split(':')[1], CultureInfo.InvariantCulture),
-                RadiRacunarski_servisID_servisa = int.Parse(keyPartsRadi[0].Split(':')[1], CultureInfo.InvariantCulture),
-                Donosi = DatabaseServiceProvider.Instance.GetDonosi(long.Parse(keyPartsDonosi[1].Split(':')[1], CultureInfo.InvariantCulture),
-                                                                    int.Parse(keyPartsDonosi[2].Split(':')[1], CultureInfo.InvariantCulture),
-                                                                    int.Parse(keyPartsDonosi[0].Split(':')[1], CultureInfo.InvariantCulture)),
-                Cijena_serv = double.Parse(TxTBoxCijena.ToString(), CultureInfo.InvariantCulture),
-                Dat_potp = DpDat_s,
-                Garantni_listId_gar_list = int.Parse(CmbBoxGar_listovi.Split(':')[1], CultureInfo.InvariantCulture),
-                Garantni_list = DatabaseServiceProvider.Instance.GetGarantni_list(int.Parse(CmbBoxGar_listovi.Split(':')[1], CultureInfo.InvariantCulture)),
-                Radi = DatabaseServiceProvider.Instance.GetRadi(long.Parse(keyPartsRadi[1].Split(':')[1], CultureInfo.InvariantCulture), int.Parse(keyPartsDonosi[0].Split(':')[1], CultureInfo.InvariantCulture))
-                
-                
-            }))
-            {
-                LBL = "Servis racunara " + keyPartsDonosi[2].Split(':')[1] + " uspjesno obavljen u servisu " + keyPartsRadi[0].Split(':')[1] + "\n - Obavio serviser "+ keyPartsRadi[1].Split(':')[1];
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                ServisiraSet = new ObservableCollection<Servisira>(DatabaseServiceProvider.Instance.GetAllServisira());
-
-            }
-            else
-            {
-                LBL = "Greska pri servisiranju racunara " + keyPartsDonosi[2].Split(':')[1] + " u servisu " + keyPartsDonosi[0].Split(':')[1] + "!";
-                Foreground = Brushes.Red;
-            }
-        }
-        private void OnUpdate()
-        {
-            //"Servis:"+x.Racunarski_servisID_servisa + " Vlasnik:" + x.PosjedujeVlasnik_racunaraJMBG_vl + " Racunar:" + x.PosjedujeRacunarID_racunara
-            string[] keyPartsDonosi = CmbBoxDonosi.Split(' ');
-            //"Servis:"+x.Racunarski_servisID_servisa1 + " Serviser:" + x.Serviser_racunaraJMBG_s
-            string[] keyPartsRadi = CmbBoxRadi.Split(' ');
-
             try
             {
-                
-                DatabaseServiceProvider.Instance.UpdateServisira(new Servisira()
+                var cijena = double.Parse(TxTBoxCijena.Replace(',', '.'), CultureInfo.InvariantCulture);
+
+            
+            if (DpDat_s.Date > DateTime.Now.Date)
+            {
+                    LBL = "Greska pri servisiranju racunara!\nDatum servisiranja ne smije biti\nu buducnosti!";
+                    Foreground = Brushes.Red;
+                    return;
+            }
+            else {
+                //"Servis:"+x.Racunarski_servisID_servisa + " Vlasnik:" + x.PosjedujeVlasnik_racunaraJMBG_vl + " Racunar:" + x.PosjedujeRacunarID_racunara
+                string[] keyPartsDonosi = CmbBoxDonosi.Split(' ');
+                //"Servis:"+x.Racunarski_servisID_servisa1 + " Serviser:" + x.Serviser_racunaraJMBG_s
+                string[] keyPartsRadi = CmbBoxRadi.Split(' ');
+                if(keyPartsDonosi[0] != keyPartsRadi[0])
                 {
-                    DonosiPosjedujeVlasnik_racunaraJMBG_vl = SelectedServisira.DonosiPosjedujeVlasnik_racunaraJMBG_vl,
-                    DonosiPosjedujeRacunarID_racunara = SelectedServisira.DonosiPosjedujeRacunarID_racunara,
-                    DonosiRacunarski_servisID_servisa = SelectedServisira.DonosiRacunarski_servisID_servisa,
-                    RadiServiser_racunaraJMBG_s = SelectedServisira.RadiServiser_racunaraJMBG_s,
-                    RadiRacunarski_servisID_servisa = SelectedServisira.RadiRacunarski_servisID_servisa,
+                        LBL = "Greska pri servisiranju racunara " + keyPartsDonosi[2].Split(':')[1] + " u servisu " + keyPartsDonosi[0].Split(':')[1] + "!\nID servisa se moraju poklapati!";
+                        Foreground = Brushes.Red;
+                        return;
+                }
+
+                if (DatabaseServiceProvider.Instance.AddServisira(new Servisira()
+                {
+                    DonosiPosjedujeVlasnik_racunaraJMBG_vl = long.Parse(keyPartsDonosi[1].Split(':')[1], CultureInfo.InvariantCulture),
+                    DonosiPosjedujeRacunarID_racunara = int.Parse(keyPartsDonosi[2].Split(':')[1], CultureInfo.InvariantCulture),
+                    DonosiRacunarski_servisID_servisa = int.Parse(keyPartsDonosi[0].Split(':')[1], CultureInfo.InvariantCulture),
+                    RadiServiser_racunaraJMBG_s = long.Parse(keyPartsRadi[1].Split(':')[1], CultureInfo.InvariantCulture),
+                    RadiRacunarski_servisID_servisa = int.Parse(keyPartsRadi[0].Split(':')[1], CultureInfo.InvariantCulture),
                     Donosi = DatabaseServiceProvider.Instance.GetDonosi(long.Parse(keyPartsDonosi[1].Split(':')[1], CultureInfo.InvariantCulture),
-                                                                    int.Parse(keyPartsDonosi[2].Split(':')[1], CultureInfo.InvariantCulture),
-                                                                    int.Parse(keyPartsDonosi[0].Split(':')[1], CultureInfo.InvariantCulture)),
-                    Radi = DatabaseServiceProvider.Instance.GetRadi(long.Parse(keyPartsRadi[1].Split(':')[1], CultureInfo.InvariantCulture), int.Parse(keyPartsDonosi[0].Split(':')[1], CultureInfo.InvariantCulture)),
+                                                                        int.Parse(keyPartsDonosi[2].Split(':')[1], CultureInfo.InvariantCulture),
+                                                                        int.Parse(keyPartsDonosi[0].Split(':')[1], CultureInfo.InvariantCulture)),
                     Cijena_serv = double.Parse(TxTBoxCijena.ToString(), CultureInfo.InvariantCulture),
                     Dat_potp = DpDat_s,
                     Garantni_listId_gar_list = int.Parse(CmbBoxGar_listovi.Split(':')[1], CultureInfo.InvariantCulture),
                     Garantni_list = DatabaseServiceProvider.Instance.GetGarantni_list(int.Parse(CmbBoxGar_listovi.Split(':')[1], CultureInfo.InvariantCulture)),
-                });
+                    Radi = DatabaseServiceProvider.Instance.GetRadi(long.Parse(keyPartsRadi[1].Split(':')[1], CultureInfo.InvariantCulture), int.Parse(keyPartsDonosi[0].Split(':')[1], CultureInfo.InvariantCulture))
 
-                LBL = "Asocijacija sa kljucem " + keyPartsDonosi[0].Split(':')[1] + "+" + keyPartsDonosi[1].Split(':')[1] 
-                                                + "-" + keyPartsDonosi[2].Split(':')[1] + "-" + keyPartsRadi[0].Split(':')[1]
-                                                + "-" + keyPartsRadi[1].Split(':')[1] + " uspjesno azurirana";
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                ServisiraSet = new ObservableCollection<Servisira>(DatabaseServiceProvider.Instance.GetAllServisira());
 
+                }))
+                {
+                    LBL = "Servis racunara " + keyPartsDonosi[2].Split(':')[1] + " uspjesno obavljen u servisu " + keyPartsRadi[0].Split(':')[1] + "\n - Obavio serviser " + keyPartsRadi[1].Split(':')[1];
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    ServisiraSet = new ObservableCollection<Servisira>(DatabaseServiceProvider.Instance.GetAllServisira());
+
+                }
+                else
+                {
+                    LBL = "Greska pri servisiranju racunara " + keyPartsDonosi[2].Split(':')[1] + " u servisu " + keyPartsDonosi[0].Split(':')[1] + "!";
+                    Foreground = Brushes.Red;
+                }
+            }
             }
             catch (Exception e)
             {
-                LBL = "Greska pri azuriranju asocijacije 'servisira'!";
+                LBL = "Greska pri servisiranju racunara!\nCijena mora biti pozitivan broj \n(cio ili u formatu '0.0')!";
                 Foreground = Brushes.Red;
+
+            }
+        }
+        private void OnUpdate()
+        {
+            double cijena = 0;
+            try
+            {
+                try
+                {
+                     cijena = double.Parse(TxTBoxCijena.Replace(',', '.'), CultureInfo.InvariantCulture);
+                }catch(Exception e)
+                {
+                    LBL = "Greska pri servisiranju racunara!\nCijena mora biti pozitivan broj \n(cio ili u formatu '0.0')!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+
+                if (DpDat_s.Date > DateTime.Now.Date)
+                {
+                    LBL = "Greska pri servisiranju racunara!\nDatum servisiranja ne smije biti\nu buducnosti!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else
+                {
+                    //"Servis:"+x.Racunarski_servisID_servisa + " Vlasnik:" + x.PosjedujeVlasnik_racunaraJMBG_vl + " Racunar:" + x.PosjedujeRacunarID_racunara
+                    string[] keyPartsDonosi = CmbBoxDonosi.Split(' ');
+                    //"Servis:"+x.Racunarski_servisID_servisa1 + " Serviser:" + x.Serviser_racunaraJMBG_s
+                    string[] keyPartsRadi = CmbBoxRadi.Split(' ');
+
+                    try
+                    {
+                        if (keyPartsDonosi[0] != keyPartsRadi[0])
+                        {
+                            LBL = "Greska pri servisiranju racunara " + keyPartsDonosi[2].Split(':')[1] + " u servisu " + keyPartsDonosi[0].Split(':')[1] + "!\nID servisa se moraju poklapati!";
+                            Foreground = Brushes.Red;
+                            return;
+                        }
+                        DatabaseServiceProvider.Instance.UpdateServisira(new Servisira()
+                        {
+                            DonosiPosjedujeVlasnik_racunaraJMBG_vl = SelectedServisira.DonosiPosjedujeVlasnik_racunaraJMBG_vl,
+                            DonosiPosjedujeRacunarID_racunara = SelectedServisira.DonosiPosjedujeRacunarID_racunara,
+                            DonosiRacunarski_servisID_servisa = SelectedServisira.DonosiRacunarski_servisID_servisa,
+                            RadiServiser_racunaraJMBG_s = SelectedServisira.RadiServiser_racunaraJMBG_s,
+                            RadiRacunarski_servisID_servisa = SelectedServisira.RadiRacunarski_servisID_servisa,
+                            Donosi = DatabaseServiceProvider.Instance.GetDonosi(long.Parse(keyPartsDonosi[1].Split(':')[1], CultureInfo.InvariantCulture),
+                                                                            int.Parse(keyPartsDonosi[2].Split(':')[1], CultureInfo.InvariantCulture),
+                                                                            int.Parse(keyPartsDonosi[0].Split(':')[1], CultureInfo.InvariantCulture)),
+                            Radi = DatabaseServiceProvider.Instance.GetRadi(long.Parse(keyPartsRadi[1].Split(':')[1], CultureInfo.InvariantCulture), int.Parse(keyPartsDonosi[0].Split(':')[1], CultureInfo.InvariantCulture)),
+                            Cijena_serv = cijena,
+                            Dat_potp = DpDat_s,
+                            Garantni_listId_gar_list = int.Parse(CmbBoxGar_listovi.Split(':')[1], CultureInfo.InvariantCulture),
+                            Garantni_list = DatabaseServiceProvider.Instance.GetGarantni_list(int.Parse(CmbBoxGar_listovi.Split(':')[1], CultureInfo.InvariantCulture)),
+                        });
+
+                        LBL = "Asocijacija sa kljucem " + keyPartsDonosi[0].Split(':')[1] + "+" + keyPartsDonosi[1].Split(':')[1]
+                                                        + "-" + keyPartsDonosi[2].Split(':')[1] + "-" + keyPartsRadi[0].Split(':')[1]
+                                                        + "-" + keyPartsRadi[1].Split(':')[1] + " uspjesno azurirana";
+                        Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                        ServisiraSet = new ObservableCollection<Servisira>(DatabaseServiceProvider.Instance.GetAllServisira());
+
+                    }
+                    catch (Exception e)
+                    {
+                        LBL = "Greska pri azuriranju asocijacije 'servisira'!";
+                        Foreground = Brushes.Red;
+                    }
+                }
+            }catch(Exception e)
+            {
+
             }
         }
     }

@@ -14,8 +14,8 @@ namespace ClientUI.ViewModel
     {
         private ObservableCollection<Donosi> donosiSet = new ObservableCollection<Donosi>(DatabaseServiceProvider.Instance.GetAllDonosi());
         private Donosi selectedDonosi;
-        private static List<string> servisi = new List<string>(DatabaseServiceProvider.Instance.GetAllServiss().Where(x => x.Tip_serv == Tip_servisa.Servis_racunara).Select(x => x.ID_servisa.ToString()));
-        private static List<string> posjeduje = new List<string>(DatabaseServiceProvider.Instance.GetAllPosjeduje().Select(x =>  String.Format(x.JMBG_vl+"-"+x.Id_racunara)));
+        private static List<string> servisi = new List<string>(DatabaseServiceProvider.Instance.GetAllServiss().Where(x => x.Tip_serv == Tip_servisa.Servis_racunara).Select(x => String.Format(x.ID_servisa + "\n" + x.Naziv_serv)));
+        private static List<string> posjeduje = new List<string>(DatabaseServiceProvider.Instance.GetAllPosjeduje().Select(x =>  String.Format(x.JMBG_vl+" "+x.Ime_vl+" "+x.Prezime_vl+"\n"+x.Id_racunara+" "+x.Proizvodjac_racunara)));
         //public static List<string> racunari = new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Where(x => x.).Select(x => x.ID_racunara.ToString()));
         //public static List<string> vlasnici = new List<string>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara().Select(x => x.JMBG_vl.ToString()));
 
@@ -65,8 +65,8 @@ namespace ClientUI.ViewModel
                 {
                     selectedDonosi = value;
                     OnPropertyChanged(nameof(SelectedDonosi));
-                    CmbBoxPosjeduje = SelectedDonosi == null ? "" : String.Format(SelectedDonosi.PosjedujeVlasnik_racunaraJMBG_vl+"-"+SelectedDonosi.PosjedujeRacunarID_racunara);
-                    CmbBoxID_Servisa = SelectedDonosi == null ? "" : SelectedDonosi.Racunarski_servisID_servisa.ToString();
+                    CmbBoxPosjeduje = SelectedDonosi == null ? "" : String.Format(SelectedDonosi.PosjedujeVlasnik_racunaraJMBG_vl + " " + SelectedDonosi.Pposjeduje.Ime_vl + " " + SelectedDonosi.Pposjeduje.Prezime_vl + "\n" + SelectedDonosi.PosjedujeRacunarID_racunara + " " + SelectedDonosi.Pposjeduje.Proizvodjac_racunara);
+                    CmbBoxID_Servisa = SelectedDonosi == null ? "" : String.Format(SelectedDonosi.Racunarski_servisID_servisa + "\n" + SelectedDonosi.Racunarski_servis.Naziv_serv);
 
 
 
@@ -90,7 +90,7 @@ namespace ClientUI.ViewModel
 
         public List<string> Servisi
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllServiss().Where(x => x.Tip_serv == Tip_servisa.Servis_racunara).Select(x => x.ID_servisa.ToString()));
+            get => new List<string>(DatabaseServiceProvider.Instance.GetAllServiss().Where(x => x.Tip_serv == Tip_servisa.Servis_racunara).Select(x => String.Format(x.ID_servisa + "\n" + x.Naziv_serv)));
             set
             {
                 if (servisi != value)
@@ -105,7 +105,7 @@ namespace ClientUI.ViewModel
 
         public List<string> Posjeduje
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllPosjeduje().Select(x => String.Format(x.JMBG_vl + "-" + x.Id_racunara)));
+            get => new List<string>(DatabaseServiceProvider.Instance.GetAllPosjeduje().Select(x => String.Format(x.JMBG_vl + " " + x.Ime_vl + " " + x.Prezime_vl + "\n" + x.Id_racunara + " " + x.Proizvodjac_racunara)));
             set
             {
                 if (posjeduje != value)
@@ -190,36 +190,43 @@ namespace ClientUI.ViewModel
 
         private void OnAdd()
         {
-            string[] keyParts = CmbBoxPosjeduje.Split('-');
-            if (DatabaseServiceProvider.Instance.AddDonosi(new Donosi()
+            try
             {
-                PosjedujeVlasnik_racunaraJMBG_vl = long.Parse(keyParts[0], CultureInfo.InvariantCulture),
-                PosjedujeRacunarID_racunara = int.Parse(keyParts[1], CultureInfo.InvariantCulture),
-                Racunarski_servisID_servisa = int.Parse(CmbBoxID_Servisa, CultureInfo.InvariantCulture),
-                
-                Pposjeduje = DatabaseServiceProvider.Instance.GetPosjeduje(int.Parse(keyParts[1], CultureInfo.InvariantCulture), long.Parse(keyParts[0], CultureInfo.InvariantCulture)),
-                Racunarski_servis = DatabaseServiceProvider.Instance.GetRacunarskiServis(int.Parse(CmbBoxID_Servisa)),
-            }))
-            {
-                LBL = "Servis racunara " + keyParts[1] + " uspjesno obavljen u servisu " + CmbBoxID_Servisa;
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                DonosiSet = new ObservableCollection<Donosi>(DatabaseServiceProvider.Instance.GetAllDonosi());
+                string[] keyParts = CmbBoxPosjeduje.Split('\n');
+                if (DatabaseServiceProvider.Instance.AddDonosi(new Donosi()
+                {
+                    PosjedujeVlasnik_racunaraJMBG_vl = long.Parse(keyParts[0].Split(' ')[0], CultureInfo.InvariantCulture),
+                    PosjedujeRacunarID_racunara = int.Parse(keyParts[1].Split(' ')[0], CultureInfo.InvariantCulture),
+                    Racunarski_servisID_servisa = int.Parse(CmbBoxID_Servisa.Split('\n')[0], CultureInfo.InvariantCulture),
 
+                    Pposjeduje = DatabaseServiceProvider.Instance.GetPosjeduje(int.Parse(keyParts[1].Split(' ')[0], CultureInfo.InvariantCulture), long.Parse(keyParts[0].Split(' ')[0], CultureInfo.InvariantCulture)),
+                    Racunarski_servis = DatabaseServiceProvider.Instance.GetRacunarskiServis(int.Parse(CmbBoxID_Servisa.Split('\n')[0])),
+                }))
+                {
+                    LBL = "Servis racunara " + keyParts[1] + " uspjesno obavljen u servisu " + CmbBoxID_Servisa;
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    DonosiSet = new ObservableCollection<Donosi>(DatabaseServiceProvider.Instance.GetAllDonosi());
+
+                }
+                else
+                {
+                    LBL = "Greska pri servisiranju racunara " + keyParts[1] + " u servisu " + CmbBoxID_Servisa + "!";
+                    Foreground = Brushes.Red;
+                }
             }
-            else
+            catch(Exception e)
             {
-                LBL = "Greska pri servisiranju racunara " + keyParts[1] + " u servisu " + CmbBoxID_Servisa + "!";
-                Foreground = Brushes.Red;
+
             }
         }
         private void OnUpdate()
         {
-            string[] keyParts = CmbBoxPosjeduje.Split('-');
+            string[] keyParts = CmbBoxPosjeduje.Split('\n');
             int r = SelectedDonosi.Racunarski_servisID_servisa;
 
             try
             {
-               Servis s = DatabaseServiceProvider.Instance.GetServis(int.Parse(CmbBoxID_Servisa, CultureInfo.InvariantCulture));
+               Servis s = DatabaseServiceProvider.Instance.GetServis(int.Parse(CmbBoxID_Servisa.Split('\n')[0], CultureInfo.InvariantCulture));
 
                 DatabaseServiceProvider.Instance.UpdateDonosi(new Donosi()
                 {
@@ -227,8 +234,8 @@ namespace ClientUI.ViewModel
                     PosjedujeRacunarID_racunara = SelectedDonosi.PosjedujeRacunarID_racunara,
                     Racunarski_servisID_servisa = SelectedDonosi.Racunarski_servisID_servisa,
 
-                    Pposjeduje = DatabaseServiceProvider.Instance.GetPosjeduje(int.Parse(keyParts[1], CultureInfo.InvariantCulture), long.Parse(keyParts[0], CultureInfo.InvariantCulture)),
-                    Racunarski_servis = DatabaseServiceProvider.Instance.GetRacunarskiServis(int.Parse(CmbBoxID_Servisa)),
+                    Pposjeduje = DatabaseServiceProvider.Instance.GetPosjeduje(int.Parse(keyParts[1].Split(' ')[0], CultureInfo.InvariantCulture), long.Parse(keyParts[0].Split(' ')[0], CultureInfo.InvariantCulture)),
+                    Racunarski_servis = DatabaseServiceProvider.Instance.GetRacunarskiServis(int.Parse(CmbBoxID_Servisa.Split('\n')[0])),
                 });
 
                 LBL = "Asocijacija sa kljucem " + keyParts[0] + "+"+keyParts[1]+ "-" + CmbBoxID_Servisa + " uspjesno azurirana";

@@ -268,5 +268,23 @@ namespace Server
         {
             return masterRepository.RacunarskiServisRepository.Get(idServisa);
         }
+
+        public int ReturnNumberOfUserComputersByType(long ownerId, Common.Models.Vrsta_racunara vrsta_Racunara)
+        {
+            return masterRepository.MiscRepository.ReturnNumberOfUserComputersByType(ownerId, (Vrsta_racunara)vrsta_Racunara);
+        }
+
+        public Common.Models.SqlUpitVlasnikServisCijena ReturnOwnerWithMaxRepairPrice()
+        {
+            return masterRepository.MiscRepository.ReturnOwnerWithMaxRepairPrice();
+        }
+        public string ReturnTheOldestWorker(string nazivServisa)
+        {
+            return masterRepository.MiscRepository.ReturnTheOldestWorker(nazivServisa);
+        }
+        public int ReturnCountOfAdultOwners()
+        {
+            return masterRepository.MiscRepository.ReturnCountOfAdultOwners();
+        }
     }
 }

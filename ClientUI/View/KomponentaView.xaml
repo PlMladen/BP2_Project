@@ -23,10 +23,11 @@
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
                 <Separator Width="5" Visibility="Hidden"/>
                 <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
+                    <Separator Height="10" Visibility="Hidden"></Separator>
+                    <!--StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockProizvodjac" Text="ID Komponente:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <TextBox x:Name="txTBoxProizvodjac" IsReadOnly="{Binding CanEdit}" Height="34" VerticalContentAlignment="Center" Width="160" Text="{Binding Path=TxTBoxID_Komponente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"></TextBox>
-                    </StackPanel>
+                    </-->
                     <Separator Width="2" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockCPU" Text="Naziv komponente:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />

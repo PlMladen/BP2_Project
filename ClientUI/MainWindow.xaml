@@ -7,7 +7,7 @@
         xmlns:viewmodel="clr-namespace:ClientUI.ViewModel"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="BP2_Project_ClientUI" Height="670" ResizeMode="CanMinimize" Width="900" Background="Black">
+        Title="BP2_Project_ClientUI" Height="670" ResizeMode="CanMinimize" Width="950" Background="Black">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
@@ -45,6 +45,9 @@
         <DataTemplate DataType="{x:Type viewmodel:ServisiraViewModel}">
             <views:ServisiraView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:FuncProcViewModel}">
+            <views:FuncProcView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -69,6 +72,7 @@
                 <MenuItem Header="RadiSet" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Radi view"/>
                 <MenuItem Header="DonosiSet" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Donosi view"/>
                 <MenuItem Header="ServisiraSet" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Servisira view"/>
+                <MenuItem Header="FuncProc" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="FuncProc view"/>
             </Menu>
         </DockPanel>
         <Grid Grid.Row="1" >

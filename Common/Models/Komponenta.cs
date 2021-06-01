@@ -16,14 +16,14 @@ namespace Common.Models
         private Nullable<int> racunarID_racunara;
         public Komponenta()
         {
-            /*this.Sastoji_se = new HashSet<Sastoji_se>();
-            this.Sastoji_se1 = new HashSet<Sastoji_se>();*/
+            this.Sastoji_se = new HashSet<SastojiSe>();
+            this.Sastoji_se1 = new HashSet<SastojiSe>();
         }
 
         
 
-        //public virtual ICollection<Sastoji_se> Sastoji_se { get; set; }
-        //public virtual ICollection<Sastoji_se> Sastoji_se1 { get; set; }
+        public virtual ICollection<SastojiSe> Sastoji_se { get; set; }
+        public virtual ICollection<SastojiSe> Sastoji_se1 { get; set; }
         public virtual Racunar Racunar { get; set; }
         public int Id_komp
         {

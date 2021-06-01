@@ -309,5 +309,24 @@ namespace ClientUI
         {
             return proxy.GetRacunarskiServis(idServisa);
         }
+        public int ReturnNumberOfUserComputersByType(long ownerId, Vrsta_racunara vrsta_Racunara)
+        {
+            return proxy.ReturnNumberOfUserComputersByType(ownerId, vrsta_Racunara);
+        }
+        public SqlUpitVlasnikServisCijena ReturnOwnerWithMaxRepairPrice()
+        {
+            return proxy.ReturnOwnerWithMaxRepairPrice();
+        }
+
+
+        public string ReturnTheOldestWorker(string nazivServisa)
+        {
+            return proxy.ReturnTheOldestWorker(nazivServisa);
+        }
+
+        public int ReturnCountOfAdultOwners()
+        {
+            return proxy.ReturnCountOfAdultOwners();
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace Server.Repos
 
         public bool Add(Common.Models.Donosi donosi)
         {
+             
             if (dbCtx.DonosiSet.FirstOrDefault((s) => s.PosjedujeRacunarID_racunara == donosi.PosjedujeRacunarID_racunara &&
                                                       s.PosjedujeVlasnik_racunaraJMBG_vl == donosi.PosjedujeVlasnik_racunaraJMBG_vl &&
                                                       s.Racunarski_servisID_servisa == donosi.Racunarski_servisID_servisa) != null)

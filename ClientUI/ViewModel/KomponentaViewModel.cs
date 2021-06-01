@@ -13,10 +13,10 @@ namespace ClientUI.ViewModel
     public class KomponentaViewModel : BindableBase
     {
         private ObservableCollection<Komponenta> komponente = new ObservableCollection<Komponenta>(DatabaseServiceProvider.Instance.GetAllKomponente());
-        public static List<string> RacunarIDs { get; set; } = new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => x.ID_racunara.ToString()));
+        public static List<string> racunarIDs = new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => String.Format(x.ID_racunara +" "+x.Proizvodjac)));
         private Komponenta selectedKomponenta;
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-        private string txTBoxID_Komponente;
+        //private string txTBoxID_Komponente;
         private string txTBoxNazKomp;
         private string txtCijenaKomp;
         
@@ -78,10 +78,10 @@ namespace ClientUI.ViewModel
                     selectedKomponenta = value;
                     OnPropertyChanged(nameof(SelectedKomponenta));
                     //TxTBoxID_Racunara = SelectedRacunar == null ? "1234567891234" : SelectedRacunar.ID_racunara.ToString();
-                    TxTBoxID_Komponente = SelectedKomponenta == null ? "123" : SelectedKomponenta.Id_komp.ToString();
+                    //TxTBoxID_Komponente = SelectedKomponenta == null ? "123" : SelectedKomponenta.Id_komp.ToString();
                     TxTBoxNazKomp = SelectedKomponenta == null ? "Naziv..." : SelectedKomponenta.Naz_komp.ToString();
                     TxtCijenaKomp = SelectedKomponenta == null ? "100.50" : SelectedKomponenta.Cijena_komp.ToString();
-                    CmbBoxID_racunara = SelectedKomponenta == null ? "" : SelectedKomponenta.RacunarID_racunara.ToString();
+                    CmbBoxID_racunara = SelectedKomponenta == null ? "" : String.Format(SelectedKomponenta.RacunarID_racunara + " " + SelectedKomponenta.Racunar.Proizvodjac);
                     DeleteCommand.RaiseCanExecuteChanged();
                     UpdateCommand.RaiseCanExecuteChanged();
                 }
@@ -99,7 +99,7 @@ namespace ClientUI.ViewModel
                 }
             }
         }
-        public string TxTBoxID_Komponente
+        /*public string TxTBoxID_Komponente
         {
             get => txTBoxID_Komponente;
             set
@@ -112,7 +112,7 @@ namespace ClientUI.ViewModel
                     UpdateCommand.RaiseCanExecuteChanged();
                 }
             }
-        }
+        }*/
         public string TxTBoxNazKomp
         {
             get => txTBoxNazKomp;
@@ -137,6 +137,20 @@ namespace ClientUI.ViewModel
                     txtCijenaKomp = value;
                     
                     OnPropertyChanged("TxtCijenaKomp");
+                    AddCommand.RaiseCanExecuteChanged();
+                    UpdateCommand.RaiseCanExecuteChanged();
+                }
+            }
+        }
+        public List<string> RacunarIDs
+        {
+            get => new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => String.Format(x.ID_racunara + " " + x.Proizvodjac)));
+            set
+            {
+                if (racunarIDs != value)
+                {
+                    racunarIDs = value;
+                    OnPropertyChanged("RacunarIDs");
                     AddCommand.RaiseCanExecuteChanged();
                     UpdateCommand.RaiseCanExecuteChanged();
                 }
@@ -190,15 +204,15 @@ namespace ClientUI.ViewModel
         {
             return !String.IsNullOrEmpty(TxtCijenaKomp) &&
                    !String.IsNullOrEmpty(TxTBoxNazKomp) &&
-                   !String.IsNullOrEmpty(TxTBoxID_Komponente) &&   
+                   //!String.IsNullOrEmpty(TxTBoxID_Komponente) &&   
                     SelectedKomponenta == null;
         }
 
         private bool CanUpdate()
         {
             return !String.IsNullOrEmpty(TxtCijenaKomp) &&
-                   !String.IsNullOrEmpty(TxTBoxNazKomp) &&
-                   !String.IsNullOrEmpty(TxTBoxID_Komponente);
+                   !String.IsNullOrEmpty(TxTBoxNazKomp);
+                   //!String.IsNullOrEmpty(TxTBoxID_Komponente);
         }
 
         private void OnAdd()
@@ -209,10 +223,11 @@ namespace ClientUI.ViewModel
             
                 if (DatabaseServiceProvider.Instance.AddKomponentu(new Komponenta()
                 {
-                    Id_komp = int.Parse(TxTBoxID_Komponente, CultureInfo.InvariantCulture),
+                    //Id_komp = int.Parse(TxTBoxID_Komponente, CultureInfo.InvariantCulture),
                     Cijena_komp = cijena,
                     Naz_komp = TxTBoxNazKomp,
-                    RacunarID_racunara = string.IsNullOrEmpty(CmbBoxID_racunara) ? -1 : int.Parse(CmbBoxID_racunara, CultureInfo.InvariantCulture)
+                    RacunarID_racunara = string.IsNullOrEmpty(CmbBoxID_racunara.Split(' ')[0]) ? 0 : int.Parse(CmbBoxID_racunara.Split(' ')[0], CultureInfo.InvariantCulture),
+                    Racunar = DatabaseServiceProvider.Instance.GetRacunar(string.IsNullOrEmpty(CmbBoxID_racunara.Split(' ')[0]) ? 0 : int.Parse(CmbBoxID_racunara.Split(' ')[0], CultureInfo.InvariantCulture))
                 }))
                 {
                     LBL = "Nova komponenta uspjesno dodata \nu bazu!";
@@ -242,7 +257,7 @@ namespace ClientUI.ViewModel
                     Id_komp = int.Parse(SelectedKomponenta.Id_komp.ToString(), CultureInfo.InvariantCulture),
                     Cijena_komp = double.Parse(TxtCijenaKomp, CultureInfo.InvariantCulture),
                     Naz_komp = TxTBoxNazKomp,
-                    RacunarID_racunara = string.IsNullOrEmpty(CmbBoxID_racunara) ? -1 : int.Parse(CmbBoxID_racunara, CultureInfo.InvariantCulture)
+                    RacunarID_racunara = string.IsNullOrEmpty(CmbBoxID_racunara.Split(' ')[0]) ? -1 : int.Parse(CmbBoxID_racunara.Split(' ')[0], CultureInfo.InvariantCulture)
                 });
 
                 LBL = "Komponenta [" + SelectedKomponenta.Id_komp + "] uspjesno azurirana!";

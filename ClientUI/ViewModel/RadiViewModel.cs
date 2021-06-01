@@ -14,8 +14,8 @@ namespace ClientUI.ViewModel
     {
         private ObservableCollection<Radi> radiSet = new ObservableCollection<Radi>(DatabaseServiceProvider.Instance.GetAllRadi());
         private Radi selectedRadi;
-        private static List<string> servisi = new List<string>(DatabaseServiceProvider.Instance.GetAllServiss().Where(x => x.Tip_serv == Tip_servisa.Servis_racunara).Select(x => x.ID_servisa.ToString()));
-        public static List<string> serviseri = new List<string>(DatabaseServiceProvider.Instance.GetAllServiseriRacunara().Select(x => x.JMBG_s.ToString()));
+        private static List<string> servisi = new List<string>(DatabaseServiceProvider.Instance.GetAllServiss().Where(x => x.Tip_serv == Tip_servisa.Servis_racunara).Select(x => String.Format(x.ID_servisa+"\n"+x.Naziv_serv)));
+        public static List<string> serviseri = new List<string>(DatabaseServiceProvider.Instance.GetAllServiseriRacunara().Select(x => String.Format(x.JMBG_s+"\n"+x.Ime_s+" "+x.Prezime_s)));
 
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
 
@@ -63,8 +63,8 @@ namespace ClientUI.ViewModel
                 {
                     selectedRadi = value;
                     OnPropertyChanged(nameof(SelectedRadi));
-                    CmbBoxID_Servisa = SelectedRadi == null ? "" : SelectedRadi.Racunarski_servisID_servisa1.ToString();
-                    CmbBoxID_Servisera = SelectedRadi == null ? "" : SelectedRadi.Serviser_racunaraJMBG_s.ToString();
+                    CmbBoxID_Servisa = SelectedRadi == null ? "" : String.Format(SelectedRadi.Racunarski_servisID_servisa1+"\n"+SelectedRadi.Racunarski_servis.Naziv_serv);
+                    CmbBoxID_Servisera = SelectedRadi == null ? "" : String.Format(SelectedRadi.Serviser_racunaraJMBG_s +"\n"+SelectedRadi.Serviser_racunara.Ime_s+" "+SelectedRadi.Serviser_racunara.Prezime_s);
 
 
 
@@ -88,7 +88,7 @@ namespace ClientUI.ViewModel
 
         public List<string> Servisi
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllServiss().Where(x => x.Tip_serv == Tip_servisa.Servis_racunara).Select(x => x.ID_servisa.ToString()));
+            get => new List<string>(DatabaseServiceProvider.Instance.GetAllServiss().Where(x => x.Tip_serv == Tip_servisa.Servis_racunara).Select(x => String.Format(x.ID_servisa + "\n" + x.Naziv_serv)));
             set
             {
                 if (servisi != value)
@@ -103,7 +103,7 @@ namespace ClientUI.ViewModel
 
         public List<string> Serviseri
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllServiseriRacunara().Select(x => x.JMBG_s.ToString()));
+            get => new List<string>(DatabaseServiceProvider.Instance.GetAllServiseriRacunara().Select(x => String.Format(x.JMBG_s + "\n" + x.Ime_s + " " + x.Prezime_s)));
             set
             {
                 if (serviseri != value)
@@ -185,32 +185,37 @@ namespace ClientUI.ViewModel
 
         private void OnAdd()
         {
-            
-            if (DatabaseServiceProvider.Instance.AddRadi(new Radi()
+            try
             {
-                Serviser_racunaraJMBG_s = long.Parse(CmbBoxID_Servisera, CultureInfo.InvariantCulture),
-                Racunarski_servisID_servisa1 = int.Parse(CmbBoxID_Servisa, CultureInfo.InvariantCulture),
-                
-                Racunarski_servis = DatabaseServiceProvider.Instance.GetServis(int.Parse(CmbBoxID_Servisa)) as Racunarski_servis,
-                Serviser_racunara = DatabaseServiceProvider.Instance.GetServiserRacunara(long.Parse(CmbBoxID_Servisera, CultureInfo.InvariantCulture))
-            }))
-            {
-                LBL = "Serviser " + CmbBoxID_Servisera + " uspjesno zaposlen u servis " + CmbBoxID_Servisa;
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                RadiSet = new ObservableCollection<Radi>(DatabaseServiceProvider.Instance.GetAllRadi());
+                if (DatabaseServiceProvider.Instance.AddRadi(new Radi()
+                {
+                    Serviser_racunaraJMBG_s = long.Parse(CmbBoxID_Servisera.Split('\n')[0], CultureInfo.InvariantCulture),
+                    Racunarski_servisID_servisa1 = int.Parse(CmbBoxID_Servisa.Split('\n')[0], CultureInfo.InvariantCulture),
 
-            }
-            else
+                    Racunarski_servis = DatabaseServiceProvider.Instance.GetServis(int.Parse(CmbBoxID_Servisa.Split('\n')[0])) as Racunarski_servis,
+                    Serviser_racunara = DatabaseServiceProvider.Instance.GetServiserRacunara(long.Parse(CmbBoxID_Servisera.Split('\n')[0], CultureInfo.InvariantCulture))
+                }))
+                {
+                    LBL = "Serviser " + CmbBoxID_Servisera + " uspjesno zaposlen u servis " + CmbBoxID_Servisa;
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    RadiSet = new ObservableCollection<Radi>(DatabaseServiceProvider.Instance.GetAllRadi());
+
+                }
+                else
+                {
+                    LBL = "Greska pri dodavanju servisera " + CmbBoxID_Servisera + " servisu " + CmbBoxID_Servisa + "!";
+                    Foreground = Brushes.Red;
+                }
+            }catch(Exception e)
             {
-                LBL = "Greska pri dodavanju servisera " + CmbBoxID_Servisera + " servisu " + CmbBoxID_Servisa + "!";
-                Foreground = Brushes.Red;
+
             }
         }
         private void OnUpdate()
         {
             try
             {
-                Servis s = DatabaseServiceProvider.Instance.GetServis(int.Parse(CmbBoxID_Servisa, CultureInfo.InvariantCulture));
+                Servis s = DatabaseServiceProvider.Instance.GetServis(int.Parse(CmbBoxID_Servisa.Split('\n')[0], CultureInfo.InvariantCulture));
 
                 DatabaseServiceProvider.Instance.UpdateRadi(new Radi()
                 {
@@ -234,7 +239,7 @@ namespace ClientUI.ViewModel
                         Okrug = s.Br_tel_serv.Okrug,
                         Pozivni_broj = s.Br_tel_serv.Pozivni_broj
                     }
-                },Serviser_racunara = DatabaseServiceProvider.Instance.GetServiserRacunara(long.Parse(CmbBoxID_Servisera, CultureInfo.InvariantCulture))
+                },Serviser_racunara = DatabaseServiceProvider.Instance.GetServiserRacunara(long.Parse(CmbBoxID_Servisera.Split('\n')[0], CultureInfo.InvariantCulture))
                 });
 
                 LBL = "Asocijacija sa kljucem " + CmbBoxID_Servisera + "-" + CmbBoxID_Servisa + " uspjesno azurirana";

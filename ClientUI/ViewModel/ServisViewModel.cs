@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
@@ -236,11 +238,7 @@ namespace ClientUI.ViewModel
                    !String.IsNullOrEmpty(TxTBoxBrTelBroj) &&
                    !String.IsNullOrEmpty(TxTBoxBrTelBrojOkruga) &&
                    !String.IsNullOrEmpty(TxTBoxBrTelPozBroj) &&
-                   TxTBoxAdresaPPTBroj.All(char.IsDigit) &&
-                   TxTBoxBrTelBroj.All(char.IsDigit) &&
-                   TxTBoxBrTelBrojOkruga.All(char.IsDigit) &&
-                   TxTBoxBrTelPozBroj.All(char.IsDigit)
-                   && SelectedServis == null;
+                   SelectedServis == null;
         }
 
         private bool CanUpdate()
@@ -253,52 +251,99 @@ namespace ClientUI.ViewModel
                    !String.IsNullOrEmpty(TxTBoxAdresaPPTBroj) &&
                    !String.IsNullOrEmpty(TxTBoxBrTelBroj) &&
                    !String.IsNullOrEmpty(TxTBoxBrTelBrojOkruga) &&
-                   !String.IsNullOrEmpty(TxTBoxBrTelPozBroj) &&
-                   TxTBoxAdresaPPTBroj.All(char.IsDigit) &&
-                   TxTBoxBrTelBroj.All(char.IsDigit) &&
-                   TxTBoxBrTelBrojOkruga.All(char.IsDigit) &&
-                   TxTBoxBrTelPozBroj.All(char.IsDigit);
+                   !String.IsNullOrEmpty(TxTBoxBrTelPozBroj) ;
         }
 
         private void OnAdd()
         {
-            if (DatabaseServiceProvider.Instance.AddServis(new Servis()
+            /*if (!TxTBoxJMBGsServ.All(c => char.IsDigit(c)) || TxTBoxJMBGsServ.Length != 13)
             {
-                Naziv_serv = TxTBoxNazivServ,
-                Tip_serv = (Tip_servisa)Enum.Parse(typeof(Tip_servisa), SelectedTypeServis),
-                Adresa_serv = new Adresa()
-                {
-                    Ulica = TxTBoxAdresaUlica,
-                    Grad = TxTBoxAdresaGrad,
-                    Broj = Int32.Parse(TxTBoxAdresaBroj),
-                    PostanskiBroj = Int32.Parse(TxTBoxAdresaPPTBroj)
-                },
-                Br_tel_serv = new Broj_telefona()
-                {
-                    Broj = Int32.Parse(TxTBoxBrTelBroj),
-                    Okrug = Int32.Parse(TxTBoxBrTelBrojOkruga),
-                    Pozivni_broj = Int32.Parse(TxTBoxBrTelPozBroj)
-                }
-            }))
+                LBL = "Greska pri dodavanju servisera!\n JMBG servisera mora biti pozitivan cio broj\nkoji se sastoji od 13 cifara!";
+                Foreground = Brushes.Red;
+                return;
+            }*/
+            if (!Regex.IsMatch(TxTBoxNazivServ, @"^[\d \w \s]+$"))
             {
-                LBL = "Novi servis uspjesno dodat \nu bazu!";
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                Servisi = new ObservableCollection<Servis>(DatabaseServiceProvider.Instance.GetAllServiss());
-
+                LBL = "Greska pri dodavanju servisa!\n Naziv servisa treba da sadrzi samo brojeve i slova!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if (!Regex.IsMatch(TxTBoxAdresaUlica, @"^[\w \s]+$"))
+            {
+                LBL = "Greska pri dodavanju servisa!\nUlica u adresi servisa treba \nda sadrzi samo slova!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if (!Regex.IsMatch(TxTBoxAdresaGrad, @"^[\w \s]+$"))
+            {
+                LBL = "Greska pri dodavanju servisa!\nGrad u adresi servisa treba \nda sadrzi samo slova!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if (!Regex.IsMatch(TxTBoxAdresaBroj, @"^[\w \s]+$"))
+            {
+                LBL = "Greska pri dodavanju servisa!\nBroj u adresi servisa mora \nbiti pozitivan cio broj!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if (!TxTBoxAdresaPPTBroj.All(c => char.IsDigit(c)))
+            {
+                LBL = "Greska pri dodavanju servisa!\nPTT broj u adresi servisa mora biti \npozitivan cio broj!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if (!TxTBoxBrTelPozBroj.All(c => char.IsDigit(c)))
+            {
+                LBL = "Greska pri dodavanju servisa!\nBroj telefona servisa mora biti \npozitivan cio broj!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if (!TxTBoxBrTelBrojOkruga.All(c => char.IsDigit(c)))
+            {
+                LBL = "Greska pri dodavanju servisa!\nBroj telefona servisa mora biti \npozitivan cio broj!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if (!TxTBoxBrTelBroj.All(c => char.IsDigit(c)))
+            {
+                LBL = "Greska pri dodavanju servisa!\nBroj telefona servisa mora biti \npozitivan cio broj!";
+                Foreground = Brushes.Red;
+                return;
             }
             else
             {
-                LBL = "Greska pri dodavanju servisa!";
-                Foreground = Brushes.Red;
-            }
-        }
-        private void OnUpdate()
-        {
-            try
-            {
-                DatabaseServiceProvider.Instance.UpdateServis(new Servis()
+                if (int.Parse(TxTBoxAdresaBroj, CultureInfo.InvariantCulture) <= 0)
                 {
-                    ID_servisa = SelectedServis.ID_servisa,
+                    LBL = "Greska pri dodavanju servisa!\nBroj u adresi servisa mora \nbiti pozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                if (int.Parse(TxTBoxAdresaPPTBroj, CultureInfo.InvariantCulture) <= 0)
+                {
+                    LBL = "Greska pri dodavanju servisa!\nPTT broj u adresi servisa mora biti \npozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                if (int.Parse(TxTBoxBrTelPozBroj, CultureInfo.InvariantCulture) <= 0)
+                {
+                    LBL = "Greska pri dodavanju servisa!\nBroj telefona servisa mora biti \npozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                if (int.Parse(TxTBoxBrTelBrojOkruga, CultureInfo.InvariantCulture) <= 0)
+                {
+                    LBL = "Greska pri dodavanju servisa!\nBroj telefona servisa mora biti \npozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                if (int.Parse(TxTBoxBrTelBroj, CultureInfo.InvariantCulture) <= 0)
+                {
+                    LBL = "Greska pri dodavanju servisa!\nBroj telefona servisa mora biti \npozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                if (DatabaseServiceProvider.Instance.AddServis(new Servis()
+                {
                     Naziv_serv = TxTBoxNazivServ,
                     Tip_serv = (Tip_servisa)Enum.Parse(typeof(Tip_servisa), SelectedTypeServis),
                     Adresa_serv = new Adresa()
@@ -314,12 +359,129 @@ namespace ClientUI.ViewModel
                         Okrug = Int32.Parse(TxTBoxBrTelBrojOkruga),
                         Pozivni_broj = Int32.Parse(TxTBoxBrTelPozBroj)
                     }
-                });
+                }))
+                {
+                    LBL = "Novi servis uspjesno dodat \nu bazu!";
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    Servisi = new ObservableCollection<Servis>(DatabaseServiceProvider.Instance.GetAllServiss());
 
-                LBL = "Servis [" + SelectedServis.ID_servisa + "] uspjesno azuriran!";
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                Servisi = new ObservableCollection<Servis>(DatabaseServiceProvider.Instance.GetAllServiss());
+                }
+                else
+                {
+                    LBL = "Greska pri dodavanju servisa!";
+                    Foreground = Brushes.Red;
+                }
+            }
+        }
+        private void OnUpdate()
+        {
+            try
+            {
+                if (!Regex.IsMatch(TxTBoxNazivServ, @"^[\d \w \s]+$"))
+                {
+                    LBL = "Greska pri dodavanju servisa!\n Naziv servisa treba da sadrzi samo brojeve i slova!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!Regex.IsMatch(TxTBoxAdresaUlica, @"^[\w \s]+$"))
+                {
+                    LBL = "Greska pri dodavanju servisa!\nUlica u adresi servisa treba \nda sadrzi samo slova!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!Regex.IsMatch(TxTBoxAdresaGrad, @"^[\w \s]+$"))
+                {
+                    LBL = "Greska pri dodavanju servisa!\nGrad u adresi servisa treba \nda sadrzi samo slova!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!Regex.IsMatch(TxTBoxAdresaBroj, @"^[\w \s]+$"))
+                {
+                    LBL = "Greska pri dodavanju servisa!\nBroj u adresi servisa mora \nbiti pozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!TxTBoxAdresaPPTBroj.All(c => char.IsDigit(c)))
+                {
+                    LBL = "Greska pri dodavanju servisa!\nPTT broj u adresi servisa mora biti \npozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!TxTBoxBrTelPozBroj.All(c => char.IsDigit(c)))
+                {
+                    LBL = "Greska pri dodavanju servisa!\nBroj telefona servisa mora biti \npozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!TxTBoxBrTelBrojOkruga.All(c => char.IsDigit(c)))
+                {
+                    LBL = "Greska pri dodavanju servisa!\nBroj telefona servisa mora biti \npozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!TxTBoxBrTelBroj.All(c => char.IsDigit(c)))
+                {
+                    LBL = "Greska pri dodavanju servisa!\nBroj telefona servisa mora biti \npozitivan cio broj!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else
+                {
+                    if (int.Parse(TxTBoxAdresaBroj, CultureInfo.InvariantCulture) <= 0)
+                    {
+                        LBL = "Greska pri dodavanju servisa!\nBroj u adresi servisa mora \nbiti pozitivan cio broj!";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
+                    if (int.Parse(TxTBoxAdresaPPTBroj, CultureInfo.InvariantCulture) <= 0)
+                    {
+                        LBL = "Greska pri dodavanju servisa!\nPTT broj u adresi servisa mora biti \npozitivan cio broj!";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
+                    if (int.Parse(TxTBoxBrTelPozBroj, CultureInfo.InvariantCulture) <= 0)
+                    {
+                        LBL = "Greska pri dodavanju servisa!\nBroj telefona servisa mora biti \npozitivan cio broj!";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
+                    if (int.Parse(TxTBoxBrTelBrojOkruga, CultureInfo.InvariantCulture) <= 0)
+                    {
+                        LBL = "Greska pri dodavanju servisa!\nBroj telefona servisa mora biti \npozitivan cio broj!";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
+                    if (int.Parse(TxTBoxBrTelBroj, CultureInfo.InvariantCulture) <= 0)
+                    {
+                        LBL = "Greska pri dodavanju servisa!\nBroj telefona servisa mora biti \npozitivan cio broj!";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
+                    DatabaseServiceProvider.Instance.UpdateServis(new Servis()
+                    {
+                        ID_servisa = SelectedServis.ID_servisa,
+                        Naziv_serv = TxTBoxNazivServ,
+                        Tip_serv = (Tip_servisa)Enum.Parse(typeof(Tip_servisa), SelectedTypeServis),
+                        Adresa_serv = new Adresa()
+                        {
+                            Ulica = TxTBoxAdresaUlica,
+                            Grad = TxTBoxAdresaGrad,
+                            Broj = Int32.Parse(TxTBoxAdresaBroj),
+                            PostanskiBroj = Int32.Parse(TxTBoxAdresaPPTBroj)
+                        },
+                        Br_tel_serv = new Broj_telefona()
+                        {
+                            Broj = Int32.Parse(TxTBoxBrTelBroj),
+                            Okrug = Int32.Parse(TxTBoxBrTelBrojOkruga),
+                            Pozivni_broj = Int32.Parse(TxTBoxBrTelPozBroj)
+                        }
+                    });
 
+                    LBL = "Servis [" + SelectedServis.ID_servisa + "] uspjesno azuriran!";
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    Servisi = new ObservableCollection<Servis>(DatabaseServiceProvider.Instance.GetAllServiss());
+
+                }
             }
             catch (Exception e)
             {

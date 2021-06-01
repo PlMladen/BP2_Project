@@ -204,41 +204,107 @@ namespace ClientUI.ViewModel
 
         private void OnAdd()
         {
-            if (DatabaseServiceProvider.Instance.AddServiserRacunara(new Serviser_racunara()
+            if (!TxTBoxJMBGsServ.All(c => char.IsDigit(c)) || TxTBoxJMBGsServ.Length != 13)
             {
-                JMBG_s = long.Parse(TxTBoxJMBGsServ, CultureInfo.CurrentCulture),
-                Dat_rodjenja_s = DpDat_rodj_s,
-                Ime_s = TxTBoxIme_s,
-                Prezime_s = TxtBoxPrezime_s
-            }))
-            {
-                LBL = "Novi serviser uspjesno dodat \nu bazu!";
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                Serviseri = new ObservableCollection<Serviser_racunara>(DatabaseServiceProvider.Instance.GetAllServiseriRacunara());
-
-            }
-            else
-            {
-                LBL = "Greska pri dodavanju servisera!";
+                LBL = "Greska pri dodavanju servisera!\n JMBG servisera mora biti pozitivan cio broj\nkoji se sastoji od 13 cifara!";
                 Foreground = Brushes.Red;
+                return;
+            }
+            else if(!TxTBoxIme_s.All(x => char.IsLetter(x)))
+            {
+                LBL = "Greska pri dodavanju servisera!\n Ime servisera treba da sadrzi samo slova!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if (!TxtBoxPrezime_s.All(x => char.IsLetter(x)))
+            {
+                LBL = "Greska pri dodavanju servisera!\n Prezime servisera treba da sadrzi samo slova!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else if(DpDat_rodj_s.Date >= DateTime.Now.Date)
+            {
+                LBL = "Greska pri dodavanju servisera!\n Datum rodjenja servisera treba da \nbude u proslosti!";
+                Foreground = Brushes.Red;
+                return;
+            }
+            else 
+            {
+                if (long.Parse(TxTBoxJMBGsServ, CultureInfo.CurrentCulture) <= 0)
+                {
+                    LBL = "Greska pri dodavanju servisera!\n JMBG servisera mora biti pozitivan cio broj\nkoji se sastoji od 13 cifara!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                if (DatabaseServiceProvider.Instance.AddServiserRacunara(new Serviser_racunara()
+                {
+                    JMBG_s = long.Parse(TxTBoxJMBGsServ, CultureInfo.CurrentCulture),
+                    Dat_rodjenja_s = DpDat_rodj_s,
+                    Ime_s = TxTBoxIme_s,
+                    Prezime_s = TxtBoxPrezime_s
+                }))
+                {
+                    LBL = "Novi serviser uspjesno dodat \nu bazu!";
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    Serviseri = new ObservableCollection<Serviser_racunara>(DatabaseServiceProvider.Instance.GetAllServiseriRacunara());
+
+                }
+                else
+                {
+                    LBL = "Greska pri dodavanju servisera!";
+                    Foreground = Brushes.Red;
+                } 
             }
         }
         private void OnUpdate()
         {
             try
             {
-                DatabaseServiceProvider.Instance.UpdateServiserRacunara(new Serviser_racunara()
+                if (!TxTBoxJMBGsServ.All(c => char.IsDigit(c)) || TxTBoxJMBGsServ.Length != 13)
                 {
-                    JMBG_s = long.Parse(TxTBoxJMBGsServ, CultureInfo.CurrentCulture),
-                    Dat_rodjenja_s = DateTime.Parse(DpDat_rodj_s.ToString()),
-                    Ime_s = TxTBoxIme_s,
-                    Prezime_s = TxtBoxPrezime_s
-                });
+                    LBL = "Greska pri dodavanju servisera!\n JMBG servisera mora biti pozitivan cio broj\nkoji se sastoji od 13 cifara!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!TxTBoxIme_s.All(x => char.IsLetter(x)))
+                {
+                    LBL = "Greska pri dodavanju servisera!\n Ime servisera treba da sadrzi samo slova!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (!TxtBoxPrezime_s.All(x => char.IsLetter(x)))
+                {
+                    LBL = "Greska pri dodavanju servisera!\n Prezime servisera treba da sadrzi samo slova!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else if (DpDat_rodj_s.Date >= DateTime.Now.Date)
+                {
+                    LBL = "Greska pri dodavanju servisera!\n Datum rodjenja servisera treba da \nbude u proslosti!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
+                else
+                {
+                    if (long.Parse(TxTBoxJMBGsServ, CultureInfo.CurrentCulture) <= 0)
+                    {
+                        LBL = "Greska pri dodavanju servisera!\n JMBG servisera mora biti pozitivan cio broj\nkoji se sastoji od 13 cifara!";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
+                    DatabaseServiceProvider.Instance.UpdateServiserRacunara(new Serviser_racunara()
+                    {
+                        JMBG_s = long.Parse(TxTBoxJMBGsServ, CultureInfo.CurrentCulture),
+                        Dat_rodjenja_s = DateTime.Parse(DpDat_rodj_s.ToString()),
+                        Ime_s = TxTBoxIme_s,
+                        Prezime_s = TxtBoxPrezime_s
+                    });
 
-                LBL = "Serviser [" + SelectedServiser.JMBG_s + "] uspjesno azuriran!";
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                Serviseri = new ObservableCollection<Serviser_racunara>(DatabaseServiceProvider.Instance.GetAllServiseriRacunara());
+                    LBL = "Serviser [" + SelectedServiser.JMBG_s + "] uspjesno azuriran!";
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    Serviseri = new ObservableCollection<Serviser_racunara>(DatabaseServiceProvider.Instance.GetAllServiseriRacunara());
 
+                }
             }
             catch (Exception e)
             {

@@ -14,8 +14,8 @@ namespace ClientUI.ViewModel
     {
         private ObservableCollection<SastojiSe> sastojiSeSet = new ObservableCollection<SastojiSe>(DatabaseServiceProvider.Instance.GetAllSastojiSe());
         private SastojiSe selectedSastojiSe;
-        private static List<string> komponentaKontejner = new List<string>(DatabaseServiceProvider.Instance.GetAllKomponente().Select(x => x.Id_komp.ToString()));
-        public static List<string> komponentaSastDio = new List<string>(DatabaseServiceProvider.Instance.GetAllKomponente().Select(x => x.Id_komp.ToString()));
+        private static List<string> komponentaKontejner = new List<string>(DatabaseServiceProvider.Instance.GetAllKomponente().Select(x => String.Format(x.Id_komp+"\n"+x.Naz_komp)));
+        public static List<string> komponentaSastDio = new List<string>(DatabaseServiceProvider.Instance.GetAllKomponente().Select(x => String.Format(x.Id_komp + "\n" + x.Naz_komp)));
 
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
 
@@ -63,8 +63,8 @@ namespace ClientUI.ViewModel
                 {
                     selectedSastojiSe = value;
                     OnPropertyChanged(nameof(SelectedSastojiSe));
-                    CmbBoxID_KontKomponente = SelectedSastojiSe == null ? "" : SelectedSastojiSe.KomponentaId_komp.ToString();
-                    CmbBoxID_SastDioKomponenta = SelectedSastojiSe == null ? "" : SelectedSastojiSe.KomponentaId_komp1.ToString();
+                    CmbBoxID_KontKomponente = SelectedSastojiSe == null ? "" : String.Format(SelectedSastojiSe.KomponentaId_komp + "\n" + SelectedSastojiSe.Komponenta.Naz_komp);
+                    CmbBoxID_SastDioKomponenta = SelectedSastojiSe == null ? "" : String.Format(SelectedSastojiSe.KomponentaId_komp1 + "\n" + SelectedSastojiSe.Komponenta1.Naz_komp);
 
 
 
@@ -88,7 +88,7 @@ namespace ClientUI.ViewModel
 
         public List<string> KomponentaKontejner
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllKomponente().Select(x => x.Id_komp.ToString()));
+            get => new List<string>(DatabaseServiceProvider.Instance.GetAllKomponente().Select(x => String.Format(x.Id_komp + "\n" + x.Naz_komp)));
             set
             {
                 if (komponentaKontejner != value)
@@ -103,7 +103,7 @@ namespace ClientUI.ViewModel
 
         public List<string> KomponentaSastDio
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllKomponente().Select(x => x.Id_komp.ToString()));
+            get => new List<string>(DatabaseServiceProvider.Instance.GetAllKomponente().Select(x => String.Format(x.Id_komp + "\n" + x.Naz_komp)));
             set
             {
                 if (komponentaSastDio != value)
@@ -185,23 +185,30 @@ namespace ClientUI.ViewModel
 
         private void OnAdd()
         {
-            if (DatabaseServiceProvider.Instance.AddSastojiSe(new SastojiSe()
+            try
             {
-                KomponentaId_komp = int.Parse(CmbBoxID_KontKomponente, CultureInfo.InvariantCulture),
-                KomponentaId_komp1 = int.Parse(CmbBoxID_SastDioKomponenta, CultureInfo.InvariantCulture),
-                Komponenta = DatabaseServiceProvider.Instance.GetKomponentu(int.Parse(CmbBoxID_KontKomponente, CultureInfo.InvariantCulture)),
-                Komponenta1 = DatabaseServiceProvider.Instance.GetKomponentu(int.Parse(CmbBoxID_SastDioKomponenta, CultureInfo.InvariantCulture))
-            }))
-            {
-                LBL = "Komponenta " + CmbBoxID_SastDioKomponenta + " uspjesno ugradjena u komponentu " + CmbBoxID_KontKomponente;
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
-                SastojiSeSet = new ObservableCollection<SastojiSe>(DatabaseServiceProvider.Instance.GetAllSastojiSe());
+                if (DatabaseServiceProvider.Instance.AddSastojiSe(new SastojiSe()
+                {
+                    KomponentaId_komp = int.Parse(CmbBoxID_KontKomponente.Split('\n')[0], CultureInfo.InvariantCulture),
+                    KomponentaId_komp1 = int.Parse(CmbBoxID_SastDioKomponenta.Split('\n')[0], CultureInfo.InvariantCulture),
+                    Komponenta = DatabaseServiceProvider.Instance.GetKomponentu(int.Parse(CmbBoxID_KontKomponente.Split('\n')[0], CultureInfo.InvariantCulture)),
+                    Komponenta1 = DatabaseServiceProvider.Instance.GetKomponentu(int.Parse(CmbBoxID_SastDioKomponenta.Split('\n')[0], CultureInfo.InvariantCulture))
+                }))
+                {
+                    LBL = "Komponenta " + CmbBoxID_SastDioKomponenta + " uspjesno ugradjena u komponentu " + CmbBoxID_KontKomponente;
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    SastojiSeSet = new ObservableCollection<SastojiSe>(DatabaseServiceProvider.Instance.GetAllSastojiSe());
 
+                }
+                else
+                {
+                    LBL = "Greska pri nadogradnji komponente " + CmbBoxID_KontKomponente + " komponentom " + CmbBoxID_SastDioKomponenta + "!";
+                    Foreground = Brushes.Red;
+                }
             }
-            else
+            catch(Exception e)
             {
-                LBL = "Greska pri nadogradnji komponente "+ CmbBoxID_KontKomponente + " komponentom "+ CmbBoxID_SastDioKomponenta+ "!";
-                Foreground = Brushes.Red;
+
             }
         }
         private void OnUpdate()
@@ -212,8 +219,8 @@ namespace ClientUI.ViewModel
                 {
                     KomponentaId_komp = SelectedSastojiSe.KomponentaId_komp,
                     KomponentaId_komp1 = SelectedSastojiSe.KomponentaId_komp1,
-                    Komponenta = DatabaseServiceProvider.Instance.GetKomponentu(int.Parse(CmbBoxID_KontKomponente, CultureInfo.InvariantCulture)),
-                    Komponenta1 = DatabaseServiceProvider.Instance.GetKomponentu(int.Parse(CmbBoxID_SastDioKomponenta, CultureInfo.InvariantCulture))
+                    Komponenta = DatabaseServiceProvider.Instance.GetKomponentu(int.Parse(CmbBoxID_KontKomponente.Split('\n')[0], CultureInfo.InvariantCulture)),
+                    Komponenta1 = DatabaseServiceProvider.Instance.GetKomponentu(int.Parse(CmbBoxID_SastDioKomponenta.Split('\n')[0], CultureInfo.InvariantCulture))
                 });
 
                 LBL = "Asocijacija sa kljucem " + CmbBoxID_KontKomponente +"-"+CmbBoxID_SastDioKomponenta + " uspjesno azurirana";

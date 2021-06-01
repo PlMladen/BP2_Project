@@ -366,4 +366,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="SqlUpitVlasnikServisCijena">
+    <Property Type="String" Name="Ime" Nullable="false" />
+    <Property Type="String" Name="Prezime" Nullable="false" />
+    <Property Type="String" Name="Naziv_servisa" Nullable="false" />
+    <Property Type="Int64" Name="JMBG_vlasnika" Nullable="false" />
+    <Property Type="Double" Name="Cijena" Nullable="false" />
+  </ComplexType>
 </Schema>
