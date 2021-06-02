@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\obj\Debug\
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\
 ClientUI
 none
 false
 DEBUG;TRACE
-F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\ClientUI\App.xaml
+F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\App.xaml
 132093236759
 
 34-894959524
-15974870553
+15-1893311251
 MainWindow.xaml;View\DonosiView.xaml;View\FuncProcView.xaml;View\GarantniListView.xaml;View\KomponentaView.xaml;View\PosjedujeView.xaml;View\RacunarView.xaml;View\RadiView.xaml;View\SastojiSeView.xaml;View\ServiserRacunaraView.xaml;View\ServisiraView.xaml;View\ServisView.xaml;View\VlasnikRacunaraView.xaml;
 
 False
