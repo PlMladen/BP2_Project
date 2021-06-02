@@ -1,0 +1,30 @@
+create trigger DeleteKomponentaTrigger
+on KomponentaSet
+for delete
+as
+delete from Sastoji_seSet
+where KomponentaId_komp in (select deleted.Id_komp from deleted)
+
+-------------------------------------------------------------------------
+
+create trigger TrigerInsertion
+on ServisiraSet
+for insert
+as
+declare @JMBG_vl bigint;
+declare @JMBG_s bigint;
+declare @ID_servisa int;
+declare @ID_racunara int;
+declare @Cijena decimal;
+declare @action varchar(100);
+select @JMBG_vl = i.DonosiPosjedujeVlasnik_racunaraJMBG_vl from inserted i;
+select @JMBG_s = i.RadiServiser_racunaraJMBG_s from inserted i;
+select @ID_racunara = i.DonosiPosjedujeRacunarID_racunara from inserted i;
+select @ID_servisa = i.DonosiRacunarski_servisID_servisa from inserted i;
+select @Cijena = i.Cijena_serv from inserted i;
+set @action = 'Inserted record';
+insert into audit
+(JMBG_vlasnika, JMBG_Servisera, ID_Servisa, ID_racunara, Cijena_popravke, Audit_action, Audit_timestamp)
+values
+(@JMBG_vl, @JMBG_s, @ID_servisa, @ID_racunara, @Cijena, @action, getdate());
+print 'after insert trigger fired!'

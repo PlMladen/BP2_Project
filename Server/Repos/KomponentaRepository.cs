@@ -64,14 +64,40 @@ namespace Server.Repos
             var retVal = new List<Common.Models.Komponenta>();
             foreach (var komponentaFromDb in dbCtx.KomponentaSet.ToList())
             {
-                var komponenta = new Common.Models.Komponenta()
+                if (komponentaFromDb.Racunar != null)
                 {
-                    Id_komp = komponentaFromDb.Id_komp,
-                    Cijena_komp = komponentaFromDb.Cijena_komp,
-                    Naz_komp = komponentaFromDb.Naz_komp,
-                    RacunarID_racunara = komponentaFromDb.RacunarID_racunara
-                };
-                retVal.Add(komponenta);
+                    var komponenta = new Common.Models.Komponenta()
+                    {
+                        Id_komp = komponentaFromDb.Id_komp,
+                        Cijena_komp = komponentaFromDb.Cijena_komp,
+                        Naz_komp = komponentaFromDb.Naz_komp,
+                        RacunarID_racunara = komponentaFromDb.RacunarID_racunara,
+                        Racunar = new Common.Models.Racunar()
+                        {
+                            ID_racunara = komponentaFromDb.Racunar.ID_racunara,
+                            Proizvodjac = komponentaFromDb.Racunar.Proizvodjac,
+                            Brzina_procesora = komponentaFromDb.Racunar.Brzina_procesora,
+                            Kapacitet_memorije = komponentaFromDb.Racunar.Kapacitet_memorije,
+                            Kapacitet_RAM = komponentaFromDb.Racunar.Kapacitet_RAM,
+                            Vrsta_racunara = (Common.Models.Vrsta_racunara)komponentaFromDb.Racunar.Vrsta_racunara
+                        }
+
+                    };
+                    retVal.Add(komponenta);
+                }
+                else
+                {
+                    var komponenta = new Common.Models.Komponenta()
+                    {
+                        Id_komp = komponentaFromDb.Id_komp,
+                        Cijena_komp = komponentaFromDb.Cijena_komp,
+                        Naz_komp = komponentaFromDb.Naz_komp,
+                        RacunarID_racunara = komponentaFromDb.RacunarID_racunara,
+                        
+
+                    };
+                    retVal.Add(komponenta);
+                }
             }
             return retVal;
         }
@@ -81,14 +107,40 @@ namespace Server.Repos
             var komponentaFromDb = dbCtx.KomponentaSet.Find(idKomponente);
             if (komponentaFromDb != null)
             {
-                var komponenta = new Common.Models.Komponenta()
+                if (komponentaFromDb.Racunar != null)
                 {
-                    Id_komp = komponentaFromDb.Id_komp,
-                    Cijena_komp = komponentaFromDb.Cijena_komp,
-                    Naz_komp = komponentaFromDb.Naz_komp,
-                    RacunarID_racunara = komponentaFromDb.RacunarID_racunara
-                };
-                return komponenta;
+                    var komponenta = new Common.Models.Komponenta()
+                    {
+                        Id_komp = komponentaFromDb.Id_komp,
+                        Cijena_komp = komponentaFromDb.Cijena_komp,
+                        Naz_komp = komponentaFromDb.Naz_komp,
+                        RacunarID_racunara = komponentaFromDb.RacunarID_racunara,
+                        Racunar = new Common.Models.Racunar()
+                        {
+                            ID_racunara = komponentaFromDb.Racunar.ID_racunara,
+                            Proizvodjac = komponentaFromDb.Racunar.Proizvodjac,
+                            Brzina_procesora = komponentaFromDb.Racunar.Brzina_procesora,
+                            Kapacitet_memorije = komponentaFromDb.Racunar.Kapacitet_memorije,
+                            Kapacitet_RAM = komponentaFromDb.Racunar.Kapacitet_RAM,
+                            Vrsta_racunara = (Common.Models.Vrsta_racunara)komponentaFromDb.Racunar.Vrsta_racunara
+                        }
+
+                    };
+                    return komponenta;
+                }
+                else
+                {
+                    var komponenta = new Common.Models.Komponenta()
+                    {
+                        Id_komp = komponentaFromDb.Id_komp,
+                        Cijena_komp = komponentaFromDb.Cijena_komp,
+                        Naz_komp = komponentaFromDb.Naz_komp,
+                        RacunarID_racunara = komponentaFromDb.RacunarID_racunara,
+
+
+                    };
+                    return komponenta;
+                }
             }
             return null;
         }

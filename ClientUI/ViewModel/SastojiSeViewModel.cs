@@ -187,6 +187,10 @@ namespace ClientUI.ViewModel
         {
             try
             {
+                if (CmbBoxID_KontKomponente.Split('\n')[0] != CmbBoxID_SastDioKomponenta.Split('\n')[0])
+                {
+
+                }
                 if (DatabaseServiceProvider.Instance.AddSastojiSe(new SastojiSe()
                 {
                     KomponentaId_komp = int.Parse(CmbBoxID_KontKomponente.Split('\n')[0], CultureInfo.InvariantCulture),

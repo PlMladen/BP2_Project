@@ -13,7 +13,7 @@ namespace ClientUI.ViewModel
     public class KomponentaViewModel : BindableBase
     {
         private ObservableCollection<Komponenta> komponente = new ObservableCollection<Komponenta>(DatabaseServiceProvider.Instance.GetAllKomponente());
-        public static List<string> racunarIDs = new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => String.Format(x.ID_racunara +" "+x.Proizvodjac)));
+        public static List<string> racunarIDs = new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => String.Format(x.ID_racunara + " " + x.Proizvodjac))) { ""};
         private Komponenta selectedKomponenta;
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
         //private string txTBoxID_Komponente;
@@ -81,7 +81,13 @@ namespace ClientUI.ViewModel
                     //TxTBoxID_Komponente = SelectedKomponenta == null ? "123" : SelectedKomponenta.Id_komp.ToString();
                     TxTBoxNazKomp = SelectedKomponenta == null ? "Naziv..." : SelectedKomponenta.Naz_komp.ToString();
                     TxtCijenaKomp = SelectedKomponenta == null ? "100.50" : SelectedKomponenta.Cijena_komp.ToString();
-                    CmbBoxID_racunara = SelectedKomponenta == null ? "" : String.Format(SelectedKomponenta.RacunarID_racunara + " " + SelectedKomponenta.Racunar.Proizvodjac);
+                    if (SelectedKomponenta != null)
+                    {
+                        if (SelectedKomponenta.Racunar != null)
+                            CmbBoxID_racunara = SelectedKomponenta == null ? "" : String.Format(SelectedKomponenta.RacunarID_racunara + " " + SelectedKomponenta.Racunar.Proizvodjac);
+                        else
+                            CmbBoxID_racunara = SelectedKomponenta == null ? "" : String.Format(SelectedKomponenta.RacunarID_racunara + " ");
+                    }
                     DeleteCommand.RaiseCanExecuteChanged();
                     UpdateCommand.RaiseCanExecuteChanged();
                 }
@@ -144,12 +150,16 @@ namespace ClientUI.ViewModel
         }
         public List<string> RacunarIDs
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => String.Format(x.ID_racunara + " " + x.Proizvodjac)));
+            get => new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => String.Format(x.ID_racunara + " " + x.Proizvodjac))) { 
+            ""
+            
+            };
             set
             {
                 if (racunarIDs != value)
                 {
                     racunarIDs = value;
+                    
                     OnPropertyChanged("RacunarIDs");
                     AddCommand.RaiseCanExecuteChanged();
                     UpdateCommand.RaiseCanExecuteChanged();
@@ -220,14 +230,14 @@ namespace ClientUI.ViewModel
             try {
                 
                var cijena =  double.Parse(TxtCijenaKomp.Replace(',','.'), CultureInfo.InvariantCulture);
-            
+                
                 if (DatabaseServiceProvider.Instance.AddKomponentu(new Komponenta()
                 {
                     //Id_komp = int.Parse(TxTBoxID_Komponente, CultureInfo.InvariantCulture),
                     Cijena_komp = cijena,
                     Naz_komp = TxTBoxNazKomp,
-                    RacunarID_racunara = string.IsNullOrEmpty(CmbBoxID_racunara.Split(' ')[0]) ? 0 : int.Parse(CmbBoxID_racunara.Split(' ')[0], CultureInfo.InvariantCulture),
-                    Racunar = DatabaseServiceProvider.Instance.GetRacunar(string.IsNullOrEmpty(CmbBoxID_racunara.Split(' ')[0]) ? 0 : int.Parse(CmbBoxID_racunara.Split(' ')[0], CultureInfo.InvariantCulture))
+                    RacunarID_racunara = string.IsNullOrEmpty(CmbBoxID_racunara) ? 0 : int.Parse(CmbBoxID_racunara.Split(' ')[0], CultureInfo.InvariantCulture),
+                    Racunar = DatabaseServiceProvider.Instance.GetRacunar(string.IsNullOrEmpty(CmbBoxID_racunara) ? 0 : int.Parse(CmbBoxID_racunara.Split(' ')[0], CultureInfo.InvariantCulture))
                 }))
                 {
                     LBL = "Nova komponenta uspjesno dodata \nu bazu!";

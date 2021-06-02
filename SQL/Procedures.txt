@@ -1,0 +1,82 @@
+USE [BP2_Projekat_Db]
+GO
+/****** Object:  StoredProcedure [dbo].[Vrati_broj_punoljetnih_vlasnika_racunara]    Script Date: 1.6.2021. 22:14:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER procedure [dbo].[Vrati_broj_punoljetnih_vlasnika_racunara](
+ @retVal int OUTPUT 
+)
+as
+begin
+	declare @JMBG_vl bigint
+	declare @Ime_vl varchar(20)
+	declare @Prezime_vl varchar(20)
+	declare @Dat_rodjenja datetime
+	declare @Ulica varchar(20)
+	declare @Broj varchar(20)
+	declare @Grad varchar(20)
+	declare @PPT int
+declare punoljetni_cursor cursor
+for select vlS.JMBG_vl, vlS.Ime_vl, vlS.Prezime_vl, vlS.Dat_rodjenja_vl, vlS.Adresa_vl_Ulica, vlS.Adresa_vl_Grad, vlS.Adresa_vl_Broj, vlS.Adresa_vl_PostanskiBroj from Vlasnik_racunaraSet vlS
+set @retVal = 0;
+open punoljetni_cursor;
+fetch next from punoljetni_cursor into @JMBG_vl, @Ime_vl, @Prezime_vl, @Dat_rodjenja, @Ulica, @Broj, @Grad, @PPT
+	while @@FETCH_STATUS=0			    
+	begin							   
+		if(DATEDIFF(year,@Dat_rodjenja,GETDATE()) >= 18)
+			begin
+				set @retVal = @retVal +  1;
+			end
+	fetch next from punoljetni_cursor  
+	into @JMBG_vl, @Ime_vl, @Prezime_vl, @Dat_rodjenja, @Ulica, @Broj, @Grad, @PPT							   
+end									  
+close punoljetni_cursor;			   
+deallocate punoljetni_cursor;
+end;
+
+----------------------------
+declare @ret as int;
+begin
+exec Vrati_broj_punoljetnih_vlasnika_racunara  @ret output 
+ select @ret
+end
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+alter procedure Vrati_najstarijeg_servisera
+(
+@Naziv_servisa varchar(50),
+
+@retVal varchar(200) output
+)
+as
+begin try
+	declare @JMBG_s as bigint
+	declare @Ime_s varchar(20)
+	declare @Prezime_s varchar(20)
+	declare @Dat_rodj datetime
+	declare @Naz_serv varchar(20)
+	select @JMBG_s = sr.JMBG_s, @Ime_s = sr.Ime_s, @Prezime_s =  sr.Prezime_s, @Dat_rodj = min(sr.Dat_rodjenja_s), @Naz_serv = ss.Naziv_serv from ServisSet ss, RadiSet rs, Serviser_racunaraSet sr
+	where ss.ID_servisa = rs.Racunarski_servisID_servisa and sr.JMBG_s = rs.Serviser_racunaraJMBG_s  and ss.Naziv_serv = @Naziv_servisa
+	group by ss.ID_servisa, ss.Naziv_serv, sr.JMBG_s, sr.Ime_s, sr.Prezime_s, sr.Dat_rodjenja_s
+	having min(sr.Dat_rodjenja_s) <= all
+	(select min(Dat_rodjenja_s) from Serviser_racunaraSet sr1, RadiSet rs1, ServisSet ss1 where rs1.Serviser_racunaraJMBG_s = sr1.JMBG_s and ss1.ID_servisa = rs1.Racunarski_servisID_servisa and
+	ss1.Naziv_serv = @Naziv_servisa
+	group by Dat_rodjenja_s )
+	order by sr.Dat_rodjenja_s
+	
+	set @retVal = cast(@JMBG_s as varchar(15)) +' '+@Ime_s+' '+@Prezime_s+' '+cast(@Dat_rodj as varchar(20));
+end try
+begin catch
+	SELECT
+	ERROR_NUMBER() AS ErrorNumber, ERROR_MESSAGE() AS ErrorMessage; 
+end catch
+
+-----------------------------------------
+declare @ret varchar(200);
+begin
+exec Vrati_najstarijeg_servisera 'Servis 3', @ret output
+select @ret
+end

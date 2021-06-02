@@ -71,7 +71,7 @@ namespace Server.Repos
             string retVal = string.Empty;
             try
             {
-                string sql = @"declare @ret varchar(200); begin exec Vrati_najstarijeg_servisera 'Servis 3', @ret output select @ret end";
+                string sql = @"declare @ret varchar(200); begin exec Vrati_najstarijeg_servisera @Naziv_servisa, @ret output select @ret end";
                 List<SqlParameter> parms = new List<SqlParameter>()
                  {
                     new SqlParameter {ParameterName = "@Naziv_servisa", Value = nazivServisa , DbType = System.Data.DbType.String},
