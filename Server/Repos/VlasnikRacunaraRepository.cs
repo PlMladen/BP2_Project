@@ -21,22 +21,27 @@ namespace Server.Repos
             {
                 return false;
             }
-
-            dbCtx.Vlasnik_racunaraSet.Add(new Vlasnik_racunara()
+            try
             {
-                JMBG_vl = vlasnik.JMBG_vl,
-                Dat_rodjenja_vl = vlasnik.Dat_rodjenja_vl,
-                Ime_vl = vlasnik.Ime_vl,
-                Prezime_vl = vlasnik.Prezime_vl,
-                Adresa_vl = new Adresa()
+                dbCtx.Vlasnik_racunaraSet.Add(new Vlasnik_racunara()
                 {
-                    Ulica = vlasnik.Adresa_vl.Ulica,
-                    Broj = vlasnik.Adresa_vl.Broj,
-                    Grad = vlasnik.Adresa_vl.Grad,
-                    PostanskiBroj = vlasnik.Adresa_vl.PostanskiBroj
-                }
-            });
+                    JMBG_vl = vlasnik.JMBG_vl,
+                    Dat_rodjenja_vl = vlasnik.Dat_rodjenja_vl,
+                    Ime_vl = vlasnik.Ime_vl,
+                    Prezime_vl = vlasnik.Prezime_vl,
+                    Adresa_vl = new Adresa()
+                    {
+                        Ulica = vlasnik.Adresa_vl.Ulica,
+                        Broj = vlasnik.Adresa_vl.Broj,
+                        Grad = vlasnik.Adresa_vl.Grad,
+                        PostanskiBroj = vlasnik.Adresa_vl.PostanskiBroj
+                    }
+                });
+            }
+            catch (Exception e)
+            {
 
+            }
             return dbCtx.SaveChanges() > 0;
         }
 

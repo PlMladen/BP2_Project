@@ -1,4 +1,5 @@
 ﻿using Common.Interfaces;
+using Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,6 +72,15 @@ namespace Server
         {
             return masterRepository.RacunarRepository.GetAll();
         }
+        public IEnumerable<Common.Models.Racunar> GetAllMojiRacunari(long idVlasnika)
+        {
+            return masterRepository.RacunarRepository.GetAllMy(idVlasnika);
+        }
+        public IEnumerable<Common.Models.Racunar> GetAllNeprodatiRacunari()
+        {
+            return masterRepository.RacunarRepository.GetAllNeprodatiRacunari();
+        }
+        
         public Common.Models.Racunar GetRacunar(int idRacunar)
         {
             return masterRepository.RacunarRepository.GetRacunar(idRacunar);
@@ -285,6 +295,30 @@ namespace Server
         public int ReturnCountOfAdultOwners()
         {
             return masterRepository.MiscRepository.ReturnCountOfAdultOwners();
+        }
+
+        public bool PrijaviKorisnika(string korisnickoIme, string lozinka)
+        {
+            return masterRepository.KorisnikRepository.PrijaviKorisnika(korisnickoIme, lozinka);
+        }
+
+        public bool RegistrujKorisnika(Korisnik korisnik)
+        {
+            return masterRepository.KorisnikRepository.RegistrujKorisnika(korisnik);
+        }
+
+        public string VratiUloguKorisnika(string korisnickoIme)
+        {
+            return masterRepository.KorisnikRepository.VratiUloguKorisnika(korisnickoIme);
+        }
+        public long VratiJMBGVlasnika(string korisnickoIme)
+        {
+            return masterRepository.KorisnikRepository.VratiJMBGVlasnika(korisnickoIme);
+        }
+
+        public int VratiIdServisa(long jmbgServisera)
+        {
+            return masterRepository.ServiserRacunaraRepository.VratiIdServisa(jmbgServisera);
         }
     }
 }

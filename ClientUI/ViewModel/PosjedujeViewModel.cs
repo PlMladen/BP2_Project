@@ -12,10 +12,15 @@ namespace ClientUI.ViewModel
 {
     public class PosjedujeViewModel : BindableBase
     {
-        private ObservableCollection<Posjeduje> posjedujeSet = new ObservableCollection<Posjeduje>(DatabaseServiceProvider.Instance.GetAllPosjeduje());
+        private ObservableCollection<Posjeduje> posjedujeSet = 
+            !MainWindow.Uloga.Equals("Vlasnik_racunara") ? new ObservableCollection<Posjeduje>(DatabaseServiceProvider.Instance.GetAllPosjeduje()) :
+                                                       new ObservableCollection<Posjeduje>(DatabaseServiceProvider.Instance.GetAllPosjeduje().Where(_ => _.JMBG_vl == MainWindow.IdVlasnika));
         private Posjeduje selectedPosjeduje;
-        private static List<string> vlasnici = new List<string>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara().Select(x => String.Format(x.JMBG_vl+"\n" + x.Ime_vl + " " + x.Prezime_vl)));
-        public static List<string> racunari = new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => String.Format( x.ID_racunara+"\n"+x.Proizvodjac)));
+        private static List<string> vlasnici = !MainWindow.Uloga.Equals("Vlasnik_racunara") ?
+            new List<string>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara().Select(x => String.Format(x.JMBG_vl+"\n" + x.Ime_vl + " " + x.Prezime_vl))) :
+            new List<string>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara().Where(_ => _.JMBG_vl == MainWindow.IdVlasnika).Select(x => String.Format(x.JMBG_vl + "\n" + x.Ime_vl + " " + x.Prezime_vl)))
+            ;
+        public static List<string> racunari = new List<string>(DatabaseServiceProvider.Instance.GetAllNeprodatiRacunari().Select(x => String.Format( x.ID_racunara+"\n"+x.Proizvodjac)));
 
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
         
@@ -41,7 +46,9 @@ namespace ClientUI.ViewModel
         {
             get
             {
-                return new ObservableCollection<Posjeduje>(DatabaseServiceProvider.Instance.GetAllPosjeduje());
+                return !MainWindow.Uloga.Equals("Vlasnik_racunara") ? new ObservableCollection<Posjeduje>(DatabaseServiceProvider.Instance.GetAllPosjeduje()) :
+                                                       new ObservableCollection<Posjeduje>(DatabaseServiceProvider.Instance.GetAllPosjeduje().Where(_ => _.JMBG_vl == MainWindow.IdVlasnika));
+
             }
             set
             {
@@ -89,7 +96,10 @@ namespace ClientUI.ViewModel
 
         public List<string> Vlasnici
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara().Select(x => String.Format(x.JMBG_vl + "\n" + x.Ime_vl + " " + x.Prezime_vl)));
+            get => !MainWindow.Uloga.Equals("Vlasnik_racunara") ?
+            new List<string>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara().Select(x => String.Format(x.JMBG_vl + "\n" + x.Ime_vl + " " + x.Prezime_vl))) :
+            new List<string>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara().Where(_ => _.JMBG_vl == MainWindow.IdVlasnika).Select(x => String.Format(x.JMBG_vl + "\n" + x.Ime_vl + " " + x.Prezime_vl)))
+            ; 
             set
             {
                 if (vlasnici != value)
@@ -104,7 +114,7 @@ namespace ClientUI.ViewModel
 
         public List<string> Racunari
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => String.Format(x.ID_racunara + "\n" + x.Proizvodjac)));
+            get => new List<string>(DatabaseServiceProvider.Instance.GetAllNeprodatiRacunari().Select(x => String.Format(x.ID_racunara + "\n" + x.Proizvodjac)));
             set
             {
                 if (racunari != value)

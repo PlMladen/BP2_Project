@@ -9,10 +9,11 @@ namespace Server.Repos
     public class ServiserRacunaraRepository
     {
         private readonly ProjectDbContext dbCtx;
-
-        public ServiserRacunaraRepository(ProjectDbContext context)
+        private readonly ServisRepository servisRepository;
+        public ServiserRacunaraRepository(ProjectDbContext context, ServisRepository radi)
         {
             dbCtx = context;
+            servisRepository = radi;
         }
 
         public bool Add(Common.Models.Serviser_racunara serviser)
@@ -33,6 +34,7 @@ namespace Server.Repos
             return dbCtx.SaveChanges() > 0;
         }
 
+        
         public bool Delete(long idServisera)
         {
             try
@@ -69,15 +71,28 @@ namespace Server.Repos
             var serviserFromDb = dbCtx.Serviser_racunaraSet.Find(idServisera);
             if (serviserFromDb != null)
             {
-                var serviser = new Common.Models.Serviser_racunara() { 
-                Ime_s = serviserFromDb.Ime_s,
-                Prezime_s = serviserFromDb.Prezime_s,
-                Dat_rodjenja_s = serviserFromDb.Dat_rodjenja_s,
-                JMBG_s = serviserFromDb.JMBG_s
+                var serviser = new Common.Models.Serviser_racunara() {
+                    Ime_s = serviserFromDb.Ime_s,
+                    Prezime_s = serviserFromDb.Prezime_s,
+                    Dat_rodjenja_s = serviserFromDb.Dat_rodjenja_s,
+                    JMBG_s = serviserFromDb.JMBG_s
                 };
                 return serviser;
             }
             return null;
+        }
+
+        public int VratiIdServisa(long jmbgServisera)
+        {
+            var serviserFromDb = dbCtx.Serviser_racunaraSet.Find(jmbgServisera); ;
+            if(serviserFromDb != null)
+            {
+                if(serviserFromDb.Radi.Count != 0)
+                {
+                    return serviserFromDb.Radi.FirstOrDefault(_ => _.Serviser_racunaraJMBG_s == jmbgServisera).Racunarski_servisID_servisa;
+                }
+            }
+            return -1;
         }
         public void Update(Common.Models.Serviser_racunara serviser)
         {

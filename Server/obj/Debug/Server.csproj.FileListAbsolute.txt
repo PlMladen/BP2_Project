@@ -12,3 +12,34 @@ F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP
 F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\obj\Debug\Server.csproj.CopyComplete
 F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\obj\Debug\Server.exe
 F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Server\obj\Debug\Server.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\obj\Debug\Server.csproj.AssemblyReference.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\obj\Debug\Server.exe
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\obj\Debug\Server.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\bin\Debug\Server.exe.config
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\bin\Debug\Server.exe
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\bin\Debug\Server.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\bin\Debug\Common.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\bin\Debug\EntityFramework.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\bin\Debug\EntityFramework.SqlServer.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\bin\Debug\Common.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\bin\Debug\EntityFramework.xml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\bin\Debug\EntityFramework.SqlServer.xml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\obj\Debug\Server.csproj.CopyComplete
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\bin\Debug\Server.exe.config
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\bin\Debug\Server.exe
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\bin\Debug\Server.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\bin\Debug\Common.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\bin\Debug\EntityFramework.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\bin\Debug\EntityFramework.SqlServer.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\bin\Debug\Common.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\bin\Debug\EntityFramework.xml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\bin\Debug\EntityFramework.SqlServer.xml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\obj\Debug\Server.csproj.AssemblyReference.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\obj\Debug\Server.csproj.CopyComplete
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\obj\Debug\Server.exe
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\obj\Debug\Server.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\bin\Debug\WpfAnimatedGif.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\bin\Debug\WpfAnimatedGif.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\bin\Debug\WpfAnimatedGif.xml

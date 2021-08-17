@@ -12,7 +12,9 @@ namespace ClientUI.ViewModel
 {
     public class RacunarViewModel : BindableBase
     {
-        private ObservableCollection<Racunar> racunari = new ObservableCollection<Racunar>(DatabaseServiceProvider.Instance.GetAllRacunari());
+        private ObservableCollection<Racunar> racunari = 
+            !MainWindow.Uloga.Equals("Vlasnik_racunara") ? new ObservableCollection<Racunar>(DatabaseServiceProvider.Instance.GetAllRacunari()) :
+            new ObservableCollection<Racunar>(DatabaseServiceProvider.Instance.GetAllMojiRacunari(MainWindow.IdVlasnika));
         public static List<string> RacunarTypes { get; set; } = new List<string> { Vrsta_racunara.Desktop.ToString(), Vrsta_racunara.Laptop.ToString(), Vrsta_racunara.Tablet.ToString() };
         private Racunar selectedRacunar;
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
@@ -23,13 +25,16 @@ namespace ClientUI.ViewModel
         private string txtBoxBrzinaCPU;
         private string cmbBoxVrsta_racunara;
         private string lbl = string.Empty;
+        private string ulogaKorisnika = string.Empty;
+        private string autorizacija = string.Empty;
 
         public MyICommand DeleteCommand { get; set; }
         public MyICommand AddCommand { get; set; }
         public MyICommand UpdateCommand { get; set; }
 
-        public RacunarViewModel()
+        public RacunarViewModel(string uloga)
         {
+            UlogaKorisnika = uloga;
             DeleteCommand = new MyICommand(OnDelete, CanDelete);
             AddCommand = new MyICommand(OnAdd, CanAdd);
             UpdateCommand = new MyICommand(OnUpdate, CanUpdate);
@@ -71,6 +76,27 @@ namespace ClientUI.ViewModel
                     DeleteCommand.RaiseCanExecuteChanged();
                     UpdateCommand.RaiseCanExecuteChanged();
                 }
+            }
+        }
+
+        public string UlogaKorisnika
+        {
+            get => ulogaKorisnika;
+            set
+            {
+                ulogaKorisnika = value;
+                Autorizacija = ulogaKorisnika.Equals("Administrator") ? "Visible" : "Hidden";
+                OnPropertyChanged("UlogaKorisnika");
+                OnPropertyChanged("Autorizacija");
+            }
+        }
+        public string Autorizacija
+        {
+            get => autorizacija;
+            set
+            {
+                autorizacija = value;
+                OnPropertyChanged("Autorizacija");
             }
         }
         public Brush Foreground

@@ -24,11 +24,12 @@ namespace Server
         public ServisiraRepository ServisiraRepository { get; }
         public RacunarskiServisRepository RacunarskiServisRepository { get; }
         public MiscRepository MiscRepository { get; }
+        public KorisnikRepository KorisnikRepository { get; }
         public MasterRepository(ProjectDbContext context)
         {
             dbContext = context;
             ServisRepository = new ServisRepository(context);
-            ServiserRacunaraRepository = new ServiserRacunaraRepository(context);
+            ServiserRacunaraRepository = new ServiserRacunaraRepository(context, ServisRepository);
             RacunarRepository = new RacunarRepository(context);
             VlasnikRacunaraRepository = new VlasnikRacunaraRepository(context);
             KomponentaRepository = new KomponentaRepository(context);
@@ -40,6 +41,7 @@ namespace Server
             ServisiraRepository = new ServisiraRepository(context);
             RacunarskiServisRepository = new RacunarskiServisRepository(context);
             MiscRepository = new MiscRepository(context);
+            KorisnikRepository = new KorisnikRepository(context, VlasnikRacunaraRepository, ServiserRacunaraRepository);
         }
     }
 }

@@ -4,3 +4,15 @@ F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP
 F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Common\obj\Debug\Common.dll
 F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Common\obj\Debug\Common.pdb
 F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Projekat\Common\obj\Debug\Common.csprojAssemblyReference.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Common\bin\Debug\Common.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Common\bin\Debug\Common.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Common\obj\Debug\Common.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Common\obj\Debug\Common.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\bin\Debug\Common.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\bin\Debug\Common.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\obj\Debug\Common.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\obj\Debug\Common.pdb

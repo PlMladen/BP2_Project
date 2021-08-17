@@ -14,7 +14,7 @@
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" FontWeight="Bold" Foreground="Black" Binding="{Binding Id_gar_list}" Width="*"/>
-                    <DataGridTextColumn Header="Vazi do" FontWeight="Bold" Foreground="Black" Binding="{Binding Period_vazenja, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
+                    <DataGridTextColumn Header="Važi do" FontWeight="Bold" Foreground="Black" Binding="{Binding Period_vazenja, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
                     
                 </DataGrid.Columns>
             </DataGrid>
@@ -28,7 +28,7 @@
                     </-->
                     <Separator Width="2" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="textBlockDat_rodj_s" Text="Datum rodjenja:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBlock x:Name="textBlockDat_rodj_s" Text="Datum isteka:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <DatePicker x:Name="dpVaziDO" Height="34"  VerticalContentAlignment="Center"  SelectedDate="{Binding Path=DpVaziDo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12" Width="160"></DatePicker>
                     </StackPanel>
                 </StackPanel>
@@ -44,11 +44,11 @@
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/>
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnUpdate" Content="Azuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
+                        <Button x:Name="btnUpdate" Content="Ažuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/>
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnDelete" Content="Obrisi" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="100" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
+                        <Button x:Name="btnDelete" Content="Obriši" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="100" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
                     </Border>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">

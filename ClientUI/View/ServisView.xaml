@@ -9,7 +9,7 @@
     
     <Grid>
         <StackPanel Orientation="Vertical"  HorizontalAlignment="Center">
-            <Label x:Name="lblNetData" HorizontalAlignment="Center" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Content="Servisi "/>
+            <Label x:Name="lblNetData" HorizontalAlignment="Center" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" FontStyle="Italic" Content="Servisi "/>
             <Separator Height="4" />
             <DataGrid x:Name="dataGridNetData" Background="Black" BorderThickness="2" BorderBrush="#FF3AFF00" AutoGenerateColumns="False" ItemsSource="{Binding Path=Servisi, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedServis}" Height="300" Width="860" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
 
@@ -22,7 +22,7 @@
                     </DataGrid.Columns>
             </DataGrid>
             <Separator Height="10" Visibility="Hidden"/>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding Path=Autorizacija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <Separator Width="5" Visibility="Hidden"/>
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
@@ -68,11 +68,11 @@
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/>
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnUpdate" Content="Azuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
+                        <Button x:Name="btnUpdate" Content="Ažuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/>
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnDelete" Content="Obrisi" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="100" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
+                        <Button x:Name="btnDelete" Content="Obriši" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="100" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
                     </Border>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">

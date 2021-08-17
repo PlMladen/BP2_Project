@@ -84,3 +84,96 @@ F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP
 F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\ClientUI.csproj.CopyComplete
 F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\ClientUI.exe
 F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\ClientUI.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\bin\Debug\ClientUI.exe.config
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\bin\Debug\ClientUI.exe
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\bin\Debug\ClientUI.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\bin\Debug\Common.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\bin\Debug\Common.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\ClientUI.csproj.AssemblyReference.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\MainWindow.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\DonosiView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\FuncProcView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\GarantniListView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\KomponentaView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\PosjedujeView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\RacunarView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\RadiView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\SastojiSeView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\ServiserRacunaraView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\ServisiraView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\ServisView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\VlasnikRacunaraView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\App.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\ClientUI_MarkupCompile.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\ClientUI_MarkupCompile.lref
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\MainWindow.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\DonosiView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\FuncProcView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\GarantniListView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\KomponentaView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\PosjedujeView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\RacunarView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\RadiView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\SastojiSeView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\ServiserRacunaraView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\ServisiraView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\ServisView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\View\VlasnikRacunaraView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\ClientUI.g.resources
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\ClientUI.Properties.Resources.resources
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\ClientUI.csproj.GenerateResource.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\ClientUI.csproj.CoreCompileInputs.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\ClientUI.csproj.CopyComplete
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\ClientUI.exe
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\ClientUI.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\bin\Debug\ClientUI.exe.config
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\bin\Debug\ClientUI.exe
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\bin\Debug\ClientUI.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\bin\Debug\Common.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\bin\Debug\Common.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\ClientUI.csproj.AssemblyReference.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\MainWindow.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\DonosiView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\FuncProcView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\GarantniListView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\KomponentaView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\PosjedujeView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\RacunarView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\RadiView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\SastojiSeView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\ServiserRacunaraView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\ServisiraView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\ServisView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\VlasnikRacunaraView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\App.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\ClientUI_MarkupCompile.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\ClientUI_MarkupCompile.lref
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\MainWindow.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\DonosiView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\FuncProcView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\GarantniListView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\KomponentaView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\PosjedujeView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\RacunarView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\RadiView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\SastojiSeView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\ServiserRacunaraView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\ServisiraView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\ServisView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\VlasnikRacunaraView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\ClientUI.g.resources
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\ClientUI.Properties.Resources.resources
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\ClientUI.csproj.GenerateResource.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\ClientUI.csproj.CoreCompileInputs.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\ClientUI.csproj.CopyComplete
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\ClientUI.exe
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\ClientUI.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\WelcomeWindow.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\WelcomeWindow.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\RegistracijaView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\RegistracijaView.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\bin\Debug\WpfAnimatedGif.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\bin\Debug\WpfAnimatedGif.pdb
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\bin\Debug\WpfAnimatedGif.xml

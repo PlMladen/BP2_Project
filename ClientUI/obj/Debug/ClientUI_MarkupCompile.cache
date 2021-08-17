@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\obj\Debug\
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\
 ClientUI
 none
 false
 DEBUG;TRACE
-F:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\ClientUI\App.xaml
-132093236759
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\App.xaml
+151252591098
 
-34-894959524
-15-1893311251
-MainWindow.xaml;View\DonosiView.xaml;View\FuncProcView.xaml;View\GarantniListView.xaml;View\KomponentaView.xaml;View\PosjedujeView.xaml;View\RacunarView.xaml;View\RadiView.xaml;View\SastojiSeView.xaml;View\ServiserRacunaraView.xaml;View\ServisiraView.xaml;View\ServisView.xaml;View\VlasnikRacunaraView.xaml;
+381677761504
+16-1463970752
+MainWindow.xaml;View\DonosiView.xaml;View\FuncProcView.xaml;View\GarantniListView.xaml;View\KomponentaView.xaml;View\PosjedujeView.xaml;View\RacunarView.xaml;View\RadiView.xaml;View\RegistracijaView.xaml;View\SastojiSeView.xaml;View\ServiserRacunaraView.xaml;View\ServisiraView.xaml;View\ServisView.xaml;View\VlasnikRacunaraView.xaml;View\WelcomeWindow.xaml;
 
 False
 

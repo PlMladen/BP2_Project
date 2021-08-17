@@ -54,6 +54,8 @@
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\Garantni_list.cs" />
     <Compile Include="Models\Komponenta.cs" />
+    <Compile Include="Models\Korisnik.cs" />
+    <Compile Include="Models\PodaciZaLogin.cs" />
     <Compile Include="Models\Posjeduje.cs" />
     <Compile Include="Models\Racunar.cs" />
     <Compile Include="Models\Racunarski_servis.cs" />

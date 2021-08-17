@@ -19,5 +19,21 @@ namespace Common.Interfaces
         string ReturnTheOldestWorker(string nazivServisa);
         [OperationContract]
         int ReturnCountOfAdultOwners();
+
+        [OperationContract]
+        bool PrijaviKorisnika(string korisnickoIme, string lozinka);
+        [OperationContract]
+        bool RegistrujKorisnika(Korisnik korisnik);
+
+        [OperationContract]
+        string VratiUloguKorisnika(string korisnickoIme);
+        [OperationContract]
+        long VratiJMBGVlasnika(string korisnickoIme);
+        [OperationContract]
+        IEnumerable<Racunar> GetAllMojiRacunari(long idVlasnika);
+        [OperationContract]
+        IEnumerable<Racunar> GetAllNeprodatiRacunari();
+        [OperationContract]
+        int VratiIdServisa(long jmbgServisera);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientUI.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,28 @@ namespace ClientUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public static string Uloga = string.Empty;
+        public static long IdVlasnika = 0;
+        public MainWindow(string s, string korisnickoIme, long jmbg)
         {
+            Uloga = s;
+            if(Uloga.Equals("Vlasnik_racunara") || Uloga.Equals("Serviser_racunara"))
+            IdVlasnika = jmbg;
             InitializeComponent();
+            DobrodosliLbl.Content = "Dobrodošli, " + korisnickoIme;
+            OdjavaBtn.Content = "Odjava";
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var i =  Task.Run(DatabaseServiceProvider.Instance.GetAllServiss);
+        }
+
+        private void OdjavaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WelcomeWindow welcomeWindow = new WelcomeWindow();
+            welcomeWindow.Show();
+            this.Close();
         }
     }
 }

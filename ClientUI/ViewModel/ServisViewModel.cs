@@ -43,6 +43,8 @@ namespace ClientUI.ViewModel
         private string txTBoxBrTelBrojOkruga = "65";
         private string txTBoxBrTelBroj = "1234567";
         private string selectedTypeServis = string.Empty;
+        private string ulogaKorisnika = string.Empty;
+        private string autorizacija = string.Empty;
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
 
 
@@ -51,9 +53,9 @@ namespace ClientUI.ViewModel
         public MyICommand AddCommand { get; set; }
         public MyICommand UpdateCommand { get; set; }
 
-        public ServisViewModel()
+        public ServisViewModel(string uloga)
         {
-
+            UlogaKorisnika = uloga;
             DeleteCommand = new MyICommand(OnDelete, CanDelete);
             AddCommand = new MyICommand(OnAdd, CanAdd);
             UpdateCommand = new MyICommand(OnUpdate, CanUpdate);
@@ -116,6 +118,26 @@ namespace ClientUI.ViewModel
             {
                 lbl = value;
                 OnPropertyChanged("LBL");
+            }
+        }
+        public string UlogaKorisnika
+        {
+            get => ulogaKorisnika;
+            set
+            {
+                ulogaKorisnika = value;
+                Autorizacija = ulogaKorisnika.Equals("Administrator") ? "Visible" : "Hidden";
+                OnPropertyChanged("UlogaKorisnika");
+                OnPropertyChanged("Autorizacija");
+            }
+        }
+        public string Autorizacija
+        {
+            get => autorizacija;
+            set
+            {
+                autorizacija = value;
+                OnPropertyChanged("Autorizacija");
             }
         }
         public string TxTBoxNazivServ

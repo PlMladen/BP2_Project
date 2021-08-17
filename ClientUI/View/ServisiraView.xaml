@@ -15,17 +15,17 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Ime vlasnika" FontWeight="Bold" Foreground="Black"  Binding="{Binding Path=Donosi.Pposjeduje.Ime_vl}" Width="*"/>
                     <DataGridTextColumn Header="Prezime vlasnika" FontWeight="Bold" Foreground="Black" Binding="{Binding Donosi.Pposjeduje.Prezime_vl}" Width="*"/>
-                    <DataGridTextColumn Header="ID racunara" FontWeight="Bold" Foreground="Black" Binding="{Binding Donosi.PosjedujeRacunarID_racunara}" Width="*"/>
-                    <DataGridTextColumn Header="Tip" FontWeight="Bold" Foreground="Black" Binding="{Binding Donosi.Pposjeduje.Vrsta_racunara}" Width="*"/>
+                    <DataGridTextColumn Header="ID računara" FontWeight="Bold" Foreground="Black" Binding="{Binding Donosi.PosjedujeRacunarID_racunara}" Width="*"/>
+                    <DataGridTextColumn Header="Tip računara" FontWeight="Bold" Foreground="Black" Binding="{Binding Donosi.Pposjeduje.Vrsta_racunara}" Width="*"/>
                     <DataGridTextColumn Header="Ime servisera" FontWeight="Bold" Foreground="Black" Binding="{Binding Radi.Serviser_racunara.Ime_s}" Width="*"/>
                     <DataGridTextColumn Header="Naziv servisa" FontWeight="Bold" Foreground="Black" Binding="{Binding Radi.Racunarski_servis.Naziv_serv}" Width="*"/>
                     <DataGridTextColumn Header="Datum servisiranja" FontWeight="Bold" Foreground="Black" Binding="{Binding Dat_potp}" Width="*"/>
                     <DataGridTextColumn Header="Cijena" FontWeight="Bold" Foreground="Black" Binding="{Binding Cijena_serv}" Width="*"/>
-                    <DataGridTextColumn Header="Garancija vazi do" FontWeight="Bold" Foreground="Black" Binding="{Binding Garantni_list.Period_vazenja, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
+                    <DataGridTextColumn Header="Garancija važi do" FontWeight="Bold" Foreground="Black" Binding="{Binding Garantni_list.Period_vazenja, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Separator Height="10" Visibility="Hidden"/>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding Path=Autorizacija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <Separator Width="5" Visibility="Hidden"/>
                 <StackPanel Orientation="Vertical">
                     <Separator Visibility="Hidden" Height="15"></Separator>
@@ -35,7 +35,7 @@
                     </StackPanel>
                     <Separator Width="2" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="textBlockRac" Text="Doneseni racunari:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBlock x:Name="textBlockRac" Text="Doneseni računar:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <ComboBox x:Name="cmbBoxRacunar" Height="34" Width="160" VerticalContentAlignment="Center" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding DonosiSet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CmbBoxDonosi}"/>
                     </StackPanel>
                     <Separator Width="2" Visibility="Hidden"/>
@@ -67,11 +67,11 @@
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/>
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnUpdate" Content="Azuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
+                        <Button x:Name="btnUpdate" Content="Ažuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/>
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnDelete" Content="Obrisi" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="100" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
+                        <Button x:Name="btnDelete" Content="Obriši" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="100" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
                     </Border>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">

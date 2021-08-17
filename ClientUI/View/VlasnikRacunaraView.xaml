@@ -8,7 +8,7 @@
              d:DesignHeight="650" d:DesignWidth="900">
     <Grid>
         <StackPanel Orientation="Vertical"  HorizontalAlignment="Center">
-            <Label x:Name="lblNetData" HorizontalAlignment="Center" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Content="Vlasnici racunara "/>
+            <Label x:Name="lblNetData" HorizontalAlignment="Center" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Content="Vlasnici računara "/>
             <Separator Height="4" />
             <DataGrid x:Name="dataGridSerRacunaraData" Background="Black" BorderThickness="2" BorderBrush="#FF3AFF00" AutoGenerateColumns="False" ItemsSource="{Binding Path=Vlasnici, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedVlasnik}" Height="300" Width="860" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
 
@@ -17,7 +17,7 @@
                     <DataGridTextColumn Header="Ime" FontWeight="Bold" Foreground="Black"  Binding="{Binding Ime_vl}" Width="*"/>
                     <DataGridTextColumn Header="Prezime" FontWeight="Bold" Foreground="Black" Binding="{Binding Prezime_vl}" Width="*"/>
                     <DataGridTextColumn Header="Adresa" FontWeight="Bold" Foreground="Black" Binding="{Binding Adresa_vl}" Width="*"/>
-                    <DataGridTextColumn Header="Datum rodjenja" FontWeight="Bold" Foreground="Black" Binding="{Binding Dat_rodjenja_vl, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
+                    <DataGridTextColumn Header="Datum rođenja" FontWeight="Bold" Foreground="Black" Binding="{Binding Dat_rodjenja_vl, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
                     <!-- DataGridTextColumn Header="Kontakt" FontWeight="Bold" Foreground="Black" Binding="{Binding Br_tel_serv}" Width="*"/-->
                 </DataGrid.Columns>
             </DataGrid>
@@ -25,10 +25,10 @@
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
                 <Separator Width="5" Visibility="Hidden"/>
                 <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
+                    <!--StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockservisera" Text="JMBG vlasnika:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <TextBox x:Name="txTBoxJMBG_Vl" Height="34" IsReadOnly="{Binding CanEdit}" VerticalContentAlignment="Center" Width="160" Text="{Binding Path=TxTBoxJMBG_Vl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"></TextBox>
-                    </StackPanel>
+                    </StackPanel-->
                     <Separator Width="2" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockIme_v" Text="Ime vlasnika:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
@@ -41,7 +41,7 @@
                     </StackPanel>
                     <Separator Width="2" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="textBlockDat_rodj_vl" Text="Datum rodjenja:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBlock x:Name="textBlockDat_rodj_vl" Text="Datum rođenja:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <DatePicker x:Name="dpDat_rodj_vl" Height="34"  VerticalContentAlignment="Center"  SelectedDate="{Binding Path=DpDat_rodj_vl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12" Width="160"></DatePicker>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
@@ -63,16 +63,16 @@
                 </StackPanel>
                 <Separator Width="5" Visibility="Hidden"/>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                    <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
+                    <!--Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
                         <Button x:Name="btnAdd" Content="Dodaj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding AddCommand}"  />
                     </Border>
-                    <Separator Height="0" Visibility="Hidden"/>
+                    <Separator Height="0" Visibility="Hidden"/-->
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnUpdate" Content="Azuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
+                        <Button x:Name="btnUpdate" Content="Ažuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/>
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnDelete" Content="Obrisi" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="100" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
+                        <Button x:Name="btnDelete" Content="Obriši" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="100" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
                     </Border>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">

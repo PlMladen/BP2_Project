@@ -22,7 +22,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Separator Height="10" Visibility="Hidden"/>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding Path=Autorizacija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <Separator Width="5" Visibility="Hidden"/>
                 <StackPanel Orientation="Vertical">
                     <Separator Visibility="Hidden" Height="15"></Separator>
@@ -49,11 +49,11 @@
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/>
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnUpdate" Content="Azuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
+                        <Button x:Name="btnUpdate" Content="Ažuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/>
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnDelete" Content="Obrisi" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="100" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
+                        <Button x:Name="btnDelete" Content="Obriši" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="100" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
                     </Border>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">

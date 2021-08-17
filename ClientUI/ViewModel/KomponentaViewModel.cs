@@ -12,16 +12,24 @@ namespace ClientUI.ViewModel
 {
     public class KomponentaViewModel : BindableBase
     {
+        private string cmbBoxID_racunara;
+        private string lbl = string.Empty;
+        private string autorizacija = string.Empty;
+        private string ulogaKorisnika = string.Empty;
+        private long jmbgVlasnika = -1;
+
         private ObservableCollection<Komponenta> komponente = new ObservableCollection<Komponenta>(DatabaseServiceProvider.Instance.GetAllKomponente());
-        public static List<string> racunarIDs = new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => String.Format(x.ID_racunara + " " + x.Proizvodjac))) { ""};
+        public static List<string> racunarIDs = MainWindow.Uloga.Equals("Vlasnik_racunara") ?
+               new List<string>(DatabaseServiceProvider.Instance.GetAllMojiRacunari(MainWindow.IdVlasnika).Select(x => String.Format(x.ID_racunara + " " + x.Proizvodjac))) { ""} :
+               new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => String.Format(x.ID_racunara + " " + x.Proizvodjac))) { "" };
+        
         private Komponenta selectedKomponenta;
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
         //private string txTBoxID_Komponente;
         private string txTBoxNazKomp;
         private string txtCijenaKomp;
         
-        private string cmbBoxID_racunara;
-        private string lbl = string.Empty;
+        
 
         private bool canEdit;
 
@@ -43,8 +51,10 @@ namespace ClientUI.ViewModel
         public MyICommand AddCommand { get; set; }
         public MyICommand UpdateCommand { get; set; }
 
-        public KomponentaViewModel()
+        public KomponentaViewModel(string uloga, long jmbg)
         {
+            UlogaKorisnika = uloga;
+            JMBGVlasnika = jmbg;
             DeleteCommand = new MyICommand(OnDelete, CanDelete);
             AddCommand = new MyICommand(OnAdd, CanAdd);
             UpdateCommand = new MyICommand(OnUpdate, CanUpdate);
@@ -91,6 +101,36 @@ namespace ClientUI.ViewModel
                     DeleteCommand.RaiseCanExecuteChanged();
                     UpdateCommand.RaiseCanExecuteChanged();
                 }
+            }
+        }
+
+        public string UlogaKorisnika
+        {
+            get => ulogaKorisnika;
+            set
+            {
+                ulogaKorisnika = value;
+                Autorizacija = ulogaKorisnika.Equals("Administrator") ? "Visible" : "Collapsed";
+                OnPropertyChanged("UlogaKorisnika");
+                OnPropertyChanged("Autorizacija");
+            }
+        }
+        public string Autorizacija
+        {
+            get => autorizacija;
+            set
+            {
+                autorizacija = value;
+                OnPropertyChanged("Autorizacija");
+            }
+        }
+        public long JMBGVlasnika
+        {
+            get => jmbgVlasnika;
+            set
+            {
+                jmbgVlasnika = value;
+                OnPropertyChanged("JMBGVlasnika");
             }
         }
         public Brush Foreground
@@ -150,9 +190,13 @@ namespace ClientUI.ViewModel
         }
         public List<string> RacunarIDs
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => String.Format(x.ID_racunara + " " + x.Proizvodjac))) { 
+            get => !UlogaKorisnika.Equals("Vlasnik_racunara") ? new List<string>(DatabaseServiceProvider.Instance.GetAllRacunari().Select(x => String.Format(x.ID_racunara + " " + x.Proizvodjac))) { 
             ""
             
+            } :
+            new List<string>(DatabaseServiceProvider.Instance.GetAllMojiRacunari(JMBGVlasnika).Select(x => String.Format(x.ID_racunara + " " + x.Proizvodjac))) {
+            ""
+
             };
             set
             {

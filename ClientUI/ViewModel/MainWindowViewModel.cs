@@ -10,23 +10,27 @@ namespace ClientUI.ViewModel
     public class MainWindowViewModel : BindableBase
     {
         public MyICommand<string> NavCommand { get; private set; }
-        private ServisViewModel servisViewModel = new ServisViewModel();
+        private ServisViewModel servisViewModel = new ServisViewModel(MainWindow.Uloga);
         private ServiserRacunaraViewModel serviserRacunaraViewModel = new ServiserRacunaraViewModel();
-        private RacunarViewModel racunarViewModel = new RacunarViewModel();
+        private RacunarViewModel racunarViewModel = new RacunarViewModel(MainWindow.Uloga);
         private VlasnikRacunaraViewModel vlasnikRacunaraViewModel = new VlasnikRacunaraViewModel();
-        private KomponentaViewModel komponentaViewModel = new KomponentaViewModel();
+        private KomponentaViewModel komponentaViewModel = new KomponentaViewModel(MainWindow.Uloga, MainWindow.IdVlasnika);
         private GarantniListViewModel garantniListViewModel = new GarantniListViewModel();
         private PosjedujeViewModel posjedujeViewModel = new PosjedujeViewModel();
         private SastojiSeViewModel sastojiSeViewModel = new SastojiSeViewModel();
-        private RadiViewModel radiViewModel = new RadiViewModel();
-        private DonosiViewModel donosiViewModel = new DonosiViewModel();
-        private ServisiraViewModel servisiraViewModel = new ServisiraViewModel();
+        private RadiViewModel radiViewModel = new RadiViewModel(MainWindow.Uloga);
+        private DonosiViewModel donosiViewModel = new DonosiViewModel(MainWindow.Uloga, MainWindow.IdVlasnika);
+        private ServisiraViewModel servisiraViewModel = new ServisiraViewModel(MainWindow.Uloga);
         private FuncProcViewModel funcProcViewModel = new FuncProcViewModel();
+        private string ulogaKorisnika = string.Empty;
+        private string autorizacija = string.Empty;
+        private string autorizacijaSA = string.Empty;
 
         private BindableBase currentViewModel;
 
         public MainWindowViewModel()
         {
+            UlogaKorisnika = MainWindow.Uloga;
             NavCommand = new MyICommand<string>(OnNav);
             currentViewModel = servisViewModel;
         }
@@ -81,7 +85,39 @@ namespace ClientUI.ViewModel
                     break;
             }
         }
-        
+
+        public string UlogaKorisnika
+        {
+            get => ulogaKorisnika;
+            set
+            {
+                ulogaKorisnika = value;
+                Autorizacija = ulogaKorisnika.Equals("Administrator") ? "Visible" : "Collapsed";
+                AutorizacijaSA = ulogaKorisnika.Equals("Administrator") || ulogaKorisnika.Equals("Serviser_racunara") ? "Visible" : "Collapsed";
+                OnPropertyChanged("UlogaKorisnika");
+                OnPropertyChanged("Autorizacija");
+                OnPropertyChanged("AutorizacijaSA");
+            }
+        }
+        public string Autorizacija
+        {
+            get => autorizacija;
+            set
+            {
+                autorizacija = value;
+                OnPropertyChanged("Autorizacija");
+            }
+        }
+        public string AutorizacijaSA
+        {
+            get => autorizacijaSA;
+            set
+            {
+                autorizacijaSA = value;
+                OnPropertyChanged("AutorizacijaSA");
+            }
+        }
+
         public BindableBase CurrentViewModel
         {
             get { return currentViewModel; }

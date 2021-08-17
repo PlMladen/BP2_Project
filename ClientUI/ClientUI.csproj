@@ -50,6 +50,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.0\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -64,11 +67,13 @@
     <Compile Include="ViewModel\PosjedujeViewModel.cs" />
     <Compile Include="ViewModel\RacunarViewModel.cs" />
     <Compile Include="ViewModel\RadiViewModel.cs" />
+    <Compile Include="ViewModel\RegistracijaViewModel.cs" />
     <Compile Include="ViewModel\SastojiSeViewModel.cs" />
     <Compile Include="ViewModel\ServiserRacunaraViewModel.cs" />
     <Compile Include="ViewModel\ServisiraViewModel.cs" />
     <Compile Include="ViewModel\ServisViewModel.cs" />
     <Compile Include="ViewModel\VlasnikRacunaraViewModel.cs" />
+    <Compile Include="ViewModel\WelcomeViewModel.cs" />
     <Compile Include="View\DonosiView.xaml.cs">
       <DependentUpon>DonosiView.xaml</DependentUpon>
     </Compile>
@@ -90,6 +95,9 @@
     <Compile Include="View\RadiView.xaml.cs">
       <DependentUpon>RadiView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\RegistracijaView.xaml.cs">
+      <DependentUpon>RegistracijaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SastojiSeView.xaml.cs">
       <DependentUpon>SastojiSeView.xaml</DependentUpon>
     </Compile>
@@ -104,6 +112,9 @@
     </Compile>
     <Compile Include="View\VlasnikRacunaraView.xaml.cs">
       <DependentUpon>VlasnikRacunaraView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WelcomeWindow.xaml.cs">
+      <DependentUpon>WelcomeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="VML\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
@@ -148,6 +159,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\RegistracijaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SastojiSeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -165,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\VlasnikRacunaraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WelcomeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,6 +207,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -202,6 +222,8 @@
       <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Media\e8a87771fafda0cbb812f38e3f6c9afe.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

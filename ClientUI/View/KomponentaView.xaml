@@ -16,7 +16,7 @@
                     <DataGridTextColumn Header="ID Komponente" FontWeight="Bold" Foreground="Black" Binding="{Binding Id_komp}" Width="*"/>
                     <DataGridTextColumn Header="Naziv" FontWeight="Bold" Foreground="Black"  Binding="{Binding Naz_komp}" Width="*"/>
                     <DataGridTextColumn Header="CIjena[RSD]" FontWeight="Bold" Foreground="Black" Binding="{Binding Cijena_komp}" Width="*"/>
-                    <DataGridTextColumn Header="Ugradjena u racunar [ID]" FontWeight="Bold" Foreground="Black" Binding="{Binding RacunarID_racunara}" Width="*"/>
+                    <DataGridTextColumn Header="Ugrađena u računar [ID]" FontWeight="Bold" Foreground="Black" Binding="{Binding RacunarID_racunara}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Separator Height="10" Visibility="Hidden"/>
@@ -40,7 +40,7 @@
                     </StackPanel>
                     <Separator Width="2" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="textBlockVrsta" Text="ID racunara:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBlock x:Name="textBlockVrsta" Text="ID računara:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <ComboBox x:Name="cmbBoxVrsta_racunara" Height="34" Width="160" VerticalContentAlignment="Center" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding RacunarIDs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CmbBoxID_racunara}"/>
                     </StackPanel>
                 </StackPanel>
@@ -57,11 +57,11 @@
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/>
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnUpdate" Content="Azuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
+                        <Button x:Name="btnUpdate" Content="Ažuriraj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/>
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnDelete" Content="Obrisi" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="100" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
+                        <Button x:Name="btnDelete" Content="Obriši" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="100" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
                     </Border>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">

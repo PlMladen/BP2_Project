@@ -32,6 +32,7 @@ namespace Server.Repos
             return dbCtx.SaveChanges() > 0;
         }
 
+       
         public Common.Models.Radi Get(long jmbgServisera, int idServisa)
         {
             var radiFromDb = dbCtx.RadiSet.FirstOrDefault(s => s.Racunarski_servisID_servisa == idServisa && s.Serviser_racunaraJMBG_s == jmbgServisera);

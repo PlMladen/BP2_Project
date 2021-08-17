@@ -24,13 +24,15 @@ namespace ClientUI.ViewModel
 
 
         private string lbl;
-
+        private string ulogaKorisnika = string.Empty;
+        private string autorizacija = string.Empty;
         public MyICommand DeleteCommand { get; set; }
         public MyICommand AddCommand { get; set; }
         public MyICommand UpdateCommand { get; set; }
 
-        public RadiViewModel()
+        public RadiViewModel(string uloga)
         {
+            UlogaKorisnika = uloga;
             DeleteCommand = new MyICommand(OnDelete, CanDelete);
             AddCommand = new MyICommand(OnAdd, CanAdd);
             UpdateCommand = new MyICommand(OnUpdate, CanUpdate);
@@ -85,7 +87,26 @@ namespace ClientUI.ViewModel
                 UpdateCommand.RaiseCanExecuteChanged();
             }
         }
-
+        public string UlogaKorisnika
+        {
+            get => ulogaKorisnika;
+            set
+            {
+                ulogaKorisnika = value;
+                Autorizacija = ulogaKorisnika.Equals("Administrator") ? "Visible" : "Hidden";
+                OnPropertyChanged("UlogaKorisnika");
+                OnPropertyChanged("Autorizacija");
+            }
+        }
+        public string Autorizacija
+        {
+            get => autorizacija;
+            set
+            {
+                autorizacija = value;
+                OnPropertyChanged("Autorizacija");
+            }
+        }
         public List<string> Servisi
         {
             get => new List<string>(DatabaseServiceProvider.Instance.GetAllServiss().Where(x => x.Tip_serv == Tip_servisa.Servis_racunara).Select(x => String.Format(x.ID_servisa + "\n" + x.Naziv_serv)));

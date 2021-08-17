@@ -120,5 +120,50 @@ namespace Server.Repos
             }
             return retVal;
         }
+
+        public IEnumerable<Common.Models.Racunar> GetAllMy(long idVlasnika)
+        {
+            var retVal = new List<Common.Models.Racunar>();
+            foreach (var racunarFromDb in dbCtx.RacunarSet.ToList())
+            {
+                if (racunarFromDb.Posjeduje.Any(_ => _.Vlasnik_racunaraJMBG_vl == idVlasnika))
+                {
+                    var racunar = new Common.Models.Racunar()
+                    {
+                        ID_racunara = racunarFromDb.ID_racunara,
+                        Proizvodjac = racunarFromDb.Proizvodjac,
+                        Kapacitet_RAM = racunarFromDb.Kapacitet_RAM,
+                        Kapacitet_memorije = racunarFromDb.Kapacitet_memorije,
+                        Brzina_procesora = racunarFromDb.Brzina_procesora,
+                        Vrsta_racunara = (Common.Models.Vrsta_racunara)racunarFromDb.Vrsta_racunara
+
+                    };
+                    retVal.Add(racunar);
+                }
+            }
+            return retVal;
+        }
+        public IEnumerable<Common.Models.Racunar> GetAllNeprodatiRacunari()
+        {
+            var retVal = new List<Common.Models.Racunar>();
+            foreach (var racunarFromDb in dbCtx.RacunarSet.ToList())
+            {
+                if (racunarFromDb.Posjeduje.Count == 0)
+                {
+                    var racunar = new Common.Models.Racunar()
+                    {
+                        ID_racunara = racunarFromDb.ID_racunara,
+                        Proizvodjac = racunarFromDb.Proizvodjac,
+                        Kapacitet_RAM = racunarFromDb.Kapacitet_RAM,
+                        Kapacitet_memorije = racunarFromDb.Kapacitet_memorije,
+                        Brzina_procesora = racunarFromDb.Brzina_procesora,
+                        Vrsta_racunara = (Common.Models.Vrsta_racunara)racunarFromDb.Vrsta_racunara
+
+                    };
+                    retVal.Add(racunar);
+                }
+            }
+            return retVal;
+        }
     }
 }

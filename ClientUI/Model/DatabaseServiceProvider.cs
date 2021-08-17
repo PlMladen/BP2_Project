@@ -80,6 +80,14 @@ namespace ClientUI
         {
             return proxy.GetAllRacunari();
         }
+        public IEnumerable<Racunar> GetAllMojiRacunari(long idVlasnika)
+        {
+            return proxy.GetAllMojiRacunari(idVlasnika);
+        }
+        public IEnumerable<Racunar> GetAllNeprodatiRacunari()
+        {
+            return proxy.GetAllNeprodatiRacunari();
+        }
 
         public Racunar GetRacunar(int idRacunara)
         {
@@ -327,6 +335,26 @@ namespace ClientUI
         public int ReturnCountOfAdultOwners()
         {
             return proxy.ReturnCountOfAdultOwners();
+        }
+        public bool PrijaviKorisnika(string korisnickoIme, string loznika)
+        {
+            return proxy.PrijaviKorisnika(korisnickoIme, loznika);
+        }
+        public bool RegistrujKorisnika(Korisnik korisnik)
+        {
+            return proxy.RegistrujKorisnika(korisnik);
+        }
+        public string VratiUloguKorisnika(string korisnickoIme)
+        {
+            return proxy.VratiUloguKorisnika(korisnickoIme);
+        }
+        public long VratiJMBGVlasnika(string korisnickoIme)
+        {
+            return proxy.VratiJMBGVlasnika(korisnickoIme);
+        }
+        public long VratiIDServisa(long jmbgServisera)
+        {
+            return proxy.VratiIdServisa(jmbgServisera);
         }
     }
 }

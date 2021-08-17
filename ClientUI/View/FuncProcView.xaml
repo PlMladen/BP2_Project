@@ -27,7 +27,7 @@
                     </StackPanel>
                     <Separator Width="2" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="textBlockRac" Text="Tip racunara:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBlock x:Name="textBlockRac" Text="Tip računara:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <ComboBox x:Name="cmbBoxRacunar" Height="44" Width="160" VerticalContentAlignment="Center" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding VrsteRacunara, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CmbBoxVrsteRacunara}"/>
                     </StackPanel>
                 </StackPanel>
@@ -35,7 +35,7 @@
                 <StackPanel Orientation="Vertical">
                     <Separator Visibility="Hidden" Height="25"></Separator>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="textBrRac" Text="Broj racunara:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
+                        <TextBlock x:Name="textBrRac" Text="Broj računara:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
                         <TextBlock x:Name="txtBoxRacunar" Height="34" Width="160"  Foreground="#FF3AFF00"  FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="8" Text="{Binding BrojRacunara, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </StackPanel>
@@ -45,7 +45,7 @@
                     
                     <StackPanel Orientation="Horizontal">
                         <Border Height="44" Width="130" BorderBrush="#FF3AFF00" BorderThickness="2">
-                            <Button x:Name="btnBrRac" Content="Vrati broj racunara" Width="130" Foreground="White" Height="44" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding RetNumPCCommand}" Margin="0,0,-4,-4" VerticalAlignment="Top"  />
+                            <Button x:Name="btnBrRac" Content="Vrati broj računara" Width="130" Foreground="White" Height="44" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding RetNumPCCommand}" Margin="0,0,-4,-4" VerticalAlignment="Top"  />
                         </Border>
                     </StackPanel>
                 </StackPanel>
@@ -116,7 +116,7 @@
             <StackPanel Orientation="Vertical">
                 <Separator Visibility="Hidden" Height="26"></Separator>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock x:Name="textBrRac12" Text="Broj punoljetnih vlasnika racunara:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Left"  FontWeight="Bold" FontSize="12" Width="275" VerticalAlignment="Center"  Height="34" TextAlignment="Left" />
+                    <TextBlock x:Name="textBrRac12" Text="Broj punoljetnih vlasnika računara:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Left"  FontWeight="Bold" FontSize="12" Width="275" VerticalAlignment="Center"  Height="34" TextAlignment="Left" />
                     <TextBlock x:Name="txtBoxRac2" Height="54" Width="350"  Foreground="#FF3AFF00"  FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="18" Text="{Binding BrPunVl, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <Separator Visibility="Hidden" Width="50"></Separator>
                     <StackPanel Orientation="Vertical">

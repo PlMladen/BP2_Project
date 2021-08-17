@@ -12,10 +12,15 @@ namespace ClientUI.ViewModel
 {
     public class ServisiraViewModel : BindableBase 
     {
-        private ObservableCollection<Servisira> servisiraSet = new ObservableCollection<Servisira>(DatabaseServiceProvider.Instance.GetAllServisira());
+        private ObservableCollection<Servisira> servisiraSet;
         private Servisira selectedServisira;
-        private static List<string> donosiSet = new List<string>(DatabaseServiceProvider.Instance.GetAllDonosi().Select(x => String.Format("Servis:"+x.Racunarski_servisID_servisa + " Vlasnik:" + x.PosjedujeVlasnik_racunaraJMBG_vl + " Racunar:" + x.PosjedujeRacunarID_racunara)));
-        private static List<string> radiSet = new List<string>(DatabaseServiceProvider.Instance.GetAllRadi().Select(x => String.Format("Servis:"+x.Racunarski_servisID_servisa1 + " Serviser:" + x.Serviser_racunaraJMBG_s)));
+        private static List<string> donosiSet = MainWindow.Uloga.Equals("Serviser_racunara") ? 
+            new List<string>(DatabaseServiceProvider.Instance.GetAllDonosi().Where(_ => _.Racunarski_servisID_servisa == DatabaseServiceProvider.Instance.VratiIDServisa(MainWindow.IdVlasnika
+                )).Select(x => String.Format("Servis:"+x.Racunarski_servisID_servisa + " Vlasnik:" + x.PosjedujeVlasnik_racunaraJMBG_vl + " Racunar:" + x.PosjedujeRacunarID_racunara))) :
+            new List<string>(DatabaseServiceProvider.Instance.GetAllDonosi().Select(x => String.Format("Servis:"+x.Racunarski_servisID_servisa + " Vlasnik:" + x.PosjedujeVlasnik_racunaraJMBG_vl + " Racunar:" + x.PosjedujeRacunarID_racunara)));
+        private static List<string> radiSet = MainWindow.Uloga.Equals("Serviser_racunara") ?
+            new List<string>(DatabaseServiceProvider.Instance.GetAllRadi().Where(_ => _.Serviser_racunaraJMBG_s == MainWindow.IdVlasnika).Select(x => String.Format("Servis:"+x.Racunarski_servisID_servisa1 + " Serviser:" + x.Serviser_racunaraJMBG_s))) :
+            new List<string>(DatabaseServiceProvider.Instance.GetAllRadi().Select(x => String.Format("Servis:"+x.Racunarski_servisID_servisa1 + " Serviser:" + x.Serviser_racunaraJMBG_s)));
         private static List<string> garantniListovi = new List<string>(DatabaseServiceProvider.Instance.GetAllGarantni_listove().Select(x => String.Format("ID:"+x.Id_gar_list)));
 
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
@@ -23,6 +28,8 @@ namespace ClientUI.ViewModel
         private string cmbBoxDonosi;
         private string cmbBoxRadi;
         private string cmbBoxGar_listovi;
+        private string autorizacija;
+        private string ulogaKorisnika;
         private DateTime dpDat_s = DateTime.Now;
 
 
@@ -33,8 +40,18 @@ namespace ClientUI.ViewModel
         public MyICommand AddCommand { get; set; }
         public MyICommand UpdateCommand { get; set; }
 
-        public ServisiraViewModel()
+        public ServisiraViewModel(string uloga)
         {
+            if(uloga.Equals("Vlasnik_racunara"))
+                ServisiraSet = new ObservableCollection<Servisira>(DatabaseServiceProvider.Instance.GetAllServisira().
+                               Where(_ => _.DonosiPosjedujeVlasnik_racunaraJMBG_vl == MainWindow.IdVlasnika));
+            else if(uloga.Equals("Serviser_racunara"))
+                ServisiraSet = new ObservableCollection<Servisira>(DatabaseServiceProvider.Instance.GetAllServisira().
+                               Where(_ => _.RadiServiser_racunaraJMBG_s == MainWindow.IdVlasnika));
+            else
+                ServisiraSet = new ObservableCollection<Servisira>(DatabaseServiceProvider.Instance.GetAllServisira());
+
+            UlogaKorisnika = uloga;
             DeleteCommand = new MyICommand(OnDelete, CanDelete);
             AddCommand = new MyICommand(OnAdd, CanAdd);
             UpdateCommand = new MyICommand(OnUpdate, CanUpdate);
@@ -45,7 +62,14 @@ namespace ClientUI.ViewModel
         {
             get
             {
-                return new ObservableCollection<Servisira>(DatabaseServiceProvider.Instance.GetAllServisira());
+                if (MainWindow.Uloga.Equals("Vlasnik_racunara"))
+                    return new ObservableCollection<Servisira>(DatabaseServiceProvider.Instance.GetAllServisira().
+                                   Where(_ => _.DonosiPosjedujeVlasnik_racunaraJMBG_vl == MainWindow.IdVlasnika));
+                else if (MainWindow.Uloga.Equals("Serviser_racunara"))
+                    return new ObservableCollection<Servisira>(DatabaseServiceProvider.Instance.GetAllServisira().
+                                   Where(_ => _.RadiServiser_racunaraJMBG_s == MainWindow.IdVlasnika));
+                else
+                    return  new ObservableCollection<Servisira>(DatabaseServiceProvider.Instance.GetAllServisira());
             }
             set
             {
@@ -94,7 +118,10 @@ namespace ClientUI.ViewModel
 
         public List<string> DonosiSet
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllDonosi().Select(x => String.Format("Servis:" + x.Racunarski_servisID_servisa + " Vlasnik:" + x.PosjedujeVlasnik_racunaraJMBG_vl + " Racunar:" + x.PosjedujeRacunarID_racunara)));
+            get => MainWindow.Uloga.Equals("Serviser_racunara") ?
+            new List<string>(DatabaseServiceProvider.Instance.GetAllDonosi().Where(_ => _.Racunarski_servisID_servisa == DatabaseServiceProvider.Instance.VratiIDServisa(MainWindow.IdVlasnika
+                )).Select(x => String.Format("Servis:" + x.Racunarski_servisID_servisa + " Vlasnik:" + x.PosjedujeVlasnik_racunaraJMBG_vl + " Racunar:" + x.PosjedujeRacunarID_racunara))) :
+            new List<string>(DatabaseServiceProvider.Instance.GetAllDonosi().Select(x => String.Format("Servis:" + x.Racunarski_servisID_servisa + " Vlasnik:" + x.PosjedujeVlasnik_racunaraJMBG_vl + " Racunar:" + x.PosjedujeRacunarID_racunara)));
             set
             {
                 if (donosiSet != value)
@@ -104,6 +131,27 @@ namespace ClientUI.ViewModel
                     AddCommand.RaiseCanExecuteChanged();
                     UpdateCommand.RaiseCanExecuteChanged();
                 }
+            }
+        }
+
+        public string UlogaKorisnika
+        {
+            get => ulogaKorisnika;
+            set
+            {
+                ulogaKorisnika = value;
+                Autorizacija = !ulogaKorisnika.Equals("Vlasnik_racunara") ? "Visible" : "Hidden";
+                OnPropertyChanged("UlogaKorisnika");
+                OnPropertyChanged("Autorizacija");
+            }
+        }
+        public string Autorizacija
+        {
+            get => autorizacija;
+            set
+            {
+                autorizacija = value;
+                OnPropertyChanged("Autorizacija");
             }
         }
         public DateTime DpDat_s
@@ -137,7 +185,9 @@ namespace ClientUI.ViewModel
 
         public List<string> RadiSet
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllRadi().Select(x => String.Format("Servis:" + x.Racunarski_servisID_servisa1 + " Serviser:" + x.Serviser_racunaraJMBG_s)));
+            get => MainWindow.Uloga.Equals("Serviser_racunara") ?
+            new List<string>(DatabaseServiceProvider.Instance.GetAllRadi().Where(_ => _.Serviser_racunaraJMBG_s == MainWindow.IdVlasnika).Select(x => String.Format("Servis:" + x.Racunarski_servisID_servisa1 + " Serviser:" + x.Serviser_racunaraJMBG_s))) :
+            new List<string>(DatabaseServiceProvider.Instance.GetAllRadi().Select(x => String.Format("Servis:" + x.Racunarski_servisID_servisa1 + " Serviser:" + x.Serviser_racunaraJMBG_s)));
             set
             {
                 if (radiSet != value)
