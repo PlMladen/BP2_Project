@@ -1,4 +1,5 @@
 ﻿using ClientUI.View;
+using Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,15 +23,17 @@ namespace ClientUI
     public partial class MainWindow : Window
     {
         public static string Uloga = string.Empty;
+        public static string KIme = string.Empty;
         public static long IdVlasnika = 0;
         public MainWindow(string s, string korisnickoIme, long jmbg)
         {
             Uloga = s;
+            KIme = korisnickoIme;
             if(Uloga.Equals("Vlasnik_racunara") || Uloga.Equals("Serviser_racunara"))
             IdVlasnika = jmbg;
             InitializeComponent();
             DobrodosliLbl.Content = "Dobrodošli, " + korisnickoIme;
-            OdjavaBtn.Content = "Odjava";
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -43,6 +46,13 @@ namespace ClientUI
             WelcomeWindow welcomeWindow = new WelcomeWindow();
             welcomeWindow.Show();
             this.Close();
+        }
+
+        private void ProfilBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Korisnik k = DatabaseServiceProvider.Instance.VratiKorisnika(MainWindow.KIme);
+            ProfilView profilView = new ProfilView(k);
+            profilView.ShowDialog();
         }
     }
 }

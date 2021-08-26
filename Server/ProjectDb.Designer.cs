@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Server\ProjectDb.edmx'. 
+﻿// T4 code generation is enabled for model 'G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Server\ProjectDb.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

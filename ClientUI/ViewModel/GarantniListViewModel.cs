@@ -16,7 +16,7 @@ namespace ClientUI.ViewModel
         private Garantni_list selectedGList;
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
         //private string txTBoxIDGL;
-        private string lbl;
+        private string lbl = "";
         private DateTime dpVaziDo = DateTime.Now;
         private bool canEdit;
 

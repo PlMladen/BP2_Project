@@ -71,6 +71,9 @@
     <Compile Include="Komponenta.cs">
       <DependentUpon>ProjectDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="KorisnikUpit.cs">
+      <DependentUpon>ProjectDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="MasterRepository.cs" />
     <Compile Include="Posjeduje.cs">
       <DependentUpon>ProjectDb.tt</DependentUpon>

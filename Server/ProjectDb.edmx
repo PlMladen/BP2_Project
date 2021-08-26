@@ -760,6 +760,13 @@
           <Property Type="Int64" Name="JMBG_vlasnika" Nullable="false" />
           <Property Type="Double" Name="Cijena" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="KorisnikUpit" >
+          <Property Type="Int64" Name="JMBGKorisnika" Nullable="false" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" />
+          <Property Type="String" Name="Lozinka" Nullable="false" />
+          <Property Type="String" Name="Uloga" Nullable="false" />
+          <Property Type="Boolean" Name="ProfilOdobren" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

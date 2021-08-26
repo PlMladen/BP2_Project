@@ -28,6 +28,12 @@ namespace Common.Interfaces
         [OperationContract]
         string VratiUloguKorisnika(string korisnickoIme);
         [OperationContract]
+        bool VratiAktivnostProfilaKorisnika(string korisnickoIme);
+        [OperationContract]
+        bool VratiAktivnostProfilaKorisnikaJmbg(long jmbg);
+        [OperationContract]
+        bool PromijeniAktivnostProfilaKorisnika(long korisnickoIme, bool odobren);
+        [OperationContract]
         long VratiJMBGVlasnika(string korisnickoIme);
         [OperationContract]
         IEnumerable<Racunar> GetAllMojiRacunari(long idVlasnika);
@@ -35,5 +41,7 @@ namespace Common.Interfaces
         IEnumerable<Racunar> GetAllNeprodatiRacunari();
         [OperationContract]
         int VratiIdServisa(long jmbgServisera);
+        [OperationContract]
+        Korisnik VratiKorisnika(string korisnickoIme);
     }
 }

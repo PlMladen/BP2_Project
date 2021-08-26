@@ -5,24 +5,27 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ClientUI.View"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="900">
-    <Grid>
-        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center">
-            <Label x:Name="lblNetData" HorizontalAlignment="Center" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Content="Komponente "/>
-            <Separator Height="4" />
-            <DataGrid x:Name="dataGridSerRacunaraData" Background="Black" BorderThickness="2" BorderBrush="#FF3AFF00" AutoGenerateColumns="False" ItemsSource="{Binding Path=Komponente, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedKomponenta}" Height="300" Width="860" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Grid Margin="5 5 5 5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label x:Name="lblNetData" Grid.Row="0" HorizontalAlignment="Center" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Content="Komponente "/>
 
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID Komponente" FontWeight="Bold" Foreground="Black" Binding="{Binding Id_komp}" Width="*"/>
-                    <DataGridTextColumn Header="Naziv" FontWeight="Bold" Foreground="Black"  Binding="{Binding Naz_komp}" Width="*"/>
-                    <DataGridTextColumn Header="CIjena[RSD]" FontWeight="Bold" Foreground="Black" Binding="{Binding Cijena_komp}" Width="*"/>
-                    <DataGridTextColumn Header="Ugrađena u računar [ID]" FontWeight="Bold" Foreground="Black" Binding="{Binding RacunarID_racunara}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Separator Height="10" Visibility="Hidden"/>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+        <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Stretch">
+            <Separator Height="14" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            
                 <Separator Width="5" Visibility="Hidden"/>
-                <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" Grid.Column="0">
                     <Separator Height="10" Visibility="Hidden"></Separator>
                     <!--StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockProizvodjac" Text="ID Komponente:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="140" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
@@ -47,11 +50,13 @@
 
 
                 <Separator Width="5" Visibility="Hidden"/>
-                <StackPanel Width="455">
-                    <TextBlock x:Name="lblDodat" Width="455" VerticalAlignment="Top" Padding="10"  Height="150" Foreground="{Binding Path=Foreground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=LBL, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"/>
+                <StackPanel Width="255" Grid.Column="1" VerticalAlignment="Center">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Width="Auto" VerticalAlignment="Center" MinHeight="140" MaxWidth="350">
+                        <TextBlock x:Name="lblDodat" TextWrapping="Wrap"  Width="255" VerticalAlignment="Top" Padding="10"  Height="150" Foreground="{Binding Path=Foreground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=LBL, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"/>
+                    </ScrollViewer>
                 </StackPanel>
                 <Separator Width="5" Visibility="Hidden"/>
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="2">
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
                         <Button x:Name="btnAdd" Content="Dodaj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding AddCommand}"  />
                     </Border>
@@ -67,7 +72,17 @@
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="" Width="13"/>
                 </StackPanel>
-            </StackPanel>
+            </Grid>
+            <Separator Height="20"></Separator>
         </StackPanel>
+        <DataGrid x:Name="dataGridSerRacunaraData" Background="Black" BorderThickness="2" BorderBrush="#FF3AFF00" AutoGenerateColumns="False" ItemsSource="{Binding Path=Komponente, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedKomponenta}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID Komponente" FontWeight="Bold" Foreground="Black" Binding="{Binding Id_komp}" Width="*"/>
+                <DataGridTextColumn Header="Naziv" FontWeight="Bold" Foreground="Black"  Binding="{Binding Naz_komp}" Width="*"/>
+                <DataGridTextColumn Header="CIjena[RSD]" FontWeight="Bold" Foreground="Black" Binding="{Binding Cijena_komp}" Width="*"/>
+                <DataGridTextColumn Header="Ugrađena u računar [ID]" FontWeight="Bold" Foreground="Black" Binding="{Binding RacunarID_racunara}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

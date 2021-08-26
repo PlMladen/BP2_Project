@@ -32,6 +32,8 @@ namespace Common.Interfaces
         bool DeleteDonosi(long jmbgVl, int idRacunara, int idServisa);
         [OperationContract]
         bool DeleteServisira(long jmbgVl, int idRacunara, int idServisa, long jmbgS);
+        [OperationContract]
+        bool ObrisiKorisnika(long korisnickoIme);
 
     }
 }

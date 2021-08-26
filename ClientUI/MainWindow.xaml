@@ -7,7 +7,8 @@
         xmlns:viewmodel="clr-namespace:ClientUI.ViewModel"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="BP2_Project_ClientUI" Height="700" Width="950" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow" Background="Black">
+        AllowsTransparency="False"
+        Title="BP2_Project_ClientUI" MinHeight="400" MinWidth="1150" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow" Background="Black">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
@@ -49,31 +50,42 @@
             <views:FuncProcView/>
         </DataTemplate>
     </Window.Resources>
+    
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
         <Label Name="DobrodosliLbl" Grid.Row="0" Margin="10" Foreground="#FF3AFF00" FontSize="18" FontWeight="Bold" FontStyle="Italic" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        <Button x:Name="OdjavaBtn" Grid.Row="0" Content="" Width="138" Height="22" Margin="0 0 15 0" HorizontalAlignment="Right" Background="Transparent" BorderThickness="1" BorderBrush="#FF3AFF00" Foreground="#FF3AFF00" Click="OdjavaBtn_Click"></Button>
-        <DockPanel Grid.Row="1" Margin="5" HorizontalAlignment="Center">
-            <Menu DockPanel.Dock="Top" Background="Transparent" BorderBrush="#FF3AFF00" BorderThickness="2">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="ProfilBtn" Grid.Row="0"  Width="138" Height="22" Style="{StaticResource HyperlinkLikeButton}" VerticalContentAlignment="Center" BorderThickness="0" Foreground="#FF3AFF00" Click="ProfilBtn_Click">
+                <TextBlock VerticalAlignment="Center" Text="Profil" HorizontalAlignment="Center" FontWeight="Bold" FontStyle="Italic">
+                </TextBlock>
+            </Button>
+            <Button x:Name="OdjavaBtn" Grid.Row="0"  Width="138" Height="22" Style="{StaticResource HyperlinkLikeButton}" VerticalContentAlignment="Center" BorderThickness="0" Foreground="#FF3AFF00" Click="OdjavaBtn_Click">
+                <TextBlock VerticalAlignment="Center" Text="Odjava" HorizontalAlignment="Center" FontWeight="Bold" FontStyle="Italic">
+                </TextBlock>
+            </Button>
+            
+        </StackPanel>
+        <DockPanel Grid.Row="1" HorizontalAlignment="Center">
+            <Menu DockPanel.Dock="Top" Background="Transparent" BorderBrush="#FF3AFF00" BorderThickness="2" HorizontalAlignment="Stretch">
                 <MenuItem Header="Servisi" BorderThickness="1" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" Command="{Binding NavCommand}" CommandParameter="Servis view"/>
                 <!--MenuItem Header="Racunarski servisi" Foreground="#FF3AFF00" Command="{Binding NavCommand}" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="RServis view"/>
                 <MenuItem Header="Servisi mob telefona" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="MServis view"/-->
-                <MenuItem Header="Racunari" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Racunari view"/>
+                <MenuItem Header="Racunari" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Racunari view" Visibility="{Binding Path=AutorizacijaSA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <MenuItem Header="Vlasnici racunara" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="VLRacunara view" Visibility="{Binding Path=Autorizacija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <MenuItem Header="Serviseri racunara" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="SerRacunara view" Visibility="{Binding Path=Autorizacija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <MenuItem Header="Komponente" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Komponente view"/>
+                <MenuItem Header="Komponente" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Komponente view" Visibility="{Binding Path=AutorizacijaSA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <MenuItem Header="Garantni listovi" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Gar list view" Visibility="{Binding Path=AutorizacijaSA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <MenuItem Header="PosjedujeSet" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Posjeduje view"/>
-                <MenuItem Header="SastojiSeSet" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="SastojiSe view"/>
-                <MenuItem Header="RadiSet" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Radi view"/>
-                <MenuItem Header="DonosiSet" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Donosi view"/>
-                <MenuItem Header="ServisiraSet" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Servisira view"/>
+                <MenuItem Header="{Binding Path=MeniStavkaPosjeduje, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Posjeduje view"/>
+                <MenuItem Header="Ugradnja komponenti" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="SastojiSe view" Visibility="{Binding Path=AutorizacijaSA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <MenuItem Header="Zapošljavanje servisera" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Radi view" Visibility="{Binding Path=Autorizacija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <MenuItem Header="{Binding Path=MeniStavkaDonosi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Donosi view"/>
+                <MenuItem Header="Servisiranja" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Servisira view"/>
                 <MenuItem Header="FuncProc" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="FuncProc view" Visibility="{Binding Path=Autorizacija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </Menu>
         </DockPanel>

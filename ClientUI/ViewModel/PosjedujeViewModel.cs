@@ -26,6 +26,7 @@ namespace ClientUI.ViewModel
         
         private string cmbBoxID_racunara;
         private string cmbBoxJMBG_Vl;
+        private string labelaPosjeduje;
         
 
         private string lbl;
@@ -37,6 +38,8 @@ namespace ClientUI.ViewModel
 
         public PosjedujeViewModel()
         {
+            LabelaPosjeduje = MainWindow.Uloga.Equals("Administrator") || MainWindow.Uloga.Equals("Serviser_racunara") ? "Dodijeli računar vlasniku" : "Kupi računar";
+
             DeleteCommand = new MyICommand(OnDelete, CanDelete);
             AddCommand = new MyICommand(OnAdd, CanAdd);
             UpdateCommand = new MyICommand(OnUpdate, CanUpdate);
@@ -159,6 +162,15 @@ namespace ClientUI.ViewModel
                 OnPropertyChanged("LBL");
             }
         }
+        public string LabelaPosjeduje
+        {
+            get => labelaPosjeduje;
+            set
+            {
+                labelaPosjeduje = value;
+                OnPropertyChanged("LabelaPosjeduje");
+            }
+        }
         private bool CanDelete()
         {
             return SelectedPosjeduje != null;
@@ -209,6 +221,7 @@ namespace ClientUI.ViewModel
                     LBL = "Racunar " + CmbBoxID_racunara + " uspjesno dodat vlasniku " + CmbBoxJMBG_Vl;
                     Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
                     PosjedujeSet = new ObservableCollection<Posjeduje>(DatabaseServiceProvider.Instance.GetAllPosjeduje());
+                    Racunari = new List<string>(DatabaseServiceProvider.Instance.GetAllNeprodatiRacunari().Select(x => String.Format(x.ID_racunara + "\n" + x.Proizvodjac)));
 
                 }
                 else
@@ -237,6 +250,7 @@ namespace ClientUI.ViewModel
                 LBL = "Racunar " + CmbBoxID_racunara + " uspjesno azuriran za vlasnika " + CmbBoxJMBG_Vl;
                 Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
                 PosjedujeSet = new ObservableCollection<Posjeduje>(DatabaseServiceProvider.Instance.GetAllPosjeduje());
+                Racunari = new List<string>(DatabaseServiceProvider.Instance.GetAllNeprodatiRacunari().Select(x => String.Format(x.ID_racunara + "\n" + x.Proizvodjac)));
 
             }
             catch (Exception e)

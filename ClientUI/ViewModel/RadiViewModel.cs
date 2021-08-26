@@ -26,6 +26,7 @@ namespace ClientUI.ViewModel
         private string lbl;
         private string ulogaKorisnika = string.Empty;
         private string autorizacija = string.Empty;
+        private int autorizacijaRaspored = 2;
         public MyICommand DeleteCommand { get; set; }
         public MyICommand AddCommand { get; set; }
         public MyICommand UpdateCommand { get; set; }
@@ -94,8 +95,10 @@ namespace ClientUI.ViewModel
             {
                 ulogaKorisnika = value;
                 Autorizacija = ulogaKorisnika.Equals("Administrator") ? "Visible" : "Hidden";
+                AutorizacijaRaspored = ulogaKorisnika.Equals("Administrator") ? 2 : 1;
                 OnPropertyChanged("UlogaKorisnika");
                 OnPropertyChanged("Autorizacija");
+                OnPropertyChanged("AutorizacijaRaspored");
             }
         }
         public string Autorizacija
@@ -105,6 +108,15 @@ namespace ClientUI.ViewModel
             {
                 autorizacija = value;
                 OnPropertyChanged("Autorizacija");
+            }
+        }
+        public int AutorizacijaRaspored
+        {
+            get => autorizacijaRaspored;
+            set
+            {
+                autorizacijaRaspored = value;
+                OnPropertyChanged("AutorizacijaRaspored");
             }
         }
         public List<string> Servisi
@@ -220,6 +232,7 @@ namespace ClientUI.ViewModel
                     LBL = "Serviser " + CmbBoxID_Servisera + " uspjesno zaposlen u servis " + CmbBoxID_Servisa;
                     Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
                     RadiSet = new ObservableCollection<Radi>(DatabaseServiceProvider.Instance.GetAllRadi());
+                    Serviseri = new List<string>(DatabaseServiceProvider.Instance.GetAllServiseriRacunara().Select(x => String.Format(x.JMBG_s + "\n" + x.Ime_s + " " + x.Prezime_s)));
 
                 }
                 else
@@ -266,6 +279,7 @@ namespace ClientUI.ViewModel
                 LBL = "Asocijacija sa kljucem " + CmbBoxID_Servisera + "-" + CmbBoxID_Servisa + " uspjesno azurirana";
                 Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
                 RadiSet = new ObservableCollection<Radi>(DatabaseServiceProvider.Instance.GetAllRadi());
+                Serviseri = new List<string>(DatabaseServiceProvider.Instance.GetAllServiseriRacunara().Select(x => String.Format(x.JMBG_s + "\n" + x.Ime_s + " " + x.Prezime_s)));
 
             }
             catch (Exception e)

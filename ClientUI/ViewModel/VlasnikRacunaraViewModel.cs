@@ -16,6 +16,7 @@ namespace ClientUI.ViewModel
         private ObservableCollection<Vlasnik_racunara> vlasnici = new ObservableCollection<Vlasnik_racunara>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara());
         private Vlasnik_racunara selectedVlasnik;
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+        private Brush okvirBoja = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
         private string txTBoxJMBG_Vl;
         private string txTBoxIme_vl;
         private string txtBoxPrezime_vl;
@@ -25,6 +26,7 @@ namespace ClientUI.ViewModel
         private string txtBoxAdresaVl_PTTBroj;
 
         private string lbl = string.Empty;
+        private string dugmeContent = string.Empty;
         private DateTime dpDat_rodj_vl = DateTime.Now;
         private bool canEdit;
 
@@ -46,12 +48,14 @@ namespace ClientUI.ViewModel
         public MyICommand DeleteCommand { get; set; }
         public MyICommand AddCommand { get; set; }
         public MyICommand UpdateCommand { get; set; }
+        public MyICommand OdobriCommand { get; set; }
 
         public VlasnikRacunaraViewModel()
         {
             DeleteCommand = new MyICommand(OnDelete, CanDelete);
             AddCommand = new MyICommand(OnAdd, CanAdd);
             UpdateCommand = new MyICommand(OnUpdate, CanUpdate);
+            OdobriCommand = new MyICommand(OnOdobri, CanOdobri);
         }
 
         public ObservableCollection<Vlasnik_racunara> Vlasnici
@@ -82,16 +86,29 @@ namespace ClientUI.ViewModel
                     selectedVlasnik = value;
                     OnPropertyChanged(nameof(SelectedVlasnik));
                     TxTBoxJMBG_Vl = SelectedVlasnik == null ? "1234567891234" : SelectedVlasnik.JMBG_vl.ToString();
-                    TxTBoxIme_vl = SelectedVlasnik == null ? "Ime..." : SelectedVlasnik.Ime_vl;
-                    TxtBoxPrezime_vl = SelectedVlasnik == null ? "Prezime..." : SelectedVlasnik.Prezime_vl;
-                    TxtBoxAdresaVl_Ulica = SelectedVlasnik == null ? "Ulica..." : SelectedVlasnik.Adresa_vl.Ulica;
-                    TxtBoxAdresaVl_Grad = SelectedVlasnik == null ? "Grad..." : SelectedVlasnik.Adresa_vl.Grad;
-                    TxtBoxAdresaVl_Broj = SelectedVlasnik == null ? "123" : SelectedVlasnik.Adresa_vl.Broj.ToString();
-                    TxtBoxAdresaVl_PTTBroj = SelectedVlasnik == null ? "123" : SelectedVlasnik.Adresa_vl.PostanskiBroj.ToString();
+                    TxTBoxIme_vl = SelectedVlasnik == null ? "" : SelectedVlasnik.Ime_vl;
+                    TxtBoxPrezime_vl = SelectedVlasnik == null ? "" : SelectedVlasnik.Prezime_vl;
+                    TxtBoxAdresaVl_Ulica = SelectedVlasnik == null ? "" : SelectedVlasnik.Adresa_vl.Ulica;
+                    TxtBoxAdresaVl_Grad = SelectedVlasnik == null ? "" : SelectedVlasnik.Adresa_vl.Grad;
+                    TxtBoxAdresaVl_Broj = SelectedVlasnik == null ? "" : SelectedVlasnik.Adresa_vl.Broj.ToString();
+                    TxtBoxAdresaVl_PTTBroj = SelectedVlasnik == null ? "" : SelectedVlasnik.Adresa_vl.PostanskiBroj.ToString();
                     DpDat_rodj_vl = SelectedVlasnik == null ? DateTime.Now : SelectedVlasnik.Dat_rodjenja_vl;
-
+                    if (Int64.TryParse(TxTBoxJMBG_Vl, out long jmbg))
+                    {
+                        if (DatabaseServiceProvider.Instance.VratiAktivnostProfilaKorisnikaJmbg(jmbg))
+                        {
+                            OkvirBoja = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00")); 
+                            DugmeContent = "Blokiraj logovanje";
+                        }
+                        else
+                        {
+                            OkvirBoja = Brushes.Red;
+                            DugmeContent = "Odobri logovanje";
+                        }
+                    }
 
                     DeleteCommand.RaiseCanExecuteChanged();
+                    OdobriCommand.RaiseCanExecuteChanged();
                     UpdateCommand.RaiseCanExecuteChanged();
                 }
             }
@@ -105,6 +122,27 @@ namespace ClientUI.ViewModel
                 {
                     foreground = value;
                     OnPropertyChanged("Foreground");
+                }
+            }
+        }
+        public string DugmeContent
+        {
+            get => dugmeContent;
+            set
+            {
+                dugmeContent = value;
+                OnPropertyChanged("DugmeContent");
+            }
+        }
+        public Brush OkvirBoja
+        {
+            get => okvirBoja;
+            set
+            {
+                if (okvirBoja != value)
+                {
+                    okvirBoja = value;
+                    OnPropertyChanged("OkvirBoja");
                 }
             }
         }
@@ -238,7 +276,55 @@ namespace ClientUI.ViewModel
             }
             Vlasnici = new ObservableCollection<Vlasnik_racunara>(DatabaseServiceProvider.Instance.GetAllVlasniciRacunara());
         }
+        private void OnOdobri()
+        {
+            long idVlasnika = SelectedVlasnik.JMBG_vl;
+            bool naredba = false;
+            if (DatabaseServiceProvider.Instance.VratiAktivnostProfilaKorisnikaJmbg(idVlasnika))
+                naredba = false;
+            else
+                naredba = true;
+            if (DatabaseServiceProvider.Instance.PromijeniAktivnostProfilaKorisnika(idVlasnika, naredba))
+            {
+                if (naredba)
+                {
+                    LBL = "Profil vlasnika (JMBG: " + idVlasnika + ") odobren";
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    OkvirBoja = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    DugmeContent = "Blokiraj logovanje";
+                }
+                else
+                {
+                    LBL = "Profil vlasnika (JMBG: " + idVlasnika + ") blokiran";
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
+                    OkvirBoja = Brushes.Red;
+                    DugmeContent = "Odobri logovanje";
+                }
+            }
+            else
+            {
+                if (naredba)
+                {
+                    LBL = "Greska pri odobravanju profila vlasnika - JMBG: " + idVlasnika;
+                    Foreground = Brushes.Red;
+                }
+                else
+                {
 
+                    LBL = "Greska pri blokiranju profila vlasnika - JMBG: " + idVlasnika;
+                    Foreground = Brushes.Red;
+                }
+            }
+            //Serviseri = new ObservableCollection<Serviser_racunara>(DatabaseServiceProvider.Instance.GetAllServiseriRacunara());
+        }
+
+        
+
+        private bool CanOdobri()
+        {
+            return true /*&&
+                    SelectedServiser == null*/;
+        }
         private bool CanAdd()
         {
             return !String.IsNullOrEmpty(TxTBoxJMBG_Vl) &&

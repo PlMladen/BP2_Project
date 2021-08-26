@@ -34,17 +34,18 @@ namespace ClientUI.ViewModel
         }
         private Servis selectedServis;
         private string lbl = string.Empty;
-        private string txTBoxNazivServ = "Naziv...";
-        private string txTBoxAdresaUlica = "Ulica...";
-        private string txTBoxAdresaBroj = "Broj...";
-        private string txTBoxAdresaGrad = "Grad...";
-        private string txTBoxAdresaPPTBroj = "Post. broj...";
-        private string txTBoxBrTelPozBroj = "00381";
-        private string txTBoxBrTelBrojOkruga = "65";
-        private string txTBoxBrTelBroj = "1234567";
+        private string txTBoxNazivServ = "";
+        private string txTBoxAdresaUlica = "";
+        private string txTBoxAdresaBroj = "";
+        private string txTBoxAdresaGrad = "";
+        private string txTBoxAdresaPPTBroj = "";
+        private string txTBoxBrTelPozBroj = "";
+        private string txTBoxBrTelBrojOkruga = "";
+        private string txTBoxBrTelBroj = "";
         private string selectedTypeServis = string.Empty;
         private string ulogaKorisnika = string.Empty;
         private string autorizacija = string.Empty;
+        private int autorizacijaRaspored = 2;
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
 
 
@@ -70,14 +71,14 @@ namespace ClientUI.ViewModel
             set
             {
                 selectedServis = value;
-                TxTBoxNazivServ = SelectedServis == null ? "Naziv..." : SelectedServis.Naziv_serv;
-                TxTBoxAdresaUlica = SelectedServis == null ? "Ulica..." : SelectedServis.Adresa_serv.Ulica;
-                TxTBoxAdresaBroj = SelectedServis == null ? "Broj..." : SelectedServis.Adresa_serv.Broj.ToString();
-                TxTBoxAdresaGrad = SelectedServis == null ? "Grad..." : SelectedServis.Adresa_serv.Grad;
-                TxTBoxAdresaPPTBroj = SelectedServis == null ? "Post. broj..." : SelectedServis.Adresa_serv.PostanskiBroj.ToString();
-                TxTBoxBrTelPozBroj = SelectedServis == null ? "00381" : SelectedServis.Br_tel_serv.Pozivni_broj.ToString();
-                TxTBoxBrTelBrojOkruga = SelectedServis == null ? "65" : SelectedServis.Br_tel_serv.Okrug.ToString();
-                TxTBoxBrTelBroj = SelectedServis == null ? "1234567" : SelectedServis.Br_tel_serv.Broj.ToString();
+                TxTBoxNazivServ = SelectedServis == null ? "" : SelectedServis.Naziv_serv;
+                TxTBoxAdresaUlica = SelectedServis == null ? "" : SelectedServis.Adresa_serv.Ulica;
+                TxTBoxAdresaBroj = SelectedServis == null ? "" : SelectedServis.Adresa_serv.Broj.ToString();
+                TxTBoxAdresaGrad = SelectedServis == null ? "" : SelectedServis.Adresa_serv.Grad;
+                TxTBoxAdresaPPTBroj = SelectedServis == null ? "." : SelectedServis.Adresa_serv.PostanskiBroj.ToString();
+                TxTBoxBrTelPozBroj = SelectedServis == null ? "" : SelectedServis.Br_tel_serv.Pozivni_broj.ToString();
+                TxTBoxBrTelBrojOkruga = SelectedServis == null ? "" : SelectedServis.Br_tel_serv.Okrug.ToString();
+                TxTBoxBrTelBroj = SelectedServis == null ? "" : SelectedServis.Br_tel_serv.Broj.ToString();
                 SelectedTypeServis = SelectedServis == null ? string.Empty : SelectedServis.Tip_serv.ToString();
                 
                 DeleteCommand.RaiseCanExecuteChanged();
@@ -127,8 +128,10 @@ namespace ClientUI.ViewModel
             {
                 ulogaKorisnika = value;
                 Autorizacija = ulogaKorisnika.Equals("Administrator") ? "Visible" : "Hidden";
+                AutorizacijaRaspored = ulogaKorisnika.Equals("Administrator") ? 2 : 1;
                 OnPropertyChanged("UlogaKorisnika");
                 OnPropertyChanged("Autorizacija");
+                OnPropertyChanged("AutorizacijaRaspored");
             }
         }
         public string Autorizacija
@@ -138,6 +141,15 @@ namespace ClientUI.ViewModel
             {
                 autorizacija = value;
                 OnPropertyChanged("Autorizacija");
+            }
+        }
+        public int AutorizacijaRaspored
+        {
+            get => autorizacijaRaspored;
+            set
+            {
+                autorizacijaRaspored = value;
+                OnPropertyChanged("AutorizacijaRaspored");
             }
         }
         public string TxTBoxNazivServ

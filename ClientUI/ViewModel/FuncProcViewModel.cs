@@ -193,7 +193,10 @@ namespace ClientUI.ViewModel
             {
                 
                 SqlUpitVlasnikServisCijena retVal = DatabaseServiceProvider.Instance.ReturnOwnerWithMaxRepairPrice();
-                NajskPop = retVal.ToString();
+                if (retVal != null)
+                    NajskPop = retVal.ToString();
+                else
+                    NajskPop = "0";
                 OnPropertyChanged("NajskPop");
                 
             }
@@ -225,7 +228,7 @@ namespace ClientUI.ViewModel
             {
 
                 string s = DatabaseServiceProvider.Instance.ReturnTheOldestWorker(CmbBoxServisi);
-                NajstarijiRadnik = s;
+                NajstarijiRadnik = s != null ? s : "U servisu nema zaposlenih servisera";
                 OnPropertyChanged("NajstarijiRadnik");
 
             }

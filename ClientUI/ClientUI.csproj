@@ -65,6 +65,7 @@
     <Compile Include="ViewModel\KomponentaViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\PosjedujeViewModel.cs" />
+    <Compile Include="ViewModel\ProfilViewModel.cs" />
     <Compile Include="ViewModel\RacunarViewModel.cs" />
     <Compile Include="ViewModel\RadiViewModel.cs" />
     <Compile Include="ViewModel\RegistracijaViewModel.cs" />
@@ -88,6 +89,9 @@
     </Compile>
     <Compile Include="View\PosjedujeView.xaml.cs">
       <DependentUpon>PosjedujeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProfilView.xaml.cs">
+      <DependentUpon>ProfilView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RacunarView.xaml.cs">
       <DependentUpon>RacunarView.xaml</DependentUpon>
@@ -148,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PosjedujeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProfilView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

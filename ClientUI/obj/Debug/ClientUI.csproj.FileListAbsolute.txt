@@ -177,3 +177,6 @@ G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\
 G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\bin\Debug\WpfAnimatedGif.dll
 G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\bin\Debug\WpfAnimatedGif.pdb
 G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\bin\Debug\WpfAnimatedGif.xml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\App.baml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\ProfilView.g.cs
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\ClientUI\obj\Debug\View\ProfilView.baml

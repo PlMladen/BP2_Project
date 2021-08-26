@@ -90,6 +90,10 @@ namespace ClientUI.ViewModel
             else
             {
                 if (DatabaseServiceProvider.Instance.PrijaviKorisnika(Email, password.Password)){
+                    if (!DatabaseServiceProvider.Instance.VratiAktivnostProfilaKorisnika(Email)){
+                        LozinkaErrorLabel = "Vaš profil još nije odobren!";
+                        return;
+                    }
                     string s = DatabaseServiceProvider.Instance.VratiUloguKorisnika(Email);
                     long jmbg = s.Equals("Vlasnik_racunara") || s.Equals("Serviser_racunara") ? DatabaseServiceProvider.Instance.VratiJMBGVlasnika(Email) : -1;
                     MainWindow mainWindow = new MainWindow(s, Email, jmbg);

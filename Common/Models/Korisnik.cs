@@ -16,5 +16,6 @@ namespace Common.Models
         public Adresa Adresa { get; set; }
         public string Uloga { get; set; }
         public DateTime DatumRodjenja { get; set; }
+        public bool ProfilAktivan { get; set; }
     }
 }

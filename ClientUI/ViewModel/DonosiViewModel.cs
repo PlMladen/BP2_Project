@@ -30,6 +30,8 @@ namespace ClientUI.ViewModel
 
 
         private string lbl = string.Empty;
+        private int autorizacijeRaspored = 1;
+        private string autorizacija = string.Empty;
 
         public MyICommand DeleteCommand { get; set; }
         public MyICommand AddCommand { get; set; }
@@ -44,7 +46,9 @@ namespace ClientUI.ViewModel
                 DonosiSet = new ObservableCollection<Donosi>(DatabaseServiceProvider.Instance.GetAllDonosi().Where(_ => _.PosjedujeVlasnik_racunaraJMBG_vl == jmbg));
             else
                 DonosiSet = new ObservableCollection<Donosi>(DatabaseServiceProvider.Instance.GetAllDonosi().Where(_ => _.Racunarski_servisID_servisa == DatabaseServiceProvider.Instance.VratiIDServisa(jmbg)));
-           
+            Autorizacija = uloga.Equals("Serviser_racunara") ? "Hidden" : "Visible";
+            AutorizacijaRaspored = uloga.Equals("Serviser_racunara") ? 1 : 2;
+
             DeleteCommand = new MyICommand(OnDelete, CanDelete);
             AddCommand = new MyICommand(OnAdd, CanAdd);
             UpdateCommand = new MyICommand(OnUpdate, CanUpdate);
@@ -82,10 +86,10 @@ namespace ClientUI.ViewModel
                 if (selectedDonosi != value)
                 {
                     selectedDonosi = value;
-                    OnPropertyChanged(nameof(SelectedDonosi));
+                    
                     CmbBoxPosjeduje = SelectedDonosi == null ? "" : String.Format(SelectedDonosi.PosjedujeVlasnik_racunaraJMBG_vl + " " + SelectedDonosi.Pposjeduje.Ime_vl + " " + SelectedDonosi.Pposjeduje.Prezime_vl + "\n" + SelectedDonosi.PosjedujeRacunarID_racunara + " " + SelectedDonosi.Pposjeduje.Proizvodjac_racunara);
                     CmbBoxID_Servisa = SelectedDonosi == null ? "" : String.Format(SelectedDonosi.Racunarski_servisID_servisa + "\n" + SelectedDonosi.Racunarski_servis.Naziv_serv);
-
+                    OnPropertyChanged(nameof(SelectedDonosi));
 
 
                     DeleteCommand.RaiseCanExecuteChanged();
@@ -172,6 +176,24 @@ namespace ClientUI.ViewModel
             {
                 lbl = value;
                 OnPropertyChanged("LBL");
+            }
+        }
+        public int AutorizacijaRaspored
+        {
+            get => autorizacijeRaspored;
+            set
+            {
+                autorizacijeRaspored = value;
+                OnPropertyChanged("AutorizacijaRaspored");
+            }
+        }
+        public string Autorizacija
+        {
+            get => autorizacija;
+            set
+            {
+                autorizacija = value;
+                OnPropertyChanged("Autorizacija");
             }
         }
         private bool CanDelete()

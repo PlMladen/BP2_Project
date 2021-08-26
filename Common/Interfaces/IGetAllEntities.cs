@@ -16,6 +16,8 @@ namespace Common.Interfaces
         [OperationContract]
         IEnumerable<Serviser_racunara> GetAllServiseriRacunara();
         [OperationContract]
+        IEnumerable<Serviser_racunara> GetAllNezaposleniServiseriRacunara();
+        [OperationContract]
         IEnumerable<Racunar> GetAllRacunari();
         [OperationContract]
         IEnumerable<Vlasnik_racunara> GetAllVlasniciRacunara();

@@ -21,7 +21,7 @@ namespace ClientUI.ViewModel
         private static List<string> radiSet = MainWindow.Uloga.Equals("Serviser_racunara") ?
             new List<string>(DatabaseServiceProvider.Instance.GetAllRadi().Where(_ => _.Serviser_racunaraJMBG_s == MainWindow.IdVlasnika).Select(x => String.Format("Servis:"+x.Racunarski_servisID_servisa1 + " Serviser:" + x.Serviser_racunaraJMBG_s))) :
             new List<string>(DatabaseServiceProvider.Instance.GetAllRadi().Select(x => String.Format("Servis:"+x.Racunarski_servisID_servisa1 + " Serviser:" + x.Serviser_racunaraJMBG_s)));
-        private static List<string> garantniListovi = new List<string>(DatabaseServiceProvider.Instance.GetAllGarantni_listove().Select(x => String.Format("ID:"+x.Id_gar_list)));
+        private static List<string> garantniListovi = new List<string>(DatabaseServiceProvider.Instance.GetAllGarantni_listove().Select(x => String.Format("ID:"+x.Id_gar_list+"\nVaži do:"+x.Period_vazenja)));
 
         private Brush foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
 
@@ -29,7 +29,9 @@ namespace ClientUI.ViewModel
         private string cmbBoxRadi;
         private string cmbBoxGar_listovi;
         private string autorizacija;
+        private int autorizacijaRaspored = 2;
         private string ulogaKorisnika;
+        private string labelaServisira;
         private DateTime dpDat_s = DateTime.Now;
 
 
@@ -50,6 +52,13 @@ namespace ClientUI.ViewModel
                                Where(_ => _.RadiServiser_racunaraJMBG_s == MainWindow.IdVlasnika));
             else
                 ServisiraSet = new ObservableCollection<Servisira>(DatabaseServiceProvider.Instance.GetAllServisira());
+
+            if (uloga.Equals("Vlasnik_racunara"))
+                LabelaServisira = "Obavljeni servisi";
+            else if (uloga.Equals("Serviser_racunara"))
+                LabelaServisira = "Moji obavljeni servisi";
+            else
+                LabelaServisira = "Svi obavljeni servisi";
 
             UlogaKorisnika = uloga;
             DeleteCommand = new MyICommand(OnDelete, CanDelete);
@@ -141,8 +150,10 @@ namespace ClientUI.ViewModel
             {
                 ulogaKorisnika = value;
                 Autorizacija = !ulogaKorisnika.Equals("Vlasnik_racunara") ? "Visible" : "Hidden";
+                AutorizacijaRaspored = !ulogaKorisnika.Equals("Vlasnik_racunara") ? 2 : 1;
                 OnPropertyChanged("UlogaKorisnika");
                 OnPropertyChanged("Autorizacija");
+                OnPropertyChanged("AutorizacijaRaspored");
             }
         }
         public string Autorizacija
@@ -152,6 +163,24 @@ namespace ClientUI.ViewModel
             {
                 autorizacija = value;
                 OnPropertyChanged("Autorizacija");
+            }
+        }
+        public string LabelaServisira
+        {
+            get => labelaServisira;
+            set
+            {
+                labelaServisira = value;
+                OnPropertyChanged("LabelaServisira");
+            }
+        }
+        public int AutorizacijaRaspored
+        {
+            get => autorizacijaRaspored;
+            set
+            {
+                autorizacijaRaspored = value;
+                OnPropertyChanged("AutorizacijaRaspored");
             }
         }
         public DateTime DpDat_s
@@ -170,7 +199,7 @@ namespace ClientUI.ViewModel
         }
         public List<string> GarantniListovi
         {
-            get => new List<string>(DatabaseServiceProvider.Instance.GetAllGarantni_listove().Select(x => String.Format("ID:" + x.Id_gar_list)));
+            get => new List<string>(DatabaseServiceProvider.Instance.GetAllGarantni_listove().Select(x => String.Format("ID:" + x.Id_gar_list+"\nVaži do: "+x.Period_vazenja)));
             set
             {
                 if (garantniListovi != value)
@@ -326,7 +355,22 @@ namespace ClientUI.ViewModel
                         Foreground = Brushes.Red;
                         return;
                 }
-
+                string[] keyPartsGListovi = CmbBoxGar_listovi.Split('\n');
+                    try
+                    {
+                        DateTime d = DateTime.Parse(keyPartsGListovi[1].Split(' ')[2], CultureInfo.InvariantCulture);
+                        if(d < DateTime.Now)
+                        {
+                            LBL = "Greska pri servisiranju racunara " + keyPartsDonosi[2].Split(':')[1] + " u servisu " + keyPartsDonosi[0].Split(':')[1] + "!\nGarantni list ima nevalidan datum!";
+                            Foreground = Brushes.Red;
+                            return;
+                        }
+                    }catch(Exception e)
+                    {
+                        LBL = "Greska pri servisiranju racunara " + keyPartsDonosi[2].Split(':')[1] + " u servisu " + keyPartsDonosi[0].Split(':')[1] + "!\nNevalidan datum!";
+                        Foreground = Brushes.Red;
+                        return;
+                    }
                 if (DatabaseServiceProvider.Instance.AddServisira(new Servisira()
                 {
                     DonosiPosjedujeVlasnik_racunaraJMBG_vl = long.Parse(keyPartsDonosi[1].Split(':')[1], CultureInfo.InvariantCulture),
@@ -339,8 +383,8 @@ namespace ClientUI.ViewModel
                                                                         int.Parse(keyPartsDonosi[0].Split(':')[1], CultureInfo.InvariantCulture)),
                     Cijena_serv = double.Parse(TxTBoxCijena.ToString(), CultureInfo.InvariantCulture),
                     Dat_potp = DpDat_s,
-                    Garantni_listId_gar_list = int.Parse(CmbBoxGar_listovi.Split(':')[1], CultureInfo.InvariantCulture),
-                    Garantni_list = DatabaseServiceProvider.Instance.GetGarantni_list(int.Parse(CmbBoxGar_listovi.Split(':')[1], CultureInfo.InvariantCulture)),
+                    Garantni_listId_gar_list = int.Parse(CmbBoxGar_listovi.Split(':')[1].Split('\n')[0], CultureInfo.InvariantCulture),
+                    Garantni_list = DatabaseServiceProvider.Instance.GetGarantni_list(int.Parse(CmbBoxGar_listovi.Split(':')[1].Split('\n')[0], CultureInfo.InvariantCulture)),
                     Radi = DatabaseServiceProvider.Instance.GetRadi(long.Parse(keyPartsRadi[1].Split(':')[1], CultureInfo.InvariantCulture), int.Parse(keyPartsDonosi[0].Split(':')[1], CultureInfo.InvariantCulture))
 
 
@@ -401,6 +445,23 @@ namespace ClientUI.ViewModel
                             Foreground = Brushes.Red;
                             return;
                         }
+                        string[] keyPartsGListovi = CmbBoxGar_listovi.Split('\n');
+                        try
+                        {
+                            DateTime d = DateTime.Parse(keyPartsGListovi[1].Split(' ')[2], CultureInfo.InvariantCulture);
+                            if (d < DateTime.Now)
+                            {
+                                LBL = "Greska pri servisiranju racunara " + keyPartsDonosi[2].Split(':')[1] + " u servisu " + keyPartsDonosi[0].Split(':')[1] + "!\nGarantni list ima nevalidan datum!";
+                                Foreground = Brushes.Red;
+                                return;
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            LBL = "Greska pri servisiranju racunara " + keyPartsDonosi[2].Split(':')[1] + " u servisu " + keyPartsDonosi[0].Split(':')[1] + "!\nNevalidan datum!";
+                            Foreground = Brushes.Red;
+                            return;
+                        }
                         DatabaseServiceProvider.Instance.UpdateServisira(new Servisira()
                         {
                             DonosiPosjedujeVlasnik_racunaraJMBG_vl = SelectedServisira.DonosiPosjedujeVlasnik_racunaraJMBG_vl,
@@ -414,8 +475,8 @@ namespace ClientUI.ViewModel
                             Radi = DatabaseServiceProvider.Instance.GetRadi(long.Parse(keyPartsRadi[1].Split(':')[1], CultureInfo.InvariantCulture), int.Parse(keyPartsDonosi[0].Split(':')[1], CultureInfo.InvariantCulture)),
                             Cijena_serv = cijena,
                             Dat_potp = DpDat_s,
-                            Garantni_listId_gar_list = int.Parse(CmbBoxGar_listovi.Split(':')[1], CultureInfo.InvariantCulture),
-                            Garantni_list = DatabaseServiceProvider.Instance.GetGarantni_list(int.Parse(CmbBoxGar_listovi.Split(':')[1], CultureInfo.InvariantCulture)),
+                            Garantni_listId_gar_list = int.Parse(CmbBoxGar_listovi.Split(':')[1].Split('\n')[0], CultureInfo.InvariantCulture),
+                            Garantni_list = DatabaseServiceProvider.Instance.GetGarantni_list(int.Parse(CmbBoxGar_listovi.Split(':')[1].Split('\n')[0], CultureInfo.InvariantCulture)),
                         });
 
                         LBL = "Asocijacija sa kljucem " + keyPartsDonosi[0].Split(':')[1] + "+" + keyPartsDonosi[1].Split(':')[1]

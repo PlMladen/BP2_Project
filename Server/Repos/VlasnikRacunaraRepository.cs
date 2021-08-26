@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +46,24 @@ namespace Server.Repos
             return dbCtx.SaveChanges() > 0;
         }
 
+        private bool ObrisiKorisnika(long idVlasnika)
+        {
+            
+            try
+            {
+                var s = dbCtx.Database.ExecuteSqlCommand(String.Format("delete from korisnici where JMBGKorisnika={0}", idVlasnika));
+                if (s != 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return false;
+        }
+
         public bool Delete(long idVlasnika)
         {
             try
@@ -52,7 +71,10 @@ namespace Server.Repos
                 dbCtx.Vlasnik_racunaraSet.Remove(dbCtx.Vlasnik_racunaraSet.FirstOrDefault((s) => s.JMBG_vl == idVlasnika));
                 dbCtx.PosjedujeSet.RemoveRange(dbCtx.PosjedujeSet.Where(s => s.Vlasnik_racunaraJMBG_vl == idVlasnika));
                 dbCtx.SaveChanges();
-                return true;
+                if (ObrisiKorisnika(idVlasnika))
+                    return true;
+                else
+                    return false;
             }
             catch (Exception e)
             {

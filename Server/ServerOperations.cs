@@ -320,5 +320,30 @@ namespace Server
         {
             return masterRepository.ServiserRacunaraRepository.VratiIdServisa(jmbgServisera);
         }
+
+        public bool VratiAktivnostProfilaKorisnika(string korisnickoIme)
+        {
+            return masterRepository.KorisnikRepository.VratiAktivnostProfilaKorisnika(korisnickoIme);
+        }
+        public bool VratiAktivnostProfilaKorisnikaJmbg(long jmbg)
+        {
+            return masterRepository.KorisnikRepository.VratiAktivnostProfilaKorisnikaJmbg(jmbg);
+        }
+        public bool PromijeniAktivnostProfilaKorisnika(long korisnickoIme, bool odobren)
+        {
+            return masterRepository.KorisnikRepository.PromijeniAktivnostProfilaKorisnika(korisnickoIme, odobren);
+        }
+        public Korisnik VratiKorisnika(string korisnickoIme)
+        {
+            return masterRepository.KorisnikRepository.VratiKorisnika(korisnickoIme);
+        }
+        public bool ObrisiKorisnika(long korisnickoIme)
+        {
+            return masterRepository.KorisnikRepository.ObrisiKorisnika(korisnickoIme);
+        }
+        public IEnumerable<Common.Models.Serviser_racunara> GetAllNezaposleniServiseriRacunara()
+        {
+            return masterRepository.ServiserRacunaraRepository.GetAllNezaposleniServiseriRacunara();
+        }
     }
 }

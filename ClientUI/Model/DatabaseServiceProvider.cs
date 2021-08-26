@@ -54,6 +54,10 @@ namespace ClientUI
         {
             return proxy.GetAllServiseriRacunara();
         }
+        public IEnumerable<Serviser_racunara> GetAllNezaposleniServiseriRacunara()
+        {
+            return proxy.GetAllNezaposleniServiseriRacunara();
+        }
 
         public Serviser_racunara GetServiserRacunara(long idServisera)
         {
@@ -355,6 +359,23 @@ namespace ClientUI
         public long VratiIDServisa(long jmbgServisera)
         {
             return proxy.VratiIdServisa(jmbgServisera);
+        }
+
+        public bool VratiAktivnostProfilaKorisnika(string korisnickoIme)
+        {
+            return proxy.VratiAktivnostProfilaKorisnika(korisnickoIme);
+        }
+        public Korisnik VratiKorisnika(string korisnickoIme)
+        {
+            return proxy.VratiKorisnika(korisnickoIme);
+        }
+        public bool VratiAktivnostProfilaKorisnikaJmbg(long jmbg)
+        {
+            return proxy.VratiAktivnostProfilaKorisnikaJmbg(jmbg);
+        }
+        public bool PromijeniAktivnostProfilaKorisnika(long korisnickoIme, bool odobren)
+        {
+            return proxy.PromijeniAktivnostProfilaKorisnika(korisnickoIme, odobren);
         }
     }
 }

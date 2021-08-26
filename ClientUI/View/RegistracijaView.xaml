@@ -6,7 +6,10 @@
         xmlns:views="clr-namespace:ClientUI.View"
         xmlns:viewmodel="clr-namespace:ClientUI.ViewModel"
         mc:Ignorable="d"
-        Title="RegistracijaView" Height="650" Width="700" Background="Black">
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="False"
+        Title="RegistracijaView" MinHeight="650" MinWidth="970" Background="Black">
     <Window.DataContext>
         <viewmodel:RegistracijaViewModel/>
     </Window.DataContext>
@@ -25,7 +28,7 @@
         <Label Grid.Row="0" Grid.Column="1" Foreground="#FF3AFF00" FontWeight="Bold" HorizontalAlignment="Center" FontSize="24" Content="Dobrodošli u aplikaciju"></Label>
         <Label Foreground="#FF3AFF00" Grid.Row="1" Grid.Column="1" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Content="Molimo Vas da se popunite polja za registraciju "></Label>
         <Border BorderThickness="3" BorderBrush="#FF3AFF00" CornerRadius="10" Grid.Row="2" Grid.Column="1" >
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 6 6 0">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 6 6 0">
                 <StackPanel Orientation="Horizontal">
                     <Label HorizontalContentAlignment="Center" VerticalAlignment="Center" Foreground="#FF3AFF00" FontWeight="Bold" HorizontalAlignment="Left" FontSize="14" Content="Ime:"></Label>
                     <Separator Width="77" Visibility="Hidden"></Separator>
@@ -114,7 +117,7 @@
                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
                     <Button x:Name="RegistracijaBtn" HorizontalAlignment="Left" Width="120" Height="25" Content="Registruj se" FontWeight="Bold" BorderBrush="#FF3AFF00" BorderThickness="2" Command="{Binding RegistracijaCommand}" CommandParameter="{Binding ElementName=LozinkaTb}"></Button>
                     <Separator Width="10" Visibility="Hidden"></Separator>
-                    <Button x:Name="OdustaniBtn" HorizontalAlignment="Left" Width="120" Height="25" Content="Odustani" FontWeight="Bold" BorderBrush="#FF3AFF00" BorderThickness="2" Command="{Binding OdustaniCommand}"></Button>
+                    <Button x:Name="OdustaniBtn" HorizontalAlignment="Left" Width="120" Height="25" Content="Početna stranica" FontWeight="Bold" BorderBrush="#FF3AFF00" BorderThickness="2" Command="{Binding OdustaniCommand}"></Button>
                 </StackPanel>
                
             </StackPanel>

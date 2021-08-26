@@ -5,29 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ClientUI.View"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="900">
-    <Grid>
-        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center">
-            <Label x:Name="lblNetData" HorizontalAlignment="Center" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Content="Obavljena servisiranja "/>
-            <Separator Height="4" />
-            <DataGrid x:Name="dataGridSerRacunaraData" Background="Black" BorderThickness="2" BorderBrush="#FF3AFF00" AutoGenerateColumns="False" ItemsSource="{Binding Path=ServisiraSet, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedServisira}" Height="300" Width="860" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Grid Margin="5 5 5 5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label x:Name="lblNetData" Grid.Row="0" HorizontalAlignment="Center" Foreground="#FF3AFF00" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Content="{Binding Path=LabelaServisira, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Ime vlasnika" FontWeight="Bold" Foreground="Black"  Binding="{Binding Path=Donosi.Pposjeduje.Ime_vl}" Width="*"/>
-                    <DataGridTextColumn Header="Prezime vlasnika" FontWeight="Bold" Foreground="Black" Binding="{Binding Donosi.Pposjeduje.Prezime_vl}" Width="*"/>
-                    <DataGridTextColumn Header="ID računara" FontWeight="Bold" Foreground="Black" Binding="{Binding Donosi.PosjedujeRacunarID_racunara}" Width="*"/>
-                    <DataGridTextColumn Header="Tip računara" FontWeight="Bold" Foreground="Black" Binding="{Binding Donosi.Pposjeduje.Vrsta_racunara}" Width="*"/>
-                    <DataGridTextColumn Header="Ime servisera" FontWeight="Bold" Foreground="Black" Binding="{Binding Radi.Serviser_racunara.Ime_s}" Width="*"/>
-                    <DataGridTextColumn Header="Naziv servisa" FontWeight="Bold" Foreground="Black" Binding="{Binding Radi.Racunarski_servis.Naziv_serv}" Width="*"/>
-                    <DataGridTextColumn Header="Datum servisiranja" FontWeight="Bold" Foreground="Black" Binding="{Binding Dat_potp}" Width="*"/>
-                    <DataGridTextColumn Header="Cijena" FontWeight="Bold" Foreground="Black" Binding="{Binding Cijena_serv}" Width="*"/>
-                    <DataGridTextColumn Header="Garancija važi do" FontWeight="Bold" Foreground="Black" Binding="{Binding Garantni_list.Period_vazenja, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Separator Height="10" Visibility="Hidden"/>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding Path=Autorizacija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <StackPanel Orientation="Vertical"  HorizontalAlignment="Stretch" Grid.Row="1">
+            <Separator Height="14" />
+
+            <Grid Visibility="{Binding Path=Autorizacija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            
+            
                 <Separator Width="5" Visibility="Hidden"/>
-                <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" Grid.Column="0">
                     <Separator Visibility="Hidden" Height="15"></Separator>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="textBlockVl" Text="Serviser iz servisa:" Foreground="#FF3AFF00" Padding="8" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="12" Width="120" VerticalAlignment="Center"  Height="34" TextAlignment="Center" />
@@ -57,11 +56,13 @@
 
 
                 <Separator Width="5" Visibility="Hidden"/>
-                <StackPanel Width="475">
-                    <TextBlock x:Name="lblDodat" Width="465" VerticalAlignment="Top" Padding="10"  Height="150" Foreground="{Binding Path=Foreground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=LBL, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"/>
+                <StackPanel Width="275" Grid.Column="1" VerticalAlignment="Center">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Width="Auto" MinHeight="140" MaxWidth="350">
+                        <TextBlock x:Name="lblDodat" Width="265" TextWrapping="Wrap"  VerticalAlignment="Center" Padding="10"  Height="150" Foreground="{Binding Path=Foreground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=LBL, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="12"/>
+                    </ScrollViewer>
                 </StackPanel>
                 <Separator Width="5" Visibility="Hidden"/>
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Column="2" HorizontalAlignment="Right">
                     <Border Height="34" Width="100" BorderBrush="#FF3AFF00" BorderThickness="2">
                         <Button x:Name="btnAdd" Content="Dodaj" Width="100" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding AddCommand}"  />
                     </Border>
@@ -77,7 +78,22 @@
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="" Width="13"/>
                 </StackPanel>
-            </StackPanel>
+            </Grid>
+            <Separator Height="20"></Separator>
         </StackPanel>
+        <DataGrid x:Name="dataGridSerRacunaraData" Background="Black" Grid.Row="{Binding Path=AutorizacijaRaspored, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="2" BorderBrush="#FF3AFF00" AutoGenerateColumns="False" ItemsSource="{Binding Path=ServisiraSet, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedServisira}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ime vlasnika" FontWeight="Bold" Foreground="Black"  Binding="{Binding Path=Donosi.Pposjeduje.Ime_vl}" Width="*"/>
+                <DataGridTextColumn Header="Prezime vlasnika" FontWeight="Bold" Foreground="Black" Binding="{Binding Donosi.Pposjeduje.Prezime_vl}" Width="*"/>
+                <DataGridTextColumn Header="ID računara" FontWeight="Bold" Foreground="Black" Binding="{Binding Donosi.PosjedujeRacunarID_racunara}" Width="*"/>
+                <DataGridTextColumn Header="Tip računara" FontWeight="Bold" Foreground="Black" Binding="{Binding Donosi.Pposjeduje.Vrsta_racunara}" Width="*"/>
+                <DataGridTextColumn Header="Ime servisera" FontWeight="Bold" Foreground="Black" Binding="{Binding Radi.Serviser_racunara.Ime_s}" Width="*"/>
+                <DataGridTextColumn Header="Naziv servisa" FontWeight="Bold" Foreground="Black" Binding="{Binding Radi.Racunarski_servis.Naziv_serv}" Width="*"/>
+                <DataGridTextColumn Header="Datum servisiranja" FontWeight="Bold" Foreground="Black" Binding="{Binding Dat_potp}" Width="*"/>
+                <DataGridTextColumn Header="Cijena" FontWeight="Bold" Foreground="Black" Binding="{Binding Cijena_serv}" Width="*"/>
+                <DataGridTextColumn Header="Garancija važi do" FontWeight="Bold" Foreground="Black" Binding="{Binding Garantni_list.Period_vazenja, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

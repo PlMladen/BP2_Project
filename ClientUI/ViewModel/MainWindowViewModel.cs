@@ -25,6 +25,8 @@ namespace ClientUI.ViewModel
         private string ulogaKorisnika = string.Empty;
         private string autorizacija = string.Empty;
         private string autorizacijaSA = string.Empty;
+        private string meniStavkaPosjeduje = string.Empty;
+        private string meniStavkaDonosi = string.Empty;
 
         private BindableBase currentViewModel;
 
@@ -94,9 +96,14 @@ namespace ClientUI.ViewModel
                 ulogaKorisnika = value;
                 Autorizacija = ulogaKorisnika.Equals("Administrator") ? "Visible" : "Collapsed";
                 AutorizacijaSA = ulogaKorisnika.Equals("Administrator") || ulogaKorisnika.Equals("Serviser_racunara") ? "Visible" : "Collapsed";
+                MeniStavkaPosjeduje = ulogaKorisnika.Equals("Administrator") || ulogaKorisnika.Equals("Serviser_racunara") ? "Računari korisnika" : "Moji računari";
+                MeniStavkaDonosi = ulogaKorisnika.Equals("Administrator") || ulogaKorisnika.Equals("Serviser_racunara") ? "Istorija posjeta servisima" : "Moji posjete servisima";
+             
                 OnPropertyChanged("UlogaKorisnika");
                 OnPropertyChanged("Autorizacija");
                 OnPropertyChanged("AutorizacijaSA");
+                OnPropertyChanged("MeniStavkaPosjeduje");
+                OnPropertyChanged("MeniStavkaDonosi");
             }
         }
         public string Autorizacija
@@ -106,6 +113,24 @@ namespace ClientUI.ViewModel
             {
                 autorizacija = value;
                 OnPropertyChanged("Autorizacija");
+            }
+        }
+        public string MeniStavkaPosjeduje
+        {
+            get => meniStavkaPosjeduje;
+            set
+            {
+                meniStavkaPosjeduje = value;
+                OnPropertyChanged("MeniStavkaPosjeduje");
+            }
+        }
+        public string MeniStavkaDonosi
+        {
+            get => meniStavkaDonosi;
+            set
+            {
+                meniStavkaDonosi = value;
+                OnPropertyChanged("MeniStavkaDonosi");
             }
         }
         public string AutorizacijaSA

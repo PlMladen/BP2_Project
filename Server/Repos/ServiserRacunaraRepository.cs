@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,12 @@ namespace Server.Repos
     {
         private readonly ProjectDbContext dbCtx;
         private readonly ServisRepository servisRepository;
+        
         public ServiserRacunaraRepository(ProjectDbContext context, ServisRepository radi)
         {
             dbCtx = context;
             servisRepository = radi;
+            
         }
 
         public bool Add(Common.Models.Serviser_racunara serviser)
@@ -34,14 +37,32 @@ namespace Server.Repos
             return dbCtx.SaveChanges() > 0;
         }
 
-        
+        private bool ObrisiKorisnika(long idServisera)
+        {
+            try
+            {
+                var s = dbCtx.Database.ExecuteSqlCommand(String.Format("delete from korisnici where JMBGKorisnika={0}", idServisera));
+                if (s != 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return false;
+        }
         public bool Delete(long idServisera)
         {
             try
             {
                 dbCtx.Serviser_racunaraSet.Remove(dbCtx.Serviser_racunaraSet.FirstOrDefault((s) => s.JMBG_s == idServisera));
                 dbCtx.SaveChanges();
-                return true;
+                if (ObrisiKorisnika(idServisera))
+                    return true;
+                else
+                    return false;
             }
             catch (Exception e)
             {
@@ -113,6 +134,26 @@ namespace Server.Repos
             {
 
             }
+        }
+
+        public IEnumerable<Common.Models.Serviser_racunara> GetAllNezaposleniServiseriRacunara()
+        {
+            var retVal = new List<Common.Models.Serviser_racunara>();
+            foreach (var serviserFromDb in dbCtx.Serviser_racunaraSet.ToList())
+            {
+                if (serviserFromDb.Radi.Count == 0)
+                {
+                    var serviser = new Common.Models.Serviser_racunara()
+                    {
+                        Ime_s = serviserFromDb.Ime_s,
+                        JMBG_s = serviserFromDb.JMBG_s,
+                        Dat_rodjenja_s = serviserFromDb.Dat_rodjenja_s,
+                        Prezime_s = serviserFromDb.Prezime_s
+                    };
+                    retVal.Add(serviser);
+                }
+            }
+            return retVal;
         }
     }
 }

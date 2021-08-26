@@ -27,6 +27,7 @@ namespace ClientUI.ViewModel
         private string lbl = string.Empty;
         private string ulogaKorisnika = string.Empty;
         private string autorizacija = string.Empty;
+        private int autorizacijaRaspored = 2;
 
         public MyICommand DeleteCommand { get; set; }
         public MyICommand AddCommand { get; set; }
@@ -68,11 +69,11 @@ namespace ClientUI.ViewModel
                     selectedRacunar = value;
                     OnPropertyChanged(nameof(SelectedRacunar));
                     //TxTBoxID_Racunara = SelectedRacunar == null ? "1234567891234" : SelectedRacunar.ID_racunara.ToString();
-                    TxtBoxBrzinaCPU = SelectedRacunar == null ? "Brzina..." : SelectedRacunar.Brzina_procesora.ToString();
-                    TxtBoxRAM = SelectedRacunar == null ? "RAM..." : SelectedRacunar.Kapacitet_RAM.ToString();
-                    TxtBoxMemorija = SelectedRacunar == null ? "Memorija..." : SelectedRacunar.Kapacitet_memorije.ToString();
+                    TxtBoxBrzinaCPU = SelectedRacunar == null ? "" : SelectedRacunar.Brzina_procesora.ToString();
+                    TxtBoxRAM = SelectedRacunar == null ? "" : SelectedRacunar.Kapacitet_RAM.ToString();
+                    TxtBoxMemorija = SelectedRacunar == null ? "" : SelectedRacunar.Kapacitet_memorije.ToString();
                     CmbBoxVrsta_racunara = SelectedRacunar == null ? "" : SelectedRacunar.Vrsta_racunara.ToString();
-                    TxTBoxProizvodjac = SelectedRacunar == null ? "Proizvodjac..." : SelectedRacunar.Proizvodjac;
+                    TxTBoxProizvodjac = SelectedRacunar == null ? "" : SelectedRacunar.Proizvodjac;
                     DeleteCommand.RaiseCanExecuteChanged();
                     UpdateCommand.RaiseCanExecuteChanged();
                 }
@@ -86,8 +87,10 @@ namespace ClientUI.ViewModel
             {
                 ulogaKorisnika = value;
                 Autorizacija = ulogaKorisnika.Equals("Administrator") ? "Visible" : "Hidden";
+                AutorizacijaRaspored = ulogaKorisnika.Equals("Administrator") ? 2 : 1;
                 OnPropertyChanged("UlogaKorisnika");
                 OnPropertyChanged("Autorizacija");
+                OnPropertyChanged("AutorizacijaRaspored");
             }
         }
         public string Autorizacija
@@ -97,6 +100,15 @@ namespace ClientUI.ViewModel
             {
                 autorizacija = value;
                 OnPropertyChanged("Autorizacija");
+            }
+        }
+        public int AutorizacijaRaspored
+        {
+            get => autorizacijaRaspored;
+            set
+            {
+                autorizacijaRaspored = value;
+                OnPropertyChanged("AutorizacijaRaspored");
             }
         }
         public Brush Foreground

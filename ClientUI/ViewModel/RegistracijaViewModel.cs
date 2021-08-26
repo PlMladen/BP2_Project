@@ -268,7 +268,7 @@ namespace ClientUI.ViewModel
                 }
                 if (DatabaseServiceProvider.Instance.RegistrujKorisnika(temp))
                 {
-                    MessageBox.Show("Registracija uspješna! Za korišćenje sistema je potrebno da se prijavite!");
+                    MessageBox.Show("Registracija uspješna! Za korišćenje sistema je potrebno da se prijavite nakon što administrator odobri prijavu!");
                     WelcomeWindow welcomeWindow = new WelcomeWindow();
 
                     foreach (Window item in Application.Current.Windows)
@@ -374,9 +374,9 @@ namespace ClientUI.ViewModel
                     AdresaGreska = "Naziv ulice treba da sadrži samo slova!";
                     retVal = false;
                 }
-                else if (!AdresaBroj.All(Char.IsLetterOrDigit))
+                else if (!AdresaBroj.All(Char.IsDigit))
                 {
-                    AdresaGreska = "Broj u adresi treba da sadrži samo slova i cifre!";
+                    AdresaGreska = "Broj u adresi treba da sadrži samo cifre!";
                     retVal = false;
                 }
                 else if (!AdresaGrad.Replace(" ", "").All(Char.IsLetter))
@@ -395,6 +395,7 @@ namespace ClientUI.ViewModel
         }
         private void OnOdustani()
         {
+            WelcomeWindow welcomeWindow = new WelcomeWindow();
             foreach (Window item in Application.Current.Windows)
             {
                 if (item is RegistracijaView)
@@ -403,6 +404,7 @@ namespace ClientUI.ViewModel
                     break;
                 }
             }
+            welcomeWindow.Show();
         }
     }
 }
