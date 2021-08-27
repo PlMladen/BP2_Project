@@ -86,9 +86,10 @@
                 <MenuItem Header="Zapošljavanje servisera" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Radi view" Visibility="{Binding Path=Autorizacija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <MenuItem Header="{Binding Path=MeniStavkaDonosi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Donosi view"/>
                 <MenuItem Header="Servisiranja" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="Servisira view"/>
-                <MenuItem Header="FuncProc" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="FuncProc view" Visibility="{Binding Path=Autorizacija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <MenuItem Header="FuncProc" Command="{Binding NavCommand}" Foreground="#FF3AFF00" BorderBrush="#FF3AFF00" BorderThickness="1" CommandParameter="FuncProc view" Visibility="Collapsed"/>
             </Menu>
         </DockPanel>
+        
         <Grid Grid.Row="2" >
             <ContentControl Content="{Binding CurrentViewModel}" Grid.ColumnSpan="3"/>
         </Grid>

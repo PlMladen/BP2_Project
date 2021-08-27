@@ -1,0 +1,4 @@
+KorisnickoIme,Lozinka,Uloga,ProfilOdobren,JMBG_vl,ID_racunara,Proizvodjac,Brzina_procesora,Kapacitet_RAM,Kapacitet_memorije,Vrsta_racunara,JMBG_vl,Ime_vl,Prezime_vl,Dat_rodjenja_vl,Ulica,Grad,Broj,PostanskiBroj,Ime_vl,Prezime_vl,Id_racunara,Proizvodjac_racunara,Vrsta_racunara
+mladen26,mladen26,Vlasnik_racunara,False,2605998173406,1,Dell,3.2,32,512,Laptop,2605998173406,Mladen,Planojevic,08/25/2021 00:00:00,Alekse Santica,Novi Sad,4,21000,Mladen,Planojevic,1,Dell,Laptop
+mladen26,mladen26,Vlasnik_racunara,False,2605998173406,2,Acer,2.2,16,512,Laptop,2605998173406,Mladen,Planojevic,08/25/2021 00:00:00,Alekse Santica,Novi Sad,4,21000,Mladen,Planojevic,2,Acer,Laptop
+mladen26,mladen26,Vlasnik_racunara,False,2605998173406,4,Acer,3,16,1024,Laptop,2605998173406,Mladen,Planojevic,08/25/2021 00:00:00,Alekse Santica,Novi Sad,4,21000,Mladen,Planojevic,4,Acer,Laptop

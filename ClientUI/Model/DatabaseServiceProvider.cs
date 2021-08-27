@@ -377,5 +377,17 @@ namespace ClientUI
         {
             return proxy.PromijeniAktivnostProfilaKorisnika(korisnickoIme, odobren);
         }
+        public bool EksportujPosjedujeVezuUCsv(string direktorijum)
+        {
+            return proxy.EksportujPosjedujeVezuUCsv(direktorijum);
+        }
+        public bool EksportujPosjedujeVezuZaVlasnikaUCsv(string direktorijum, long jmbg)
+        {
+            return proxy.EksportujPosjedujeVezuZaVlasnikaUCsv(direktorijum, jmbg);
+        }
+        public IEnumerable<Common.Models.Posjeduje> ImportujPosjedujeVezuIzCsv(string direktorijum)
+        {
+            return proxy.ImportujPosjedujeVezuIzCsv(direktorijum);
+        }
     }
 }

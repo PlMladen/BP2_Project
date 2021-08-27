@@ -96,7 +96,7 @@ namespace Server.Repos
                     return false;
                 }
             }
-            string sql = String.Format("INSERT INTO korisnici (JMBGKorisnika, KorisnickoIme, Lozinka, Uloga, ProfilOdobren) values ({0}, '{1}', '{2}', '{3}', '{4}')", korisnik.JMBG, korisnik.KorisnickoIme, korisnik.Lozinka, korisnik.Uloga, false);
+            string sql = String.Format("INSERT INTO korisnici (JMBGKorisnika, KorisnickoIme, Lozinka, Uloga, ProfilOdobren) values ({0}, '{1}', '{2}', '{3}', '{4}')", korisnik.JMBG, korisnik.KorisnickoIme, korisnik.Lozinka, korisnik.Uloga, korisnik.ProfilAktivan);
             
             try
             {
@@ -151,11 +151,17 @@ namespace Server.Repos
                 {
                     retVal = s;
                 }
+                else
+                {
+                    return null;
+                }
             }
             catch (Exception e)
             {
 
             }
+            if (retVal == null)
+                return null;
             string ulogaKorisnika = VratiUloguKorisnika(korisnickoIme);
 
             Korisnik korisnik = null;
@@ -286,6 +292,30 @@ namespace Server.Repos
                 if (s)
                 {
                     retVal = true;
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+
+
+            return retVal;
+        }
+        public string VratiKorisnickoIme(long jmbg)
+        {
+            string retVal = "";
+            string sql = @"SELECT KorisnickoIme from Korisnici WHERE JMBGKorisnika=@JMBGKorisnika";
+            List<SqlParameter> parms = new List<SqlParameter>()
+            {
+              new SqlParameter {ParameterName = "@JMBGKorisnika", Value = jmbg , DbType = System.Data.DbType.Int64},
+            };
+            try
+            {
+                var s = dbCtx.Database.SqlQuery<string>(sql, parms.ToArray()).FirstOrDefault();
+                if (s != "")
+                {
+                    retVal = s;
                 }
             }
             catch (Exception e)

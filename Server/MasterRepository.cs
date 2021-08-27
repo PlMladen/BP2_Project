@@ -40,8 +40,8 @@ namespace Server
             DonosiRepository = new DonosiRepository(context);
             ServisiraRepository = new ServisiraRepository(context);
             RacunarskiServisRepository = new RacunarskiServisRepository(context);
-            MiscRepository = new MiscRepository(context);
             KorisnikRepository = new KorisnikRepository(context, VlasnikRacunaraRepository, ServiserRacunaraRepository);
+            MiscRepository = new MiscRepository(context, PosjedujeRepository, KorisnikRepository, RacunarRepository, VlasnikRacunaraRepository);
         }
     }
 }

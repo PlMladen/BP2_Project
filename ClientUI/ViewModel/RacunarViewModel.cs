@@ -45,7 +45,9 @@ namespace ClientUI.ViewModel
         {
             get
             {
-                return racunari;
+                return
+                    !MainWindow.Uloga.Equals("Vlasnik_racunara") ? new ObservableCollection<Racunar>(DatabaseServiceProvider.Instance.GetAllRacunari()) :
+                                                                   new ObservableCollection<Racunar>(DatabaseServiceProvider.Instance.GetAllMojiRacunari(MainWindow.IdVlasnika));
             }
             set
             {

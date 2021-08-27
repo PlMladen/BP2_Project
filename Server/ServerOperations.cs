@@ -345,5 +345,20 @@ namespace Server
         {
             return masterRepository.ServiserRacunaraRepository.GetAllNezaposleniServiseriRacunara();
         }
+        public bool EksportujPosjedujeVezuUCsv(string direktorijum)
+        {
+            return masterRepository.MiscRepository.EksportujPosjedujeVezuUCsv(direktorijum);
+        }
+        public bool EksportujPosjedujeVezuZaVlasnikaUCsv(string direktorijum, long jmbg)
+        {
+            return masterRepository.MiscRepository.EksportujPosjedujeVezuZaVlasnikaUCsv(direktorijum, jmbg);
+        }
+
+        public IEnumerable<Common.Models.Posjeduje> ImportujPosjedujeVezuIzCsv(string direktorijum)
+        {
+            return masterRepository.MiscRepository.ImportujPosjedujeVezuIzCsv(direktorijum);
+        }
+
+
     }
 }

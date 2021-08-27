@@ -43,5 +43,11 @@ namespace Common.Interfaces
         int VratiIdServisa(long jmbgServisera);
         [OperationContract]
         Korisnik VratiKorisnika(string korisnickoIme);
+        [OperationContract]
+        bool EksportujPosjedujeVezuUCsv(string direktorijum);
+        [OperationContract]
+        bool EksportujPosjedujeVezuZaVlasnikaUCsv(string direktorijum, long jmbg);
+        [OperationContract]
+        IEnumerable<Common.Models.Posjeduje> ImportujPosjedujeVezuIzCsv(string direktorijum);
     }
 }

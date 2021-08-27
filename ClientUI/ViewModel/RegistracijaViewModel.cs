@@ -254,7 +254,8 @@ namespace ClientUI.ViewModel
                     Prezime = Prezime,
                     Lozinka = lozinka.Password,
                     JMBG = Convert.ToInt64(JMBG),
-                    KorisnickoIme = KIme
+                    KorisnickoIme = KIme,
+                    ProfilAktivan = false
                 };
                 if (Uloga.Equals("Vlasnik_racunara"))
                 {

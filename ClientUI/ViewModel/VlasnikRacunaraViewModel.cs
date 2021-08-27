@@ -1,4 +1,5 @@
 ﻿using Common.Models;
+using Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.IO;
+using System.Windows;
+using Microsoft.Win32;
 
 namespace ClientUI.ViewModel
 {
@@ -49,6 +53,9 @@ namespace ClientUI.ViewModel
         public MyICommand AddCommand { get; set; }
         public MyICommand UpdateCommand { get; set; }
         public MyICommand OdobriCommand { get; set; }
+        public MyICommand ExportCommand { get; set; }
+        public MyICommand ExportAllCommand { get; set; }
+        public MyICommand ImportAllCommand { get; set; }
 
         public VlasnikRacunaraViewModel()
         {
@@ -56,6 +63,11 @@ namespace ClientUI.ViewModel
             AddCommand = new MyICommand(OnAdd, CanAdd);
             UpdateCommand = new MyICommand(OnUpdate, CanUpdate);
             OdobriCommand = new MyICommand(OnOdobri, CanOdobri);
+            ExportCommand = new MyICommand(OnExport, CanExport);
+            ExportAllCommand = new MyICommand(OnExportAll, CanExportAll);
+            ImportAllCommand = new MyICommand(OnImportAll);
+            ExportAllCommand.RaiseCanExecuteChanged();
+
         }
 
         public ObservableCollection<Vlasnik_racunara> Vlasnici
@@ -110,6 +122,7 @@ namespace ClientUI.ViewModel
                     DeleteCommand.RaiseCanExecuteChanged();
                     OdobriCommand.RaiseCanExecuteChanged();
                     UpdateCommand.RaiseCanExecuteChanged();
+                    ExportCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -325,6 +338,14 @@ namespace ClientUI.ViewModel
             return true /*&&
                     SelectedServiser == null*/;
         }
+        private bool CanExport()
+        {
+            return SelectedVlasnik != null ;
+        }
+        private bool CanExportAll()
+        {
+            return DatabaseServiceProvider.Instance.GetAllPosjeduje().Count() != 0 ;
+        }
         private bool CanAdd()
         {
             return !String.IsNullOrEmpty(TxTBoxJMBG_Vl) &&
@@ -348,6 +369,50 @@ namespace ClientUI.ViewModel
                    !String.IsNullOrEmpty(TxtBoxAdresaVl_Grad) &&
                    !String.IsNullOrEmpty(TxtBoxAdresaVl_Broj) &&
                    !String.IsNullOrEmpty(TxtBoxAdresaVl_PTTBroj);
+        }
+
+        private void OnExport()
+        {
+            var direktorijum = Path.Combine(Environment.CurrentDirectory, $"{SelectedVlasnik.JMBG_vl}-{SelectedVlasnik.Ime_vl}_posjedujeExport-{DateTime.Now.ToFileTimeUtc()}.csv");
+            if (DatabaseServiceProvider.Instance.EksportujPosjedujeVezuZaVlasnikaUCsv(direktorijum, SelectedVlasnik.JMBG_vl))
+            {
+                MessageBox.Show("Podaci uspješno eksportovani u fajl "+ $"{SelectedVlasnik.JMBG_vl}-{SelectedVlasnik.Ime_vl}_posjedujeExport-{DateTime.Now.ToFileTimeUtc()}.csv");
+                SelectedVlasnik = null;
+            }
+            else
+            {
+                MessageBox.Show("Greška pri eksportu podataka u .csv fajl!");
+            }
+        }
+        private void OnExportAll()
+        {
+            var direktorijum = Path.Combine(Environment.CurrentDirectory, $"Posjeduje_ExportAll-{DateTime.Now.ToFileTimeUtc()}.csv");
+            if (DatabaseServiceProvider.Instance.EksportujPosjedujeVezuUCsv(direktorijum))
+            {
+                MessageBox.Show("Podaci uspješno eksportovani u fajl "+ $"Posjeduje_ExportAll-{DateTime.Now.ToFileTimeUtc()}.csv");
+            }
+            else
+            {
+                MessageBox.Show("Greška pri eksportu podataka u .csv fajl!");
+            }
+        }
+        private void OnImportAll()
+        {
+            var dialog = new OpenFileDialog() { InitialDirectory = Environment.CurrentDirectory, Filter= "CSV Files (.csv)|*.csv" };
+            dialog.ShowDialog();
+            var direktorijum = dialog.FileName;
+            if (direktorijum != "")
+            {
+                ObservableCollection<Common.Models.Posjeduje> retVal = new ObservableCollection<Posjeduje>(DatabaseServiceProvider.Instance.ImportujPosjedujeVezuIzCsv(direktorijum));
+                if (retVal.Count > 0)
+                {
+                    MessageBox.Show($"Podaci uspješno importovani iz fajl-a {direktorijum}");
+                }
+                else
+                {
+                    MessageBox.Show("Greška pri importu podataka iz .csv fajl-a!");
+                }
+            }
         }
 
         private void OnAdd()
