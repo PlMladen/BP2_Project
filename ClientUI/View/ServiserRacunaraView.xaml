@@ -60,15 +60,15 @@
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/-->
                     <Border Height="34" Width="110" BorderBrush="{Binding Path=OkvirBoja, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="2">
-                        <Button x:Name="btnAdd" Content="{Binding Path=DugmeContent, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Width="110" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="{Binding Path=OkvirBoja, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding OdobriCommand}"  />
+                        <Button x:Name="btnAdd" Content="{Binding Path=DugmeContent, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Width="110" Foreground="Black" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="{Binding Path=OkvirBoja, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding OdobriCommand}"  />
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/>
                     <Border Height="34" Width="110" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnUpdate" Content="Ažuriraj" Width="110" Foreground="White" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
+                        <Button x:Name="btnUpdate" Content="Ažuriraj" Width="110" Foreground="Black" Height="34" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding UpdateCommand}"  />
                     </Border>
                     <Separator Height="0" Visibility="Hidden"/>
                     <Border Height="34" Width="110" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnDelete" Content="Obriši" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="White" Width="110" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
+                        <Button x:Name="btnDelete" Content="Obriši" BorderBrush="#FF3AFF00" BorderThickness="2" Foreground="Black" Width="110" Height="34" FontWeight="Bold" Command="{Binding DeleteCommand}"/>
                     </Border>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">

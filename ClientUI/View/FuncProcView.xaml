@@ -60,7 +60,7 @@
 
                 <StackPanel Orientation="Horizontal">
                     <Border Height="44" Width="130" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnBrRac" Content="Vrati broj računara" Width="130" Foreground="White" Height="44" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding RetNumPCCommand}" Margin="0,0,-4,-4" VerticalAlignment="Top"  />
+                        <Button x:Name="btnBrRac" Content="Vrati broj računara" Width="130" Foreground="Black" Height="44" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding RetNumPCCommand}" Margin="0,0,-4,-4" VerticalAlignment="Top"  />
                     </Border>
                 </StackPanel>
             </StackPanel>
@@ -80,7 +80,7 @@
 
                 <StackPanel Orientation="Horizontal">
                     <Border Height="44" Width="130" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnBrServisera" Content="Vrati najskuplji servis" Width="130" Foreground="White" Height="44" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding RetMaxPriceCommand}"  />
+                        <Button x:Name="btnBrServisera" Content="Vrati najskuplji servis" Width="130" Foreground="Black" Height="44" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding RetMaxPriceCommand}"  />
                     </Border>
                 </StackPanel>
             </StackPanel>
@@ -122,7 +122,7 @@
 
                     <StackPanel Orientation="Horizontal">
                         <Border Height="44" Width="130" BorderBrush="#FF3AFF00" BorderThickness="2">
-                            <Button x:Name="btnBrRac3" Content="Vrati najstarijeg serv" Width="130" Foreground="White" Height="44" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding ReturnTheOldestWorkerCommand}" Margin="0,0,-4,-4" VerticalAlignment="Top"  />
+                            <Button x:Name="btnBrRac3" Content="Vrati najstarijeg serv" Width="130" Foreground="Black" Height="44" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding ReturnTheOldestWorkerCommand}" Margin="0,0,-4,-4" VerticalAlignment="Top"  />
                         </Border>
                     </StackPanel>
                 </StackPanel>
@@ -144,7 +144,7 @@
                 <StackPanel Orientation="Horizontal">
 
                     <Border Height="44" Width="130" BorderBrush="#FF3AFF00" BorderThickness="2">
-                        <Button x:Name="btnBrVl" Content="Broj punoljetnih vl" Width="130" Foreground="White" Height="44" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding RetAdultsCommand}"  />
+                        <Button x:Name="btnBrVl" Content="Broj punoljetnih vl" Width="130" Foreground="Black" Height="44" FontWeight="Bold" BorderThickness="2" BorderBrush="#FF3AFF00" Command="{Binding RetAdultsCommand}"  />
                     </Border>
                 </StackPanel>
             </StackPanel>
