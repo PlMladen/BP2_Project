@@ -336,7 +336,12 @@ namespace ClientUI.ViewModel
             try
             {
                 var cijena = double.Parse(TxTBoxCijena.Replace(',', '.'), CultureInfo.InvariantCulture);
-
+                if(cmbBoxGar_listovi == null)
+                {
+                    LBL = "Greska pri servisiranju racunara!\nNije pridružen nijedan\ngarantni list!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
             
             if (DpDat_s.Date > DateTime.Now.Date)
             {
@@ -355,7 +360,9 @@ namespace ClientUI.ViewModel
                         Foreground = Brushes.Red;
                         return;
                 }
-                string[] keyPartsGListovi = CmbBoxGar_listovi.Split('\n');
+                    
+                        string[] keyPartsGListovi = CmbBoxGar_listovi.Split('\n');
+                    
                     try
                     {
                         DateTime d = DateTime.Parse(keyPartsGListovi[1].Split(' ')[2], CultureInfo.InvariantCulture);
@@ -423,7 +430,12 @@ namespace ClientUI.ViewModel
                     Foreground = Brushes.Red;
                     return;
                 }
-
+                if (cmbBoxGar_listovi == null)
+                {
+                    LBL = "Greska pri servisiranju racunara!\nNije pridružen nijedan\ngarantni list!";
+                    Foreground = Brushes.Red;
+                    return;
+                }
                 if (DpDat_s.Date > DateTime.Now.Date)
                 {
                     LBL = "Greska pri servisiranju racunara!\nDatum servisiranja ne smije biti\nu buducnosti!";

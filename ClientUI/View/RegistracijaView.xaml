@@ -9,7 +9,7 @@
         ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="False"
-        Title="RegistracijaView" MinHeight="650" MinWidth="970" Background="Black">
+        Title="RegistracijaView" MinHeight="770"  MinWidth="750" Background="Black">
     <Window.DataContext>
         <viewmodel:RegistracijaViewModel/>
     </Window.DataContext>
@@ -20,14 +20,16 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="12*"></RowDefinition>
+            <RowDefinition Height="9*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="1" Foreground="#FF3AFF00" FontWeight="Bold" HorizontalAlignment="Center" FontSize="24" Content="Dobrodošli u aplikaciju"></Label>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+        <Label  Grid.Column="1" Foreground="#FF3AFF00" FontWeight="Bold" HorizontalAlignment="Center" FontSize="24" Content="Dobrodošli u aplikaciju"></Label>
         <Label Foreground="#FF3AFF00" Grid.Row="1" Grid.Column="1" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Content="Molimo Vas da se popunite polja za registraciju "></Label>
-        <Border BorderThickness="3" BorderBrush="#FF3AFF00" CornerRadius="10" Grid.Row="2" Grid.Column="1" >
+            <Separator Visibility="Hidden" Height="1"></Separator>
+        </StackPanel>
+            <Border BorderThickness="3" BorderBrush="#FF3AFF00" CornerRadius="10" Grid.Row="1" Grid.Column="1" Margin="0 15 0 0">
             <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 6 6 0">
                 <StackPanel Orientation="Horizontal">
                     <Label HorizontalContentAlignment="Center" VerticalAlignment="Center" Foreground="#FF3AFF00" FontWeight="Bold" HorizontalAlignment="Left" FontSize="14" Content="Ime:"></Label>
@@ -76,7 +78,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalAlignment="Center"  Foreground="#FF3AFF00" FontWeight="Bold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="14" Content="Datum rođenja:"></Label>
-                    <Separator Width="3" Visibility="Hidden"></Separator>
+                    <Separator Width="4" Visibility="Hidden"></Separator>
                     <DatePicker x:Name="DatRodjenjaDp" VerticalAlignment="Center" HorizontalAlignment="Left" Background="LightGray" BorderBrush="#FF3AFF00" BorderThickness="1" Width="150" Text="{Binding Path=DatumRodjenja, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
@@ -85,7 +87,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalAlignment="Center"  Foreground="#FF3AFF00" FontWeight="Bold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="14" Content="Uloga:"></Label>
-                    <Separator Width="63" Visibility="Hidden"></Separator>
+                    <Separator Width="65" Visibility="Hidden"></Separator>
                     <ComboBox x:Name="UlogaCmbBox" VerticalAlignment="Center" Height="20" HorizontalAlignment="Left" Background="LightGray" BorderBrush="#FF3AFF00" BorderThickness="1" Width="150" Text="{Binding Path=Uloga, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <ComboBoxItem></ComboBoxItem>
                         <ComboBoxItem>Vlasnik_racunara</ComboBoxItem>
@@ -96,17 +98,37 @@
                     <Separator Visibility="Hidden" Width="116"></Separator>
                     <TextBox x:Name="ErrorLabe6" VerticalAlignment="Center" HorizontalAlignment="Left" Background="Transparent" Foreground="Red" IsReadOnly="True"  BorderThickness="0" Height="20" Width="290" Text="{Binding Path=UlogaGreska, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=AdresaVidljiva, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <StackPanel Orientation="Vertical" Visibility="{Binding Path=AdresaVidljiva, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <Label VerticalAlignment="Center"  Foreground="#FF3AFF00" FontWeight="Bold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="14" Content="Adresa:"></Label>
-                    <Separator Width="57" Visibility="Hidden"></Separator>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox x:Name="AdresaTbUlica" Text="{Binding Path=AdresaUlica, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Height="20" HorizontalAlignment="Left" Background="LightGray" BorderBrush="#FF3AFF00" BorderThickness="1" Width="100"></TextBox>
+                    <Separator Width="54" Visibility="Hidden"></Separator>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Separator Width="10" Visibility="Hidden"></Separator>
+                            <Label VerticalAlignment="Center"  Foreground="#FF3AFF00" FontWeight="Bold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="14" Content="Ulica:"></Label>
+                            <Separator Width="63" Visibility="Hidden"></Separator>
+                            <TextBox x:Name="AdresaTbUlica" Text="{Binding Path=AdresaUlica, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Height="20" HorizontalAlignment="Left" Background="LightGray" BorderBrush="#FF3AFF00" BorderThickness="1" Width="150"></TextBox>
+                        </StackPanel>
                         <Separator Width="2" Visibility="Hidden"></Separator>
-                        <TextBox x:Name="AdresaTbBroj" Text="{Binding Path=AdresaBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Height="20" HorizontalAlignment="Left" Background="LightGray" BorderBrush="#FF3AFF00" BorderThickness="1" Width="36"></TextBox>
+                        <StackPanel Orientation="Horizontal">
+                            <Separator Width="10" Visibility="Hidden"></Separator>
+                            <Label VerticalAlignment="Center"  Foreground="#FF3AFF00" FontWeight="Bold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="14" Content="Broj:"></Label>
+                            <Separator Width="68" Visibility="Hidden"></Separator>
+                            <TextBox x:Name="AdresaTbBroj" Text="{Binding Path=AdresaBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Height="20" HorizontalAlignment="Left" Background="LightGray" BorderBrush="#FF3AFF00" BorderThickness="1" Width="50"></TextBox>
+                        </StackPanel>
                         <Separator Width="2" Visibility="Hidden"></Separator>
-                        <TextBox x:Name="AdresaTbGrad" Text="{Binding Path=AdresaGrad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Height="20" HorizontalAlignment="Left" Background="LightGray" BorderBrush="#FF3AFF00" BorderThickness="1" Width="100"></TextBox>
+                        <StackPanel Orientation="Horizontal">
+                            <Separator Width="10" Visibility="Hidden"></Separator>
+                            <Label VerticalAlignment="Center"  Foreground="#FF3AFF00" FontWeight="Bold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="14" Content="Grad:"></Label>
+                            <Separator Width="64" Visibility="Hidden"></Separator>
+                            <TextBox x:Name="AdresaTbGrad" Text="{Binding Path=AdresaGrad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Height="20" HorizontalAlignment="Left" Background="LightGray" BorderBrush="#FF3AFF00" BorderThickness="1" Width="150"></TextBox>
+                        </StackPanel>
                         <Separator Width="2" Visibility="Hidden"></Separator>
-                        <TextBox x:Name="AdresaTbPBroj" Text="{Binding Path=AdresaPBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Height="20" HorizontalAlignment="Left" Background="LightGray" BorderBrush="#FF3AFF00" BorderThickness="1" Width="44"></TextBox>
+                        <StackPanel Orientation="Horizontal">
+                            <Separator Width="10" Visibility="Hidden"></Separator>
+                            <Label VerticalAlignment="Center"  Foreground="#FF3AFF00" FontWeight="Bold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="14" Content="Poštanski broj:"></Label>
+                            <Separator Visibility="Hidden" Width="3"></Separator>
+                            <TextBox x:Name="AdresaTbPBroj" Text="{Binding Path=AdresaPBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Height="20" HorizontalAlignment="Left" Background="LightGray" BorderBrush="#FF3AFF00" BorderThickness="1" Width="50"></TextBox>
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"  Visibility="{Binding Path=AdresaVidljiva, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">

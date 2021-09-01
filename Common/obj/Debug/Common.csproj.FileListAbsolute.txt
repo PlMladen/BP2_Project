@@ -12,10 +12,6 @@ G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP
 G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\BAZE PODATAKA 2\BP2_Projekat\BP2_Project\Common\obj\Debug\Common.pdb
 G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\bin\Debug\Common.dll
 G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\bin\Debug\Common.pdb
-G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\obj\Debug\Common.csproj.AssemblyReference.cache
-G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
-G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\obj\Debug\Common.dll
-G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\obj\Debug\Common.pdb
 G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\bin\Debug\CsvHelper.dll
 G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\bin\Debug\Microsoft.Bcl.HashCode.dll
@@ -32,4 +28,8 @@ G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\bi
 G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\bin\Debug\System.Numerics.Vectors.xml
 G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\bin\Debug\System.Threading.Tasks.Extensions.xml
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\obj\Debug\Common.csproj.CopyComplete
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\obj\Debug\Common.dll
+G:\FAKULTET - materijali\IV GODINA\VIII SEMESTAR\DIPLOMSKI\BP2_Project\Common\obj\Debug\Common.pdb

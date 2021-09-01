@@ -247,14 +247,14 @@ namespace ClientUI.ViewModel
                     Racunarski_servis = DatabaseServiceProvider.Instance.GetRacunarskiServis(int.Parse(CmbBoxID_Servisa.Split('\n')[0])),
                 }))
                 {
-                    LBL = "Servis racunara " + keyParts[1] + " uspjesno obavljen u servisu " + CmbBoxID_Servisa;
+                    LBL = "Racunar " + keyParts[1] + " uspjesno ostavljen u servisu " + CmbBoxID_Servisa;
                     Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3AFF00"));
                     DonosiSet = new ObservableCollection<Donosi>(DatabaseServiceProvider.Instance.GetAllDonosi());
 
                 }
                 else
                 {
-                    LBL = "Greska pri servisiranju racunara " + keyParts[1] + " u servisu " + CmbBoxID_Servisa + "!";
+                    LBL = "Greska pri ostavljanju racunara " + keyParts[1] + " u servisu " + CmbBoxID_Servisa + "!";
                     Foreground = Brushes.Red;
                 }
             }

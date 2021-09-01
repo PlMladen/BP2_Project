@@ -97,7 +97,7 @@ namespace ClientUI.ViewModel
                 Autorizacija = ulogaKorisnika.Equals("Administrator") ? "Visible" : "Collapsed";
                 AutorizacijaSA = ulogaKorisnika.Equals("Administrator") || ulogaKorisnika.Equals("Serviser_racunara") ? "Visible" : "Collapsed";
                 MeniStavkaPosjeduje = ulogaKorisnika.Equals("Administrator") || ulogaKorisnika.Equals("Serviser_racunara") ? "Računari korisnika" : "Moji računari";
-                MeniStavkaDonosi = ulogaKorisnika.Equals("Administrator") || ulogaKorisnika.Equals("Serviser_racunara") ? "Istorija posjeta servisima" : "Moji posjete servisima";
+                MeniStavkaDonosi = ulogaKorisnika.Equals("Administrator") || ulogaKorisnika.Equals("Serviser_racunara") ? "Istorija posjeta servisima" : "Mojе posjete servisima";
              
                 OnPropertyChanged("UlogaKorisnika");
                 OnPropertyChanged("Autorizacija");
